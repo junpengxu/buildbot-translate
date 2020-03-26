@@ -1,30 +1,29 @@
 .. _first-run-docker-label:
 
 ==============================
-First Buildbot run with Docker
+用Docker启动BuildBot
 ==============================
 
 .. note::
 
-    Docker can be tricky to get working correctly if you haven't used it before.
-    If you're having trouble, first determine whether it is a Buildbot issue or a Docker issue by running:
+    如果你没有用过Dockre，将BuildBot运行起来不是那么容易，如果你有问题，先通过下面的命令确认是BuildBot问题还是Docker的问题
 
     .. code-block:: bash
 
       docker run ubuntu:12.04 apt-get update
 
-    If that fails, look for help with your Docker install.
-    On the other hand, if that succeeds, then you may have better luck getting help from members of the Buildbot community.
+    如果失败了，运行 ``Docker install`` 的时候查看一下帮助。另一方面，如果成功了，是要比从Buildbot社区成员那里获得帮助可能会更好。
 
 
-Docker_ is a tool that makes building and deploying custom environments a breeze.
-It uses lightweight linux containers (LXC) and performs quickly, making it a great instrument for the testing community.
-The next section includes a Docker pre-flight check.
-If it takes more that 3 minutes to get the 'Success' message for you, try the Buildbot pip-based :ref:`first run <getting-code-label>` instead.
+Docker_ 是一个能让构建与发布自定义环境变得容易的工具。
+
+
+他使用一个轻量级的linux容器（LUX），能够很快执行，成为社区用来测试的一个好工具。
+如果超过了三分钟才看到的成功的消息，那就尝试用pip方式启动BuildBot :ref:`首次运行 <getting-code-label>`。
 
 .. _Docker: https://www.docker.com
 
-Current Docker dependencies
+当前docker依赖
 ---------------------------
 
 * Linux system, with at least kernel 3.8 and AUFS support.
@@ -33,97 +32,98 @@ Current Docker dependencies
 * Local clock on time or slightly in the future for proper SSL communication.
 * This tutorial uses docker-compose to run a master, a worker, and a postgresql database server
 
-Installation
+安装
 ------------
 
-* Use the `Docker installation instructions <https://docs.docker.com/engine/installation/>`_ for your operating system.
+* 在你的系统中使用 `Docker 安装指令 <https://docs.docker.com/engine/installation/>`_ .
 
-* Make sure you install docker-compose.
-  As root or inside a virtualenv, run:
+* 确保你已经安装 docker-compose.
+  使用root权限或者是在虚拟环境中，执行:
 
   .. code-block:: bash
 
     pip install docker-compose
 
-* Test docker is happy in your environment:
+* 测试docker是否工作:
 
   .. code-block:: bash
 
     sudo docker run -i busybox /bin/echo Success
 
-Building and running Buildbot
+构建并运行BuildBot
 -----------------------------
 
 .. code-block:: bash
 
-  # clone the example repository
+  # 下载样例仓库
   git clone --depth 1 https://github.com/buildbot/buildbot-docker-example-config
 
-  # Build the Buildbot container (it will take a few minutes to download packages)
+  # 构建BuildBot容器 (可能要画几分钟下载相关的包)
   cd buildbot-docker-example-config/simple
   docker-compose up
 
 
-You should now be able to go to http://localhost:8010 and see a web page similar to:
+你应该可以进入 http://localhost:8010看到下面的web页面:
 
 .. image:: _images/index.png
    :alt: index page
 
-Click on "Builds" at the left to open the submenu and then `Builders <http://localhost:8010/#/builders>`_ to see that the worker you just started has connected to the master:
+点击左侧"Builds"按钮，打开子菜单然后可以看到已经有一个worker连接到了master `Builders <http://localhost:8010/#/builders>`_
 
 .. image:: _images/builders.png
    :alt: builder runtests is active.
 
 
-Overview of the docker-compose configuration
+docker-compose 配置概述
 --------------------------------------------
 
 This docker-compose configuration is made as a basis for what you would put in production
+以下docker-compose配置是你投入使用的基本配置
 
-- Separated containers for each component
-- A solid database backend with postgresql
-- A buildbot master that exposes its configuration to the docker host
-- A buildbot worker that can be cloned in order to add additional power
-- Containers are linked together so that the only port exposed to external is the web server
-- The default master container is based on Alpine linux for minimal footprint
-- The default worker container is based on more widely known Ubuntu distribution, as this is the container you want to customize.
-- Download the config from a tarball accessible via a web server
+- 每个组件的独立容器
+- 一个独立的postgresql数据库
+- 可以连接到buildbot master的docker host 配置
+- 可以横向扩展的buildbot worker
+- 容器链接在一起，暴露给外部的唯一端口是Web服务器
+- 默认主容器基于Alpine linux，占用空间最小
+- 默认的worker容器基于广为人知的Ubuntu发行版，这可能是你想用的容器。
+- 通过web下载配置的压缩包
 
-Playing with your Buildbot containers
+和BuidBot容器愉快的玩耍吧
 -------------------------------------
 
-If you've come this far, you have a Buildbot environment that you can freely experiment with.
+如果你到了这一步，你已经又一个BuildBot环境，你可以自由发挥的实验。
 
-In order to modify the configuration, you need to fork the project on github https://github.com/buildbot/buildbot-docker-example-config
-Then you can clone your own fork, and start the docker-compose again.
+如果你想更改配置，你需要fork这个仓库 https://github.com/buildbot/buildbot-docker-example-config 然后可以下载你自己的分支，然后再次运行docker-compose
 
-To modify your config, edit the master.cfg file, commit your changes, and push to your fork.
-You can use the command buildbot check-config in order to make sure the config is valid before the push.
-You will need to change ``docker-compose.yml`` the variable ``BUILDBOT_CONFIG_URL`` in order to point to your github fork.
+通过编辑 master.cfg 文件更改你的配置，提交你的更改，然后推送到你的仓库中。
+在你推送之前你可以使用命令 buildbot check-config 来确保配置的变更是有效的
+你可能会更改 ``docker-compose.yml`` 变量 ``BUILDBOT_CONFIG_URL`` 来指向你的github分支
 
-The ``BUILDBOT_CONFIG_URL`` may point to a ``.tar.gz`` file accessible from HTTP.
-Several git servers like github can generate that tarball automatically from the master branch of a git repository
-If the ``BUILDBOT_CONFIG_URL`` does not end with ``.tar.gz``, it is considered to be the URL to a ``master.cfg`` file accessible from HTTP.
+``BUILDBOT_CONFIG_URL`` 可能指向一个HTTP可以访问的 ``.tar.gz`` 文件.
+几个像github这样的git服务器，可以从git仓库的master分支自动生成压缩包
+如果 ``BUILDBOT_CONFIG_URL`` 不以 ``.tar.gz`` 为结尾，也可以在 ``master.cfg`` 文件中填写通过HTTP可以访问到的链接
 
-Customize your Worker container
+
+定制你的worker容器
 -------------------------------
-It is advised to customize you worker container in order to suit your project's build dependencies and need.
-An example DockerFile is available which the buildbot community uses for its own CI purposes:
+建议跟你的工程构建需要来定制worker容器
+以下是DockerFile样例，buildbot社区用于自己的CI
 
 https://github.com/buildbot/metabbotcfg/blob/nine/docker/metaworker/Dockerfile
 
-Multi-master
+多个master
 ------------
-A multi-master environment can be setup using the ``multimaster/docker-compose.yml`` file in the example repository
 
-  # Build the Buildbot container (it will take a few minutes to download packages)
+多master环境可以通过设置  ``multimaster/docker-compose.yml`` 文件，在上面的样例中
+
+  # 构建BuildBot容器 (花几分钟下载相关的包)
   cd buildbot-docker-example-config/simple
   docker-compose up -d
   docker-compose scale buildbot=4
 
-Going forward
+冲呀
 -------------
 
-You've got a taste now, but you're probably curious for more.
-Let's step it up a little in the second tutorial by changing the configuration and doing an actual build.
-Continue on to :ref:`quick-tour-label`.
+你刚才已经尝试了一下，不过你可能会对更多的东西好奇。我们在下一个教程我们会提高点难度，通过更改配置进行进行构建
+继续查看 :ref:`quick-tour-label`.

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.2. First Buildbot run with Docker &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>1.2. 用Docker启动BuildBot &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="1.3. A Quick Tour" href="tour.html" />
-    <link rel="prev" title="1.1. First Run" href="firstrun.html" /> 
+    <link rel="prev" title="1.1. 第一次启动" href="firstrun.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,16 +82,16 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Buildbot Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="firstrun.html">1.1. First Run</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. First Buildbot run with Docker</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#current-docker-dependencies">1.2.1. Current Docker dependencies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installation">1.2.2. Installation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#building-and-running-buildbot">1.2.3. Building and running Buildbot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#overview-of-the-docker-compose-configuration">1.2.4. Overview of the docker-compose configuration</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#playing-with-your-buildbot-containers">1.2.5. Playing with your Buildbot containers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#customize-your-worker-container">1.2.6. Customize your Worker container</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#multi-master">1.2.7. Multi-master</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#going-forward">1.2.8. Going forward</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstrun.html">1.1. 第一次启动</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. 用Docker启动BuildBot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">1.2.1. 当前docker依赖</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.2.2. 安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#buildbot">1.2.3. 构建并运行BuildBot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#docker-compose">1.2.4. docker-compose 配置概述</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#buidbot">1.2.5. 和BuidBot容器愉快的玩耍吧</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#worker">1.2.6. 定制你的worker容器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#master">1.2.7. 多个master</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">1.2.8. 冲呀</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="tour.html">1.3. A Quick Tour</a></li>
@@ -145,7 +145,7 @@
         
           <li><a href="index.html"><span class="section-number">1. </span>Buildbot Tutorial</a> &raquo;</li>
         
-      <li><span class="section-number">1.2. </span>First Buildbot run with Docker</li>
+      <li><span class="section-number">1.2. </span>用Docker启动BuildBot</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -164,24 +164,21 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="first-buildbot-run-with-docker">
-<span id="first-run-docker-label"></span><h1><span class="section-number">1.2. </span>First Buildbot run with Docker<a class="headerlink" href="#first-buildbot-run-with-docker" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="dockerbuildbot">
+<span id="first-run-docker-label"></span><h1><span class="section-number">1.2. </span>用Docker启动BuildBot<a class="headerlink" href="#dockerbuildbot" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Docker can be tricky to get working correctly if you haven’t used it before.
-If you’re having trouble, first determine whether it is a Buildbot issue or a Docker issue by running:</p>
+<p>如果你没有用过Dockre，将BuildBot运行起来不是那么容易，如果你有问题，先通过下面的命令确认是BuildBot问题还是Docker的问题</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>docker run ubuntu:12.04 apt-get update
 </pre></div>
 </div>
-<p>If that fails, look for help with your Docker install.
-On the other hand, if that succeeds, then you may have better luck getting help from members of the Buildbot community.</p>
+<p>如果失败了，运行 <code class="docutils literal notranslate"><span class="pre">Docker</span> <span class="pre">install</span></code> 的时候查看一下帮助。另一方面，如果成功了，是要比从Buildbot社区成员那里获得帮助可能会更好。</p>
 </div>
-<p><a class="reference external" href="https://www.docker.com">Docker</a> is a tool that makes building and deploying custom environments a breeze.
-It uses lightweight linux containers (LXC) and performs quickly, making it a great instrument for the testing community.
-The next section includes a Docker pre-flight check.
-If it takes more that 3 minutes to get the ‘Success’ message for you, try the Buildbot pip-based <a class="reference internal" href="firstrun.html#getting-code-label"><span class="std std-ref">first run</span></a> instead.</p>
-<div class="section" id="current-docker-dependencies">
-<h2><span class="section-number">1.2.1. </span>Current Docker dependencies<a class="headerlink" href="#current-docker-dependencies" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference external" href="https://www.docker.com">Docker</a> 是一个能让构建与发布自定义环境变得容易的工具。</p>
+<p>他使用一个轻量级的linux容器（LUX），能够很快执行，成为社区用来测试的一个好工具。
+如果超过了三分钟才看到的成功的消息，那就尝试用pip方式启动BuildBot <a class="reference internal" href="firstrun.html#getting-code-label"><span class="std std-ref">首次运行</span></a>。</p>
+<div class="section" id="id1">
+<h2><span class="section-number">1.2.1. </span>当前docker依赖<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Linux system, with at least kernel 3.8 and AUFS support.
 For example, Standard Ubuntu, Debian and Arch systems.</p></li>
@@ -190,85 +187,84 @@ For example, Standard Ubuntu, Debian and Arch systems.</p></li>
 <li><p>This tutorial uses docker-compose to run a master, a worker, and a postgresql database server</p></li>
 </ul>
 </div>
-<div class="section" id="installation">
-<h2><span class="section-number">1.2.2. </span>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h2><span class="section-number">1.2.2. </span>安装<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <ul>
-<li><p>Use the <a class="reference external" href="https://docs.docker.com/engine/installation/">Docker installation instructions</a> for your operating system.</p></li>
-<li><p>Make sure you install docker-compose.
-As root or inside a virtualenv, run:</p>
+<li><p>在你的系统中使用 <a class="reference external" href="https://docs.docker.com/engine/installation/">Docker 安装指令</a> .</p></li>
+<li><p>确保你已经安装 docker-compose.
+使用root权限或者是在虚拟环境中，执行:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install docker-compose
 </pre></div>
 </div>
 </li>
-<li><p>Test docker is happy in your environment:</p>
+<li><p>测试docker是否工作:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo docker run -i busybox /bin/echo Success
 </pre></div>
 </div>
 </li>
 </ul>
 </div>
-<div class="section" id="building-and-running-buildbot">
-<h2><span class="section-number">1.2.3. </span>Building and running Buildbot<a class="headerlink" href="#building-and-running-buildbot" title="Permalink to this headline">¶</a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># clone the example repository</span>
+<div class="section" id="buildbot">
+<h2><span class="section-number">1.2.3. </span>构建并运行BuildBot<a class="headerlink" href="#buildbot" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># 下载样例仓库</span>
 git clone --depth <span class="m">1</span> https://github.com/buildbot/buildbot-docker-example-config
 
-<span class="c1"># Build the Buildbot container (it will take a few minutes to download packages)</span>
+<span class="c1"># 构建BuildBot容器 (可能要画几分钟下载相关的包)</span>
 <span class="nb">cd</span> buildbot-docker-example-config/simple
 docker-compose up
 </pre></div>
 </div>
-<p>You should now be able to go to <a class="reference external" href="http://localhost:8010">http://localhost:8010</a> and see a web page similar to:</p>
+<p>你应该可以进入 <a class="reference external" href="http://localhost">http://localhost</a>:8010看到下面的web页面:</p>
 <img alt="index page" src="../_images/index.png" />
-<p>Click on “Builds” at the left to open the submenu and then <a class="reference external" href="http://localhost:8010/#/builders">Builders</a> to see that the worker you just started has connected to the master:</p>
+<p>点击左侧”Builds”按钮，打开子菜单然后可以看到已经有一个worker连接到了master <a class="reference external" href="http://localhost:8010/#/builders">Builders</a></p>
 <img alt="builder runtests is active." src="../_images/builders.png" />
 </div>
-<div class="section" id="overview-of-the-docker-compose-configuration">
-<h2><span class="section-number">1.2.4. </span>Overview of the docker-compose configuration<a class="headerlink" href="#overview-of-the-docker-compose-configuration" title="Permalink to this headline">¶</a></h2>
-<p>This docker-compose configuration is made as a basis for what you would put in production</p>
+<div class="section" id="docker-compose">
+<h2><span class="section-number">1.2.4. </span>docker-compose 配置概述<a class="headerlink" href="#docker-compose" title="Permalink to this headline">¶</a></h2>
+<p>This docker-compose configuration is made as a basis for what you would put in production
+以下docker-compose配置是你投入使用的基本配置</p>
 <ul class="simple">
-<li><p>Separated containers for each component</p></li>
-<li><p>A solid database backend with postgresql</p></li>
-<li><p>A buildbot master that exposes its configuration to the docker host</p></li>
-<li><p>A buildbot worker that can be cloned in order to add additional power</p></li>
-<li><p>Containers are linked together so that the only port exposed to external is the web server</p></li>
-<li><p>The default master container is based on Alpine linux for minimal footprint</p></li>
-<li><p>The default worker container is based on more widely known Ubuntu distribution, as this is the container you want to customize.</p></li>
-<li><p>Download the config from a tarball accessible via a web server</p></li>
+<li><p>每个组件的独立容器</p></li>
+<li><p>一个独立的postgresql数据库</p></li>
+<li><p>可以连接到buildbot master的docker host 配置</p></li>
+<li><p>可以横向扩展的buildbot worker</p></li>
+<li><p>容器链接在一起，暴露给外部的唯一端口是Web服务器</p></li>
+<li><p>默认主容器基于Alpine linux，占用空间最小</p></li>
+<li><p>默认的worker容器基于广为人知的Ubuntu发行版，这可能是你想用的容器。</p></li>
+<li><p>通过web下载配置的压缩包</p></li>
 </ul>
 </div>
-<div class="section" id="playing-with-your-buildbot-containers">
-<h2><span class="section-number">1.2.5. </span>Playing with your Buildbot containers<a class="headerlink" href="#playing-with-your-buildbot-containers" title="Permalink to this headline">¶</a></h2>
-<p>If you’ve come this far, you have a Buildbot environment that you can freely experiment with.</p>
-<p>In order to modify the configuration, you need to fork the project on github <a class="reference external" href="https://github.com/buildbot/buildbot-docker-example-config">https://github.com/buildbot/buildbot-docker-example-config</a>
-Then you can clone your own fork, and start the docker-compose again.</p>
-<p>To modify your config, edit the master.cfg file, commit your changes, and push to your fork.
-You can use the command buildbot check-config in order to make sure the config is valid before the push.
-You will need to change <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> the variable <code class="docutils literal notranslate"><span class="pre">BUILDBOT_CONFIG_URL</span></code> in order to point to your github fork.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">BUILDBOT_CONFIG_URL</span></code> may point to a <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> file accessible from HTTP.
-Several git servers like github can generate that tarball automatically from the master branch of a git repository
-If the <code class="docutils literal notranslate"><span class="pre">BUILDBOT_CONFIG_URL</span></code> does not end with <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code>, it is considered to be the URL to a <code class="docutils literal notranslate"><span class="pre">master.cfg</span></code> file accessible from HTTP.</p>
+<div class="section" id="buidbot">
+<h2><span class="section-number">1.2.5. </span>和BuidBot容器愉快的玩耍吧<a class="headerlink" href="#buidbot" title="Permalink to this headline">¶</a></h2>
+<p>如果你到了这一步，你已经又一个BuildBot环境，你可以自由发挥的实验。</p>
+<p>如果你想更改配置，你需要fork这个仓库 <a class="reference external" href="https://github.com/buildbot/buildbot-docker-example-config">https://github.com/buildbot/buildbot-docker-example-config</a> 然后可以下载你自己的分支，然后再次运行docker-compose</p>
+<p>通过编辑 master.cfg 文件更改你的配置，提交你的更改，然后推送到你的仓库中。
+在你推送之前你可以使用命令 buildbot check-config 来确保配置的变更是有效的
+你可能会更改 <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> 变量 <code class="docutils literal notranslate"><span class="pre">BUILDBOT_CONFIG_URL</span></code> 来指向你的github分支</p>
+<p><code class="docutils literal notranslate"><span class="pre">BUILDBOT_CONFIG_URL</span></code> 可能指向一个HTTP可以访问的 <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> 文件.
+几个像github这样的git服务器，可以从git仓库的master分支自动生成压缩包
+如果 <code class="docutils literal notranslate"><span class="pre">BUILDBOT_CONFIG_URL</span></code> 不以 <code class="docutils literal notranslate"><span class="pre">.tar.gz</span></code> 为结尾，也可以在 <code class="docutils literal notranslate"><span class="pre">master.cfg</span></code> 文件中填写通过HTTP可以访问到的链接</p>
 </div>
-<div class="section" id="customize-your-worker-container">
-<h2><span class="section-number">1.2.6. </span>Customize your Worker container<a class="headerlink" href="#customize-your-worker-container" title="Permalink to this headline">¶</a></h2>
-<p>It is advised to customize you worker container in order to suit your project’s build dependencies and need.
-An example DockerFile is available which the buildbot community uses for its own CI purposes:</p>
+<div class="section" id="worker">
+<h2><span class="section-number">1.2.6. </span>定制你的worker容器<a class="headerlink" href="#worker" title="Permalink to this headline">¶</a></h2>
+<p>建议跟你的工程构建需要来定制worker容器
+以下是DockerFile样例，buildbot社区用于自己的CI</p>
 <p><a class="reference external" href="https://github.com/buildbot/metabbotcfg/blob/nine/docker/metaworker/Dockerfile">https://github.com/buildbot/metabbotcfg/blob/nine/docker/metaworker/Dockerfile</a></p>
 </div>
-<div class="section" id="multi-master">
-<h2><span class="section-number">1.2.7. </span>Multi-master<a class="headerlink" href="#multi-master" title="Permalink to this headline">¶</a></h2>
-<p>A multi-master environment can be setup using the <code class="docutils literal notranslate"><span class="pre">multimaster/docker-compose.yml</span></code> file in the example repository</p>
+<div class="section" id="master">
+<h2><span class="section-number">1.2.7. </span>多个master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
+<p>多master环境可以通过设置  <code class="docutils literal notranslate"><span class="pre">multimaster/docker-compose.yml</span></code> 文件，在上面的样例中</p>
 <blockquote>
-<div><p># Build the Buildbot container (it will take a few minutes to download packages)
+<div><p># 构建BuildBot容器 (花几分钟下载相关的包)
 cd buildbot-docker-example-config/simple
 docker-compose up -d
 docker-compose scale buildbot=4</p>
 </div></blockquote>
 </div>
-<div class="section" id="going-forward">
-<h2><span class="section-number">1.2.8. </span>Going forward<a class="headerlink" href="#going-forward" title="Permalink to this headline">¶</a></h2>
-<p>You’ve got a taste now, but you’re probably curious for more.
-Let’s step it up a little in the second tutorial by changing the configuration and doing an actual build.
-Continue on to <a class="reference internal" href="tour.html#quick-tour-label"><span class="std std-ref">A Quick Tour</span></a>.</p>
+<div class="section" id="id4">
+<h2><span class="section-number">1.2.8. </span>冲呀<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>你刚才已经尝试了一下，不过你可能会对更多的东西好奇。我们在下一个教程我们会提高点难度，通过更改配置进行进行构建
+继续查看 <a class="reference internal" href="tour.html#quick-tour-label"><span class="std std-ref">A Quick Tour</span></a>.</p>
 </div>
 </div>
 
@@ -283,7 +279,7 @@ Continue on to <a class="reference internal" href="tour.html#quick-tour-label"><
         <a href="tour.html" class="btn btn-neutral float-right" title="1.3. A Quick Tour" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="firstrun.html" class="btn btn-neutral float-left" title="1.1. First Run" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="firstrun.html" class="btn btn-neutral float-left" title="1.1. 第一次启动" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="1.4. Further Reading" href="further.html" />
-    <link rel="prev" title="1.2. First Buildbot run with Docker" href="docker.html" /> 
+    <link rel="prev" title="1.2. 用Docker启动BuildBot" href="docker.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -82,8 +82,8 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Buildbot Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="firstrun.html">1.1. First Run</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html">1.2. First Buildbot run with Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstrun.html">1.1. 第一次启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">1.2. 用Docker启动BuildBot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. A Quick Tour</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#goal">1.3.1. Goal</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setting-project-name-and-url">1.3.2. Setting Project Name and URL</a></li>
@@ -168,7 +168,7 @@
 <span id="quick-tour-label"></span><h1><span class="section-number">1.3. </span>A Quick Tour<a class="headerlink" href="#a-quick-tour" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="goal">
 <h2><span class="section-number">1.3.1. </span>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial will expand on the <a class="reference internal" href="firstrun.html#first-run-label"><span class="std std-ref">First Run</span></a> tutorial by taking a quick tour around some of the features of buildbot that are hinted at in the comments in the sample configuration.
+<p>This tutorial will expand on the <a class="reference internal" href="firstrun.html#first-run-label"><span class="std std-ref">第一次启动</span></a> tutorial by taking a quick tour around some of the features of buildbot that are hinted at in the comments in the sample configuration.
 We will simply change parts of the default configuration and explain the activated features.</p>
 <p>As a part of this tutorial, we will make buildbot do a few actual builds.</p>
 <p>This section will teach you how to:</p>
@@ -184,7 +184,7 @@ We will simply change parts of the default configuration and explain the activat
 <div class="section" id="setting-project-name-and-url">
 <h2><span class="section-number">1.3.2. </span>Setting Project Name and URL<a class="headerlink" href="#setting-project-name-and-url" title="Permalink to this headline">¶</a></h2>
 <p>Let’s start simple by looking at where you would customize the buildbot’s project name and URL.</p>
-<p>We continue where we left off in the <a class="reference internal" href="firstrun.html#first-run-label"><span class="std std-ref">First Run</span></a> tutorial.</p>
+<p>We continue where we left off in the <a class="reference internal" href="firstrun.html#first-run-label"><span class="std std-ref">第一次启动</span></a> tutorial.</p>
 <p>Open a new terminal, go to the directory you created master in, activate the same virtualenv instance you created before, and open the master configuration file with an editor (here <code class="docutils literal notranslate"><span class="pre">$EDITOR</span></code> is your editor of choice like vim, gedit, or emacs):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/tmp/bb-master
 <span class="nb">source</span> sandbox/bin/activate
@@ -354,7 +354,7 @@ In your IRC channel, type:</p>
 <span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">][</span><span class="s1">&#39;auth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">UserPasswordAuth</span><span class="p">([(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span><span class="s1">&#39;Password1&#39;</span><span class="p">)])</span>
 </pre></div>
 </div>
-<p>For more details, see <span class="xref std std-ref">Web-Authentication</span>.</p>
+<p>For more details, see <a class="reference internal" href="../manual/configuration/www.html#web-authentication"><span class="std std-ref">Authentication plugins</span></a>.</p>
 </div>
 <div class="section" id="debugging-with-manhole">
 <h2><span class="section-number">1.3.7. </span>Debugging with Manhole<a class="headerlink" href="#debugging-with-manhole" title="Permalink to this headline">¶</a></h2>
@@ -459,7 +459,7 @@ The “Reason” for the job will be listed as “‘try’ job”, and the blam
         <a href="further.html" class="btn btn-neutral float-right" title="1.4. Further Reading" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="docker.html" class="btn btn-neutral float-left" title="1.2. First Buildbot run with Docker" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="docker.html" class="btn btn-neutral float-left" title="1.2. 用Docker启动BuildBot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

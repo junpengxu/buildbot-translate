@@ -81,8 +81,8 @@
             
               <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Buildbot Tutorial</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="firstrun.html">1.1. First Run</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docker.html">1.2. First Buildbot run with Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="firstrun.html">1.1. 第一次启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">1.2. 用Docker启动BuildBot</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tour.html">1.3. A Quick Tour</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="further.html">1.4. Further Reading</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">1.4.1. Buildbot in 5 minutes - a user-contributed tutorial</a><ul>
@@ -398,7 +398,7 @@ For instance, when you add a change source watching project ‘superproject’ t
 This is what the <code class="docutils literal notranslate"><span class="pre">split_file</span></code> argument does, it takes a callable that Buildbot will call to do the job.
 The split_file_branches function, which comes with Buildbot, is designed for exactly this purpose so that’s what the example above uses.</p>
 <p>And of course this is all SVN-specific, but there are pollers for all the popular VCSs.</p>
-<p>But note: if you have many projects, branches, and builders it probably pays to not hardcode all the schedulers and builders in the configuration, but generate them dynamically starting from list of all projects, branches, targets etc. and using loops to generate all possible combinations (or only the needed ones, depending on the specific setup), as explained in the documentation chapter about <span class="xref std std-doc">../manual/customization</span>.</p>
+<p>But note: if you have many projects, branches, and builders it probably pays to not hardcode all the schedulers and builders in the configuration, but generate them dynamically starting from list of all projects, branches, targets etc. and using loops to generate all possible combinations (or only the needed ones, depending on the specific setup), as explained in the documentation chapter about <a class="reference internal" href="../manual/customization.html"><span class="doc">Customization</span></a>.</p>
 </div>
 <div class="section" id="reporters">
 <h2><span class="section-number">1.4.1.5. </span>Reporters<a class="headerlink" href="#reporters" title="Permalink to this headline">¶</a></h2>
@@ -417,7 +417,7 @@ They are described fairly well in the manual.</p>
 </pre></div>
 </div>
 <p>The mail notifier can be customized at will by means of the <code class="docutils literal notranslate"><span class="pre">messageFormatter</span></code> argument, which is a class that Buildbot calls to format the body of the email, and to which it makes available lots of information about the build.
-For more details, look into the <span class="xref std std-ref">Reporters</span> section of the Buildbot manual.</p>
+For more details, look into the <a class="reference internal" href="../manual/configuration/reporters.html#reporters"><span class="std std-ref">Reporters</span></a> section of the Buildbot manual.</p>
 </div>
 <div class="section" id="conclusion">
 <h2><span class="section-number">1.4.1.6. </span>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
