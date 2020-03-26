@@ -1,0 +1,216 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Build Sets &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Build Sets</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/manual/configuration/buildsets.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="build-sets">
+<span id="buildset"></span><h1>Build Sets<a class="headerlink" href="#build-sets" title="Permalink to this headline">¶</a></h1>
+<p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildSet</span></code> represents a set of <code class="xref py py-class docutils literal notranslate"><span class="pre">Build</span></code>s that all compile and/or test the same version of the source tree.
+Usually, these builds are created by multiple <code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code>s and will thus execute different steps.</p>
+<p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildSet</span></code> is tracked as a single unit, which fails if any of the component <code class="xref py py-class docutils literal notranslate"><span class="pre">Build</span></code>s have failed, and therefore can succeed only if <em>all</em> of the component <code class="xref py py-class docutils literal notranslate"><span class="pre">Build</span></code>s have succeeded.
+There are two kinds of status notification messages that can be emitted for a <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildSet</span></code>: the <code class="docutils literal notranslate"><span class="pre">firstFailure</span></code> type (which fires as soon as we know the <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildSet</span></code> will fail), and the <code class="docutils literal notranslate"><span class="pre">Finished</span></code> type (which fires once the <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildSet</span></code> has completely finished, regardless of whether the overall set passed or failed).</p>
+<p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildSet</span></code> is created with set of one or more <em>source stamp</em> tuples of <code class="docutils literal notranslate"><span class="pre">(branch,</span> <span class="pre">revision,</span> <span class="pre">changes,</span> <span class="pre">patch)</span></code>, some of which may be <code class="docutils literal notranslate"><span class="pre">None</span></code>, and a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code>s on which it is to be run.
+They are then given to the BuildMaster, which is responsible for creating a separate <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildRequest</span></code> for each <code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code>.</p>
+<p>There are a couple of different likely values for the <code class="docutils literal notranslate"><span class="pre">SourceStamp</span></code>:</p>
+<dl class="simple">
+<dt><code class="samp docutils literal notranslate"><span class="pre">(revision=None,</span> <span class="pre">changes=</span><em><span class="pre">CHANGES</span></em><span class="pre">,</span> <span class="pre">patch=None)</span></code></dt><dd><p>This is a <code class="xref py py-class docutils literal notranslate"><span class="pre">SourceStamp</span></code> used when a series of <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code>s have triggered a build.
+The VC step will attempt to check out a tree that contains <em>CHANGES</em> (and any changes that occurred before <em>CHANGES</em>, but not any that occurred after them.)</p>
+</dd>
+<dt><code class="samp docutils literal notranslate"><span class="pre">(revision=None,</span> <span class="pre">changes=None,</span> <span class="pre">patch=None)</span></code></dt><dd><p>This builds the most recent code on the default branch.
+This is the sort of <code class="xref py py-class docutils literal notranslate"><span class="pre">SourceStamp</span></code> that would be used on a <code class="xref py py-class docutils literal notranslate"><span class="pre">Build</span></code> that was triggered by a user request, or a <a href="#id1"><span class="problematic" id="id2">:bb:sched:`Periodic`</span></a> scheduler.
+It is also possible to configure the VC Source Step to always check out the latest sources rather than paying attention to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code>s in the <code class="xref py py-class docutils literal notranslate"><span class="pre">SourceStamp</span></code>, which will result in same behavior as this.</p>
+</dd>
+<dt><code class="samp docutils literal notranslate"><span class="pre">(branch=</span><em><span class="pre">BRANCH</span></em><span class="pre">,</span> <span class="pre">revision=None,</span> <span class="pre">changes=None,</span> <span class="pre">patch=None)</span></code></dt><dd><p>This builds the most recent code on the given <em>BRANCH</em>.
+Again, this is generally triggered by a user request or a <a href="#id3"><span class="problematic" id="id4">:bb:sched:`Periodic`</span></a> scheduler.</p>
+</dd>
+<dt><code class="samp docutils literal notranslate"><span class="pre">(revision=</span><em><span class="pre">REV</span></em><span class="pre">,</span> <span class="pre">changes=None,</span> <span class="pre">patch=(</span><em><span class="pre">LEVEL</span></em><span class="pre">,</span> <em><span class="pre">DIFF</span></em><span class="pre">,</span> <em><span class="pre">SUBDIR_ROOT</span></em><span class="pre">))</span></code></dt><dd><p>This checks out the tree at the given revision <em>REV</em>, then applies a patch (using <code class="docutils literal notranslate"><span class="pre">patch</span> <span class="pre">-pLEVEL</span> <span class="pre">&lt;DIFF</span></code>) from inside the relative directory <em>SUBDIR_ROOT</em>.
+Item <em>SUBDIR_ROOT</em> is optional and defaults to the builder working directory.
+The <a href="#id5"><span class="problematic" id="id6">:bb:cmdline:`try`</span></a> command creates this kind of <code class="xref py py-class docutils literal notranslate"><span class="pre">SourceStamp</span></code>.
+If <code class="docutils literal notranslate"><span class="pre">patch</span></code> is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the patching step is bypassed.</p>
+</dd>
+</dl>
+<p>The buildmaster is responsible for turning the <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildSet</span></code> into a set of <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildRequest</span></code> objects and queueing them on the appropriate <code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code>s.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

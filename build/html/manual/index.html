@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Buildbot Manual &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Buildbot Manual</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/manual/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <p>This is the Buildbot manual for Buildbot version .</p>
+<div class="section" id="buildbot-manual">
+<h1>Buildbot Manual<a class="headerlink" href="#buildbot-manual" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#history-and-philosophy">History and Philosophy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#system-architecture">System Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="introduction.html#control-flow">Control Flow</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="installation/index.html">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation/components.html">Buildbot Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/requirements.html">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/installation.html">Installing the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/buildmaster.html">Buildmaster Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/worker.html">Worker Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/misc.html">Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concepts.html">Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#source-stamps">Source Stamps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#version-control-systems">Version Control Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#changes">Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#scheduling-builds">Scheduling Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#builds">Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#buildsets">BuildSets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#buildrequests">BuildRequests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#builders-and-build-factories">Builders and Build Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#workers">Workers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#users">Users</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#build-properties">Build Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#multiple-codebase-builds">Multiple-Codebase Builds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html#multimaster">Multimaster</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="secretsmanagement.html">Secret Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="secretsmanagement.html#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secretsmanagement.html#how-to-use-buildbot-secret-management">How to use Buildbot Secret Management</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="configuration/index.html">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="configuration/intro.html">Configuring Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/global.html">Global Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/changesources.html">Change Sources and Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/changesources.html#changes">Changes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/schedulers.html">Schedulers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/workers.html">Workers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/builders.html">Builder Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/buildfactories.html">Build Factories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/buildsets.html">Build Sets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/properties.html">Properties</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/buildsteps.html">Build Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/interlocks.html">Interlocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/reporters.html">Reporters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/www.html">Web Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/wwwhooks.html">Change Hooks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/services.html">Custom Services</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/dbconfig.html">DbConfig</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/configurators.html">Configurators</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="customization.html">Customization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#programmatic-configuration-generation">Programmatic Configuration Generation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#collapse-request-functions">Collapse Request Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#builder-priority-functions">Builder Priority Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#build-priority-functions">Build Priority Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#canstartbuild-functions"><code class="docutils literal notranslate"><span class="pre">canStartBuild</span></code> Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#customizing-svnpoller">Customizing SVNPoller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#writing-change-sources">Writing Change Sources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#writing-a-new-latent-worker-implementation">Writing a New Latent Worker Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#custom-build-classes">Custom Build Classes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#factory-workdir-functions">Factory Workdir Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#writing-new-buildsteps">Writing New BuildSteps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#writing-dashboards-with-flask-or-bottle">Writing Dashboards with Flask or Bottle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html#a-somewhat-whimsical-example-or-it-s-now-customized-how-do-i-deploy-it">A Somewhat Whimsical Example (or “It’s now customized, how do I deploy it?”)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cmdline.html">Command-line Tool</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html#buildbot">buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html#worker">worker</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="optimization.html">Optimization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html#properties-load-speedup">Properties load speedup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="plugins.html">Plugin Infrastructure in Buildbot</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="plugins.html#finding-plugins">Finding Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins.html#developing-plugins">Developing Plugins</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins.html#plugins-of-note">Plugins of note</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="deploy.html">Deployment</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="deploy.html#using-a-database-server">Using A Database Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy.html#maintenance">Maintenance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy.html#troubleshooting">Troubleshooting</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="upgrading/index.html">Upgrading</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/2.0-upgrade.html">Upgrading to Buildbot 2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/1.0-upgrade.html">Upgrading to Buildbot 1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/0.9-upgrade.html">Upgrading to Buildbot 0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/0.9-new-style-steps.html">New-Style Build Steps in Buildbot 0.9.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/0.9-worker-transition.html">Transition to “worker” terminology in BuildBot 0.9.0</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

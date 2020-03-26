@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Authentication &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Authentication</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/auth.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="authentication">
+<h1>Authentication<a class="headerlink" href="#authentication" title="Permalink to this headline">¶</a></h1>
+<p>Buildbot’s HTTP authentication subsystem supports a rich set of information about users:</p>
+<ul>
+<li><p>User credentials: Username and proof of ownership of that username.</p></li>
+<li><p>User information: Additional information about the user, including</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>email address</p></li>
+<li><p>full name</p></li>
+<li><p>group membership</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Avatar information: a small image to represent the user.</p></li>
+</ul>
+<p>Buildbot’s authentication subsystem is designed to support several authentication modes:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt>Simple username/password authentication.</dt><dd><p>The Buildbot UI prompts for a username and password and the backend verifies them.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>External authentication by an HTTP Proxy.</dt><dd><p>An HTTP proxy in front of Buildbot performs the authentication and passes the verified username to Buildbot in an HTTP Header.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple">
+<dt>Authentication by a third-party website.</dt><dd><p>Buildbot sends the user to another site such as GitHub to authenticate and receives a trustworthy assertion of the user’s identity from that site.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="section" id="implementation">
+<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">¶</a></h2>
+<p>Authentication is implemented by an instance of <a class="reference internal" href="cls-auth.html#buildbot.www.auth.AuthBase" title="buildbot.www.auth.AuthBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">AuthBase</span></code></a>.
+This instance is supplied directly by the user in the configuration file.
+A reference to the instance is available at <code class="docutils literal notranslate"><span class="pre">self.master.www.auth</span></code>.</p>
+</div>
+<div class="section" id="username-password-authentication">
+<h2>Username / Password Authentication<a class="headerlink" href="#username-password-authentication" title="Permalink to this headline">¶</a></h2>
+<p>In this mode, the Buildbot UI displays a form allowing the user to specify a username and password.
+When this form is submitted, the UI makes an AJAX call to <code class="docutils literal notranslate"><span class="pre">/auth/login</span></code> including HTTP Basic Authentication headers.
+The master verifies the contents of the header and updates the server-side session to indicate a successful login or to contain a failure message.
+Once the AJAX call is complete, the UI reloads the page, re-fetching <code class="docutils literal notranslate"><span class="pre">/config.js</span></code>, which will include the username or failure message from the session.</p>
+<p>Subsequent access is authorized based on the information in the session; the authentication credentials are not sent again.</p>
+</div>
+<div class="section" id="external-authentication">
+<h2>External Authentication<a class="headerlink" href="#external-authentication" title="Permalink to this headline">¶</a></h2>
+<p>Buildbot’s web service can be run behind an HTTP proxy.
+Many such proxies can be configured to perform authentication on HTTP connections before forwarding the request to Buildbot.
+In these cases, the results of the authentication are passed to Buildbot in an HTTP header.</p>
+<p>In this mode, authentication proceeds as follows:</p>
+<ul class="simple">
+<li><p>The web browser connects to the proxy, requesting the Buildbot home page</p></li>
+<li><p>The proxy negotiates authentication with the browser, as configured</p></li>
+<li><p>Once the user is authenticated, the proxy forwards the request goes to the Buildbot web service.
+The request includes a header, typically <code class="docutils literal notranslate"><span class="pre">Remote-User</span></code>, containing the authenticated username.</p></li>
+<li><p>Buildbot reads the header and optionally connects to another service to fetch additional user information about the user.</p></li>
+<li><p>Buildbot stores all of the collected information in the server-side session.</p></li>
+<li><p>The UI fetches <code class="docutils literal notranslate"><span class="pre">/config.js</span></code>, which includes the user information from the server-side session.</p></li>
+</ul>
+<p>Note that in this mode, the HTTP proxy will send the header with every request, although it is only interpreted during the fetch of <code class="docutils literal notranslate"><span class="pre">/config.js</span></code>.</p>
+<div class="section" id="kerberos-example">
+<h3>Kerberos Example<a class="headerlink" href="#kerberos-example" title="Permalink to this headline">¶</a></h3>
+<p>Kerberos is an authentication system which allows passwordless authentication on corporate networks.
+Users authenticate once on their desktop environment, and the OS, browser, webserver, and corporate directory cooperate in a secure manner to share the authentication to a webserver.
+This mechanism only takes care about the authentication problem, and no user information is shared other than the username.
+The kerberos authentication is supported by a Apache front-end in <code class="docutils literal notranslate"><span class="pre">mod_kerberos</span></code>.</p>
+</div>
+</div>
+<div class="section" id="third-party-authentication">
+<h2>Third-Party Authentication<a class="headerlink" href="#third-party-authentication" title="Permalink to this headline">¶</a></h2>
+<p>Third-party authentication involves Buildbot redirecting a user’s browser to another site to establish the user’s identity.
+Once that is complete, that site redirects the user back to Buildbot, including a cryptographically signed assertion about the user’s identity.</p>
+<p>The most common implementation of this sort of authentication is oAuth2.
+Many big internet service companies are providing oAuth2 services to identify their users.
+Most oAuth2 services provide authentication and user information in the same api.</p>
+<p>The following process is used for third-party authentication:</p>
+<ul class="simple">
+<li><p>The web browser connects to buildbot ui</p></li>
+<li><p>A session cookie is created, but user is not yet authenticated.
+The UI adds a widget entitled <code class="docutils literal notranslate"><span class="pre">Login</span> <span class="pre">via</span> <span class="pre">GitHub</span></code> (or whatever third party is configured)</p></li>
+<li><p>When the user clicks on the widget, the UI fetches <code class="docutils literal notranslate"><span class="pre">/auth/login</span></code>, which returns a bare URL on <code class="docutils literal notranslate"><span class="pre">github.com</span></code>.
+The UI loads that URL in the browser, with an effect similar to a redirect.</p></li>
+<li><p>GitHub authenticates the user, if necessary, and requests permission for Buildbot to access the user’s information.</p></li>
+<li><p>On success, the GitHub web page redirects back to Buildbot’s <code class="docutils literal notranslate"><span class="pre">/auth/login?code=..</span></code>, with an authentication code.</p></li>
+<li><p>Buildbot uses this code to request more information from GitHub, and stores the results in the server-side session.
+Finally, Buildbot returns a redirect response, sending the user’s browser to the root of the Buildbot UI.
+The UI code will fetch <code class="docutils literal notranslate"><span class="pre">/config.js</span></code>, which contains the login data from the session.</p></li>
+</ul>
+</div>
+<div class="section" id="logout">
+<h2>Logout<a class="headerlink" href="#logout" title="Permalink to this headline">¶</a></h2>
+<p>A “logout” button is available in the simple and third-party modes.
+Such a button doesn’t make sense for external authentication, since the proxy will immediately re-authenticate the user.</p>
+<p>This button fetches <code class="docutils literal notranslate"><span class="pre">/auth/logout</span></code>, which destroys the server-side session.
+After this point, any stored authentication information is gone and the user is logged out.</p>
+</div>
+<div class="section" id="future-additions">
+<h2>Future Additions<a class="headerlink" href="#future-additions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Browserid/Persona: This method is very similar to oauth2, and should be implemented in a similar way (i.e. two stage redirect + token-verify)</p></li>
+<li><p>Use the User table in db: This is a very similar to the UserPasswordAuth use cases (form + local db verification). Eventually, this method will require some work on the UI in order to populate the db, add a “register” button, verification email, etc. This has to be done in a ui plugin.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

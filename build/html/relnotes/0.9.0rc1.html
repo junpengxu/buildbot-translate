@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Release Notes for Buildbot 0.9.0rc1 &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.0rc1</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/relnotes/0.9.0rc1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-for-buildbot-0-9-0rc1">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.0rc1</span></code><a class="headerlink" href="#release-notes-for-buildbot-0-9-0rc1" title="Permalink to this headline">¶</a></h1>
+<p>The following are the release notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.0rc1</span></code>.</p>
+<p>See <a class="reference internal" href="../manual/upgrading/0.9-upgrade.html#upgrading-to-nine"><span class="std std-ref">Upgrading to Buildbot 0.9.0</span></a> for a guide to upgrading from 0.8.x to 0.9.x</p>
+<div class="section" id="master">
+<h2>Master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>new <a href="#id1"><span class="problematic" id="id2">:bb:reporter:`HipchatStatusPush`</span></a> to report build results to Hipchat.</p></li>
+<li><p>new steps for Visual Studio 2015 (VS2015, VC14, and MsBuild14).</p></li>
+<li><p>The <a href="#id3"><span class="problematic" id="id4">:bb:step:`P4`</span></a> step now obfuscates the password in status logs.</p></li>
+<li><p>Added support for specifying the depth of a shallow clone in <a href="#id5"><span class="problematic" id="id6">:bb:step:`Git`</span></a>.</p></li>
+<li><p><a href="#id7"><span class="problematic" id="id8">:bb:worker:`OpenStackLatentWorker`</span></a> now uses a single novaclient instance to not require re-authentication when starting or stopping instances.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">dist</span></code> parameter in <a href="#id9"><span class="problematic" id="id10">:bb:step:`RpmBuild`</span></a> is now renderable.</p></li>
+<li><p>new <a href="#id11"><span class="problematic" id="id12">:bb:reporter:`BitbucketStatusPush`</span></a> to report build results to a Bitbucket Cloud repository.</p></li>
+</ul>
+</div>
+<div class="section" id="fixes">
+<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><a href="#id13"><span class="problematic" id="id14">:bb:reporter:`GerritStatusPush`</span></a> now includes build properties in the <code class="docutils literal notranslate"><span class="pre">startCB</span></code> and <code class="docutils literal notranslate"><span class="pre">reviewCB</span></code> functions. <code class="docutils literal notranslate"><span class="pre">startCB</span></code> now must return a dictionary.</p></li>
+<li><p>Fix TypeError exception with <code class="xref py py-class docutils literal notranslate"><span class="pre">HgPoller</span></code> if <code class="docutils literal notranslate"><span class="pre">usetimestamps=False</span></code> is used (<a href="#id15"><span class="problematic" id="id16">:bug:`3562`</span></a>)</p></li>
+<li><p>Fix recovery upon master unclean kill or crash (<a href="#id17"><span class="problematic" id="id18">:bug:`3564`</span></a>)</p></li>
+<li><p>sqlite access is serialized in order to improve stability (<a href="#id19"><span class="problematic" id="id20">:bug:`3565`</span></a>)</p></li>
+<li><p>Docker latent worker has been fixed (<a href="#id21"><span class="problematic" id="id22">:bug:`3571`</span></a>)</p></li>
+</ul>
+</div>
+<div class="section" id="changes-for-developers">
+<h3>Changes for Developers<a class="headerlink" href="#changes-for-developers" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id23">
+<h3>Features<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id24">
+<h3>Fixes<a class="headerlink" href="#id24" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="deprecations-removals-and-non-compatible-changes">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#deprecations-removals-and-non-compatible-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Support for python 2.6 was dropped from the master.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">public_html</span></code> directory is not created anymore in <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">create-master</span></code> (it’s not used for some time already).
+Documentation was updated with suggestions to use third party web server for serving static file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usePTY</span></code> default value has been changed from <code class="docutils literal notranslate"><span class="pre">slave-config</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> (use of <code class="docutils literal notranslate"><span class="pre">slave-config</span></code> will still work).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GithubStatusPush</span></code> reporter was renamed to <a href="#id25"><span class="problematic" id="id26">:bb:reporter:`GitHubStatusPush`</span></a>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="worker">
+<h2>Worker<a class="headerlink" href="#worker" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id27">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#id27" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">buildbot-slave</span></code> package has finished being renamed to <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="id28">
+<h2>Worker<a class="headerlink" href="#id28" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id29">
+<h3>Fixes<a class="headerlink" href="#id29" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">runGlob()</span></code> uses the correct remote protocol for both <code class="xref py py-class docutils literal notranslate"><span class="pre">CommandMixin</span></code> and <code class="xref py py-class docutils literal notranslate"><span class="pre">ComposititeStepMixin</span></code>.</p></li>
+<li><p>Rename <code class="docutils literal notranslate"><span class="pre">glob()</span></code> to <code class="docutils literal notranslate"><span class="pre">runGlob()</span></code> in <code class="xref py py-class docutils literal notranslate"><span class="pre">CommandMixin</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id30">
+<h3>Changes for Developers<a class="headerlink" href="#id30" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>EC2 Latent Worker upgraded from <code class="docutils literal notranslate"><span class="pre">boto2</span></code> to <code class="docutils literal notranslate"><span class="pre">boto3</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="id31">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#id31" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Worker commands version bumped to 3.0.</p></li>
+<li><p>Master/worker protocol has been changed:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">slave_commands</span></code> key in worker information was renamed to <code class="docutils literal notranslate"><span class="pre">worker_commands</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">getSlaveInfo</span></code> remote method was renamed to <code class="docutils literal notranslate"><span class="pre">getWorkerInfo</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slave-config</span></code> value of <code class="docutils literal notranslate"><span class="pre">usePTY</span></code> is not supported anymore.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slavesrc</span></code> command argument was renamed to <code class="docutils literal notranslate"><span class="pre">workersrc</span></code> in <code class="docutils literal notranslate"><span class="pre">uploadFile</span></code> and <code class="docutils literal notranslate"><span class="pre">uploadDirectory</span></code> commands.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slavedest</span></code> command argument was renamed to <code class="docutils literal notranslate"><span class="pre">workerdest</span></code> in <code class="docutils literal notranslate"><span class="pre">downloadFile</span></code> command.</p></li>
+<li><p>Previously deprecated <code class="docutils literal notranslate"><span class="pre">WorkerForBuilder.remote_shutdown()</span></code> remote command has been removed.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>For a more detailed description of the changes made in this version, see the git log itself:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log v0.9.0b9..v0.9.0rc1
+</pre></div>
+</div>
+<p>Note that Buildbot-0.8.11 was never released.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

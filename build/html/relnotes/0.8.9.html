@@ -1,0 +1,434 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Release Notes for Buildbot 0.8.9 &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Release Notes for Buildbot 0.8.9</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/relnotes/0.8.9.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-for-buildbot-0-8-9">
+<h1>Release Notes for Buildbot 0.8.9<a class="headerlink" href="#release-notes-for-buildbot-0-8-9" title="Permalink to this headline">¶</a></h1>
+<p>The following are the release notes for Buildbot 0.8.9. Buildbot 0.8.9 was
+released on 14 June, 2014.</p>
+<div class="section" id="master">
+<h2>Master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><dl class="simple">
+<dt>The following optional parameters have been added to <code class="xref py py-class docutils literal notranslate"><span class="pre">EC2LatentBuildSlave</span></code></dt><dd><ul class="simple">
+<li><p>Boolean parameter <code class="docutils literal notranslate"><span class="pre">spot_instance</span></code>, default False, creates a spot instance.</p></li>
+<li><p>Float parameter <code class="docutils literal notranslate"><span class="pre">max_spot_price</span></code> defines the maximum bid for a spot instance.</p></li>
+<li><p>List parameter <code class="docutils literal notranslate"><span class="pre">volumes</span></code>, takes a list of (volume_id, mount_point) tuples.</p></li>
+<li><p>String parameter <code class="docutils literal notranslate"><span class="pre">placement</span></code> is appended to the <code class="docutils literal notranslate"><span class="pre">region</span></code> parameter, e.g. <code class="docutils literal notranslate"><span class="pre">region='us-west-2',</span> <span class="pre">placement='b'</span></code>
+will result in the spot request being placed in us-west-2b.</p></li>
+<li><p>Float parameter <code class="docutils literal notranslate"><span class="pre">price_multiplier</span></code> specifies the percentage bid above the 24-hour average spot price.</p></li>
+<li><p>Dict parameter <code class="docutils literal notranslate"><span class="pre">tags</span></code> specifies AWS tags as key/value pairs to be applied to new instances.</p></li>
+</ul>
+</dd>
+</dl>
+<p>With <code class="docutils literal notranslate"><span class="pre">spot_instance=True</span></code>, an <code class="docutils literal notranslate"><span class="pre">EC2LatentBuildSlave</span></code> will attempt to create a spot instance with the provided spot
+price, placement, and so on.</p>
+</li>
+<li><p>The web hooks now include support for Bitbucket, GitLab and Gitorious.</p></li>
+<li><p>The GitHub webhook has been updated to work with v3 of the GitHub webhook API.</p></li>
+<li><p>The GitHub webhook can now optionally ignore non-distinct commits (<a href="#id1"><span class="problematic" id="id2">:bug:`1861`</span></a>).</p></li>
+<li><p>The <a href="#id3"><span class="problematic" id="id4">:bb:chsrc:`HgPoller`</span></a> and <a href="#id5"><span class="problematic" id="id6">:bb:chsrc:`GitPoller`</span></a> now split filenames on newlines, rather than whitespace, so files containing whitespace are handled correctly.</p></li>
+<li><p>Add ‘pollAtLaunch’ flag for polling change sources. This allows a poller to poll immediately on launch and get changes that occurred while it was down.</p></li>
+<li><p>Added the <a href="#id7"><span class="problematic" id="id8">:bb:chsrc:`BitbucketPullrequestPoller`</span></a> changesource.</p></li>
+<li><p>The <a href="#id9"><span class="problematic" id="id10">:bb:chsrc:`GitPoller`</span></a> can now be configured to poll all available branches (<a href="#id11"><span class="problematic" id="id12">:pull:`1010`</span></a>).</p></li>
+<li><p>The <a href="#id13"><span class="problematic" id="id14">:bb:chsrc:`P4Source`</span></a> changesource now supports Perforce servers in a different timezone than the buildbot master (<a href="#id15"><span class="problematic" id="id16">:pull:`728`</span></a>).</p></li>
+<li><p>Each Scheduler type can now take a ‘reason’ argument to customize the reason it uses for triggered builds.</p></li>
+<li><p>A new argument <code class="docutils literal notranslate"><span class="pre">createAbsoluteSourceStamps</span></code> has been added to <a href="#id17"><span class="problematic" id="id18">:bb:sched:`SingleBranchScheduler`</span></a> for use with multiple codebases.</p></li>
+<li><p>A new argument <code class="docutils literal notranslate"><span class="pre">createAbsoluteSourceStamps</span></code> has been added to <a href="#id19"><span class="problematic" id="id20">:bb:sched:`Nightly`</span></a> for use with multiple codebases.</p></li>
+<li><p>The <a href="#id21"><span class="problematic" id="id22">:bb:sched:`Periodic`</span></a> scheduler now supports codebases.</p></li>
+<li><p>The <a href="#id23"><span class="problematic" id="id24">:bb:sched:`ForceScheduler`</span></a> now takes a <code class="docutils literal notranslate"><span class="pre">buttonName</span></code> argument to specify the name of the button on the force-build form.</p></li>
+<li><p>Master side source checkout steps now support patches (<a href="#id25"><span class="problematic" id="id26">:bug:`2098`</span></a>). The <a href="#id27"><span class="problematic" id="id28">:bb:step:`Git`</span></a> and <a href="#id29"><span class="problematic" id="id30">:bb:step:`Mercurial`</span></a> steps use their inbuilt commands to apply patches (<a href="#id31"><span class="problematic" id="id32">:bug:`2563`</span></a>).</p></li>
+<li><p>Master side source checkout steps now support retry option (<a href="#id33"><span class="problematic" id="id34">:bug:`2465`</span></a>).</p></li>
+<li><p>Master-side source checkout steps now respond to the “stop build” button (<a href="#id35"><span class="problematic" id="id36">:bug:`2356`</span></a>).</p></li>
+<li><p><a href="#id37"><span class="problematic" id="id38">:bb:step:`Git`</span></a> source checkout step now supports reference repositories.</p></li>
+<li><p>The <a href="#id39"><span class="problematic" id="id40">:bb:step:`Git`</span></a> step now uses the <cite>git clean</cite> option <cite>-f</cite> twice, to also remove untracked directories managed by another git repository.
+See <a href="#id41"><span class="problematic" id="id42">:bug:`2560`</span></a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">branch</span></code> and <code class="docutils literal notranslate"><span class="pre">codebase</span></code> arguments to the <a href="#id43"><span class="problematic" id="id44">:bb:step:`Git`</span></a> step are now renderable.</p></li>
+<li><p>Gerrit integration with <a href="#id45"><span class="problematic" id="id46">:bb:step:`Git`</span></a> Source step on master side (<a href="#id47"><span class="problematic" id="id48">:bug:`2485`</span></a>).</p></li>
+<li><p><a href="#id49"><span class="problematic" id="id50">:bb:step:`P4`</span></a> source step now supports more advanced options.</p></li>
+<li><p>The master-side <a href="#id51"><span class="problematic" id="id52">:bb:step:`SVN`</span></a> step now supports authentication for mode=export, fixing <a href="#id53"><span class="problematic" id="id54">:bug:`2463`</span></a>.</p></li>
+<li><p>The <a href="#id55"><span class="problematic" id="id56">:bb:step:`SVN`</span></a> step will now canonicalize URL’s before matching them for better accuracy.</p></li>
+<li><p>The <a href="#id57"><span class="problematic" id="id58">:bb:step:`SVN`</span></a> step now obfuscates the password in status logs, fixing <a href="#id59"><span class="problematic" id="id60">:bug:`2468`</span></a>.</p></li>
+<li><p><a href="#id61"><span class="problematic" id="id62">:bb:step:`SVN`</span></a> source step and ShellCommand now support password obfuscation. (<a href="#id63"><span class="problematic" id="id64">:bug:`2468`</span></a> and <a href="#id65"><span class="problematic" id="id66">:bug:`1748`</span></a>).</p></li>
+<li><p><a href="#id67"><span class="problematic" id="id68">:bb:step:`CVS`</span></a> source step now checks for “sticky dates” from a previous checkout before updating an existing source directory.</p></li>
+<li><p>:<a href="#id69"><span class="problematic" id="id70">:bb:step:`Repo`</span></a> now supports a <code class="docutils literal notranslate"><span class="pre">depth</span></code> flag when initializing the repo. This controls the amount of git history to download.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">manifestBranch</span></code> of the bb:step:<cite>Repo</cite> step is now renderable</p></li>
+<li><p>New source step <a href="#id71"><span class="problematic" id="id72">:bb:step:`Monotone`</span></a> added on master side.</p></li>
+<li><p>New source step <a href="#id73"><span class="problematic" id="id74">:bb:step:`Darcs`</span></a> added on master side.</p></li>
+<li><p>A new <a href="#id75"><span class="problematic" id="id76">:bb:step:`Robocopy`</span></a> step is available for Windows builders (<a href="#id77"><span class="problematic" id="id78">:pull:`728`</span></a>).</p></li>
+<li><p>The attributes <code class="docutils literal notranslate"><span class="pre">description</span></code>, <code class="docutils literal notranslate"><span class="pre">descriptionDone</span></code> and <code class="docutils literal notranslate"><span class="pre">descriptionSuffix</span></code> have been moved from <code class="xref py py-class docutils literal notranslate"><span class="pre">ShellCommand</span></code> to its superclass <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildStep</span></code> so that any class that inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildStep</span></code> can provide a suitable description of itself.</p></li>
+<li><p>A new <code class="xref py py-class docutils literal notranslate"><span class="pre">FlattenList</span></code> Renderable has been added which can flatten nested lists.</p></li>
+<li><p>Added new build steps for <a href="#id79"><span class="problematic" id="id80">:bb:step:`VC12`</span></a>, <a href="#id81"><span class="problematic" id="id82">:bb:step:`VS2013`</span></a> and <a href="#id83"><span class="problematic" id="id84">:bb:step:`MsBuild12`</span></a>.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">mode</span></code> parameter of the VS steps is now renderable (<a href="#id85"><span class="problematic" id="id86">:bug:`2592`</span></a>).</p></li>
+<li><p>The <a href="#id87"><span class="problematic" id="id88">:bb:step:`HTTPStep`</span></a> step can make arbitrary HTTP requests from the master, allowing communication with external APIs.
+This new feature requires the optional <code class="docutils literal notranslate"><span class="pre">txrequests</span></code> and <code class="docutils literal notranslate"><span class="pre">requests</span></code> Python packages.</p></li>
+<li><p>A new <a href="#id89"><span class="problematic" id="id90">:bb:step:`MultipleFileUpload`</span></a> step was added to allow uploading several files (or directories) in a single step.</p></li>
+<li><p>Information about the buildslaves (admin, host, etc) is now persisted in the database and available even if
+the slave is not connected.</p></li>
+<li><p>Buildslave info can now be retrieved via <a class="reference internal" href="../manual/configuration/properties.html#interpolate"><span class="std std-ref">Interpolate</span></a> and a new <code class="docutils literal notranslate"><span class="pre">SetSlaveInfo</span></code> buildstep.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">GNUAutotools</span></code> factory now has a reconf option to run autoreconf before <code class="docutils literal notranslate"><span class="pre">./configure</span></code>.</p></li>
+<li><p>Builder configurations can now include a <code class="docutils literal notranslate"><span class="pre">description</span></code>, which will appear in the web UI to help humans figure out what the builder does.</p></li>
+<li><p>The WebStatus builder page can now filter pending/current/finished builds by property parameters of the form <code class="docutils literal notranslate"><span class="pre">?property.&lt;name&gt;=&lt;value&gt;</span></code>.</p></li>
+<li><p>The WebStatus <code class="docutils literal notranslate"><span class="pre">StatusResourceBuilder</span></code> page can now take the <code class="docutils literal notranslate"><span class="pre">maxsearch</span></code> argument</p></li>
+<li><p>The WebStatus has a new authz “view” action that allows you to require users to logged in to view the WebStatus.</p></li>
+<li><p>The WebStatus now shows revisions (+ codebase) where it used to simply say “multiple rev”.</p></li>
+<li><p>The Console view now supports codebases.</p></li>
+<li><dl class="simple">
+<dt>The web UI for Builders has been updated:</dt><dd><ul class="simple">
+<li><p>shows the build ‘reason’ and ‘interested users’</p></li>
+<li><p>shows sourcestamp information for builders that use multiple codebases (instead of the generic
+“multiple rev” placeholder that was shown before).</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p>The waterfall and atom/rss feeds can be filtered with the <code class="docutils literal notranslate"><span class="pre">project</span></code> url parameter.</p></li>
+<li><p>The WebStatus <code class="docutils literal notranslate"><span class="pre">Authorization</span></code> support now includes a <code class="docutils literal notranslate"><span class="pre">view</span></code> action which can be used to restrict read-only access to the Buildbot instance.</p></li>
+<li><p>The web status now has options to cancel some or all pending builds.</p></li>
+<li><p>The WebStatus now interprets ANSI color codes in stdio output.</p></li>
+<li><p>It is now possible to select categories to show in the waterfall help</p></li>
+<li><p>The web status now automatically scrolls output logs (<a href="#id91"><span class="problematic" id="id92">:pull:`1078`</span></a>).</p></li>
+<li><p>The web UI now supports a PNG Status Resource that can be accessed publicly from for example README.md files or wikis or whatever other resource.
+This view produces an image in PNG format with information about the last build for the given builder name or whatever other build number if is passed as an argument to the view.</p></li>
+<li><p>Revision links for commits on SouceForge (Allura) are now automatically generated.</p></li>
+<li><p>The ‘Rebuild’ button on the web pages for builds features a dropdown to choose whether to
+rebuild from exact revisions or from the same sourcestamps (ie, update branch references)</p></li>
+<li><p>Build status can be sent to GitHub.
+Depends on txgithub package.
+See <a href="#id93"><span class="problematic" id="id94">:bb:reporter:`GitHubStatusPush`</span></a> and <a class="reference external" href="https://github.com/blog/1227-commit-status-api">GitHub Commit Status</a>.</p></li>
+<li><p>The IRC bot of <a href="#id95"><span class="problematic" id="id96">:bb:reporter:`IRC`</span></a> will, unless useRevisions is set, shorten
+long lists of revisions printed when a build starts; it will only show two,
+and the number of additional revisions included in the build.</p></li>
+<li><p>A new argument <code class="docutils literal notranslate"><span class="pre">summaryCB</span></code> has been added to <code class="docutils literal notranslate"><span class="pre">GerritStatusPush</span></code>, to allow sending one review per buildset. Sending a single “summary” review per buildset is now the default if neither <code class="docutils literal notranslate"><span class="pre">summaryCB</span></code> nor <code class="docutils literal notranslate"><span class="pre">reviewCB</span></code> are specified.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">comments</span></code> field of changes is no longer limited to 1024 characters on MySQL and Postgres.  See <a href="#id97"><span class="problematic" id="id98">:bug:`2367`</span></a> and <a href="#id99"><span class="problematic" id="id100">:pull:`736`</span></a>.</p></li>
+<li><p>HTML log files are no longer stored in status pickles (<a href="#id101"><span class="problematic" id="id102">:pull:`1077`</span></a>)</p></li>
+<li><p>Builds are now retried after a slave is lost (<a href="#id103"><span class="problematic" id="id104">:pull:`1049`</span></a>).</p></li>
+<li><p>The buildbot status client can now access a build properties via the <code class="docutils literal notranslate"><span class="pre">getProperties</span></code> call.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">restart</span></code>, and <code class="docutils literal notranslate"><span class="pre">reconfig</span></code> commands will now wait for longer than 10 seconds as long as the master continues producing log lines indicating that the configuration is progressing.</p></li>
+<li><p>Added new config option <code class="docutils literal notranslate"><span class="pre">protocols</span></code> which allows to configure multiple protocols on single master.</p></li>
+<li><p>RemoteShellCommands can be killed by SIGTERM with the sigtermTime parameter before resorting to SIGKILL (<a href="#id105"><span class="problematic" id="id106">:bug:`751`</span></a>).
+If the slave’s version is less than 0.8.9, the slave will kill the process with SIGKILL regardless of whether sigtermTime
+is supplied.</p></li>
+<li><p>Introduce an alternative way to deploy Buildbot and try the pyflakes tutorial
+using <a class="reference internal" href="../tutorial/docker.html#first-run-docker-label"><span class="std std-ref">Docker</span></a>.</p></li>
+<li><p>Added zsh and bash tab-completions support for ‘buildbot’ command.</p></li>
+<li><p>An example of a declarative configuration is included in <code class="docutils literal notranslate"><span class="pre">master/contrib/SimpleConfig.py</span></code>, with copious comments.</p></li>
+<li><p>Systemd unit files for Buildbot are available in the <a href="#id107"><span class="problematic" id="id108">:contrib-src:`master/contrib/`</span></a> directory.</p></li>
+<li><p>We’ve added some extra checking to make sure that you have a valid locale before starting buildbot (#2608).</p></li>
+</ul>
+</div>
+<div class="section" id="forward-compatibility">
+<h3>Forward Compatibility<a class="headerlink" href="#forward-compatibility" title="Permalink to this headline">¶</a></h3>
+<p>In preparation for a more asynchronous implementation of build steps in Buildbot 0.9.0, this version introduces support for new-style steps.
+Existing old-style steps will continue to function correctly in Buildbot 0.8.x releases and in Buildbot 0.9.0, but support will be dropped soon afterward.
+See <a class="reference internal" href="../manual/upgrading/0.9-new-style-steps.html#new-style-build-steps"><span class="std std-ref">New-Style Build Steps in Buildbot 0.9.0</span></a>, below, for guidance on rewriting existing steps in this new style.
+To eliminate ambiguity, the documentation for this version only reflects support for new-style steps.
+Refer to the documentation for previous versions for information on old-style steps.</p>
+</div>
+<div class="section" id="fixes">
+<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fixes an issue where <a href="#id109"><span class="problematic" id="id110">:bb:chsrc:`GitPoller`</span></a> sets the change branch to <code class="docutils literal notranslate"><span class="pre">refs/heads/master</span></code> - which isn’t compatible with <a href="#id111"><span class="problematic" id="id112">:bb:step:`Git`</span></a> (<a href="#id113"><span class="problematic" id="id114">:pull:`1069`</span></a>).</p></li>
+<li><p>Fixed an issue where the <a href="#id115"><span class="problematic" id="id116">:bb:step:`Git`</span></a> and <a href="#id117"><span class="problematic" id="id118">:bb:step:`CVS`</span></a> source steps silently changed the <code class="docutils literal notranslate"><span class="pre">workdir</span></code> to <code class="docutils literal notranslate"><span class="pre">'build'</span></code> when the ‘copy’ method is used.</p></li>
+<li><p>The <a href="#id119"><span class="problematic" id="id120">:bb:step:`CVS`</span></a> source step now respects the timeout parameter.</p></li>
+<li><p>The <a href="#id121"><span class="problematic" id="id122">:bb:step:`Git`</span></a> step now uses the <cite>git submodule update</cite> option <cite>–init</cite> when updating the submodules of an existing repository,
+so that it will receive any newly added submodules.</p></li>
+<li><p>The web status no longer relies on the current working directory, which is not set correctly by some initscripts, to find the <code class="docutils literal notranslate"><span class="pre">templates/</span></code> directory (<a href="#id123"><span class="problematic" id="id124">:bug:`2586`</span></a>).</p></li>
+<li><p>The Perforce source step uses the correct path separator when the master is on Windows and the build slave is on a POSIX OS (<a href="#id125"><span class="problematic" id="id126">:pull:`1114`</span></a>).</p></li>
+<li><p>The source steps now correctly interpolate properties in <code class="docutils literal notranslate"><span class="pre">env</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">GerritStatusPush</span></code> now supports setting scores with Gerrit 2.6 and newer</p></li>
+<li><p>The change hook no longer fails when passing unicode to <code class="docutils literal notranslate"><span class="pre">change_hook_auth</span></code> (<a href="#id127"><span class="problematic" id="id128">:pull:`996`</span></a>).</p></li>
+<li><p>The source steps now correctly interpolate properties in <code class="docutils literal notranslate"><span class="pre">env</span></code>.</p></li>
+<li><p>Whitespace is properly handled for StringParameter, so that appropriate validation errors are raised for <code class="docutils literal notranslate"><span class="pre">required</span></code> parameters (<a href="#id129"><span class="problematic" id="id130">:pull:`1084`</span></a>).</p></li>
+<li><p>Fix a rare case where a buildtep might fail from a GeneratorExit exception (<a href="#id131"><span class="problematic" id="id132">:pull:`1063`</span></a>).</p></li>
+<li><p>Fixed an issue where UTF-8 data in logs caused RSS feed exceptions (<a href="#id133"><span class="problematic" id="id134">:bug:`951`</span></a>).</p></li>
+<li><p>Fix an issue with unescaped author names causing invalid RSS feeds (<a href="#id135"><span class="problematic" id="id136">:bug:`2596`</span></a>).</p></li>
+<li><p>Fixed an issue with pubDate format in feeds.</p></li>
+<li><p>Fixed an issue where the step text value could cause a <code class="docutils literal notranslate"><span class="pre">TypeError</span></code> in the build detail page (<a href="#id137"><span class="problematic" id="id138">:pull:`1061`</span></a>).</p></li>
+<li><p>Fix failures where <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clean</span></code> fails but could be clobbered (<a href="#id139"><span class="problematic" id="id140">:pull:`1058`</span></a>).</p></li>
+<li><p>Build step now correctly fails when the git clone step fails (<a href="#id141"><span class="problematic" id="id142">:pull:`1057`</span></a>).</p></li>
+<li><p>Fixed a race condition in slave shutdown (<a href="#id143"><span class="problematic" id="id144">:pull:`1019`</span></a>).</p></li>
+<li><p>Now correctly unsubscribes StatusPush from status updates when reconfiguring (<a href="#id145"><span class="problematic" id="id146">:pull:`997`</span></a>).</p></li>
+<li><p>Fixes parsing git commit messages that are blank.</p></li>
+<li><p><a href="#id147"><span class="problematic" id="id148">:bb:step:`Git`</span></a> no longer fails when work dir exists but isn’t a checkout (<a href="#id149"><span class="problematic" id="id150">:bug:`2531`</span></a>).</p></li>
+<li><p>The <cite>haltOnFailure</cite> and <cite>flunkOnFailure</cite> attributes of <a href="#id151"><span class="problematic" id="id152">:bb:step:`ShellCommand`</span></a> are now renderable. (<a href="#id153"><span class="problematic" id="id154">:bug:`2486`</span></a>).</p></li>
+<li><p>The <cite>rotateLength</cite> and <cite>maxRotatedFile</cite> arguments are no longer treated as strings in <code class="file docutils literal notranslate"><span class="pre">buildbot.tac</span></code>. This fixes log rotation. The upgrade_master command will notify users if they have this problem.</p></li>
+<li><p>Buildbot no longer specifies a revision when pulling from a mercurial (<a href="#id155"><span class="problematic" id="id156">:bug:`438`</span></a>).</p></li>
+<li><p>The WebStatus no longer incorrectly refers to fields that might not be visible.</p></li>
+<li><p>The GerritChangeSource now sets a default author, fixing an exception that occurred when Gerrit didn’t report an owner name/email.</p></li>
+<li><p>Respects the <code class="docutils literal notranslate"><span class="pre">RETRY</span></code> status when an interrupt occurs.</p></li>
+<li><p>Fixes an off-by-one error when the tryclient is finding the current git branch.</p></li>
+<li><p>Improve the Mercurial source stamp extraction in the try client.</p></li>
+<li><p>Fixes some edge cases in timezone handling for python &lt; <code class="docutils literal notranslate"><span class="pre">2.7.4</span></code> (<a href="#id157"><span class="problematic" id="id158">:bug:`2522`</span></a>).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">EC2LatentBuildSlave</span></code> will now only consider available AMI’s.</p></li>
+<li><p>Fixes a case where the first build runs on an old slave instead of a new one after reconfig (<a href="#id159"><span class="problematic" id="id160">:bug:`2507`</span></a>).</p></li>
+<li><p>The e-mail address validation for the MailNotifier status receiver has been improved.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">--db</span></code> parameter of <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">create-master</span></code> is now validated.</p></li>
+<li><p>No longer ignores default choice for ForceScheduler list parameters</p></li>
+<li><p>Now correctly handles <code class="docutils literal notranslate"><span class="pre">BuilderConfig(...,</span> <span class="pre">mergeRequests=False)</span></code> (<a href="#id161"><span class="problematic" id="id162">:bug:`2555`</span></a>).</p></li>
+<li><p>Now excludes changes from sourcestamps when they aren’t in the DB (<a href="#id163"><span class="problematic" id="id164">:bug:`2554`</span></a>).</p></li>
+<li><p>Fixes a compatibility issue with HPCloud in the OpenStack latent slave.</p></li>
+<li><p>Allow <code class="docutils literal notranslate"><span class="pre">_</span></code> as a valid character in JSONP callback names.</p></li>
+<li><p>Fix build start time retrieval in the WebStatus grid view.</p></li>
+<li><p>Increase the length of the DB fields <code class="docutils literal notranslate"><span class="pre">changes.comments</span></code> and <code class="docutils literal notranslate"><span class="pre">buildset_properties.property_value</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="deprecations-removals-and-non-compatible-changes">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#deprecations-removals-and-non-compatible-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The slave-side source steps are deprecated in this version of Buildbot, and master-side support will be removed in a future version.
+Please convert any use of slave-side steps (imported directly from <code class="docutils literal notranslate"><span class="pre">buildbot.steps.source</span></code>, rather than from a specific module like <code class="docutils literal notranslate"><span class="pre">buildbot.steps.source.svn</span></code>) to use master-side steps.</p></li>
+<li><p>Both old-style and new-style steps are supported in this version of Buildbot.
+Upgrade your steps to new-style now, as support for old-style steps will be dropped after Buildbot-0.9.0.
+See <a class="reference internal" href="../manual/upgrading/0.9-new-style-steps.html#new-style-build-steps"><span class="std std-ref">New-Style Build Steps in Buildbot 0.9.0</span></a> for details.</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">LoggingBuildStep</span></code> class has been deprecated, and support will be removed along with support for old-style steps after the Buildbot-0.9.0 release.
+Instead, subclass <a class="reference internal" href="../developer/cls-buildsteps.html#buildbot.process.buildstep.BuildStep" title="buildbot.process.buildstep.BuildStep"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildStep</span></code></a> and mix in <code class="xref py py-class docutils literal notranslate"><span class="pre">ShellMixin</span></code> to get similar behavior.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">slavePortnum</span></code> option deprecated, please use <code class="docutils literal notranslate"><span class="pre">c['protocols']['pb']['port']</span></code> to set up PB port</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">buildbot.process.mtrlogobserver</span></code> module have been renamed to <code class="xref py py-mod docutils literal notranslate"><span class="pre">buildbot.steps.mtrlogobserver</span></code>.</p></li>
+<li><p>The buildmaster now requires at least Twisted-11.0.0.</p></li>
+<li><p>The buildmaster now requires at least sqlalchemy-migrate 0.6.1.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">hgbuildbot</span></code> Mercurial hook has been moved to <code class="docutils literal notranslate"><span class="pre">contrib/</span></code>, and does not work with recent versions of Mercurial and Twisted.
+The runtimes for these two tools are incompatible, yet <code class="docutils literal notranslate"><span class="pre">hgbuildbot</span></code> attempts to run both in the same Python interpreter.
+Mayhem ensues.</p></li>
+<li><p>The try scheduler’s <code class="docutils literal notranslate"><span class="pre">--connect=ssh</span></code> method no longer supports waiting for results (<code class="docutils literal notranslate"><span class="pre">--wait</span></code>).</p></li>
+<li><p>The former <code class="docutils literal notranslate"><span class="pre">buildbot.process.buildstep.RemoteCommand</span></code> class and its subclasses are now in <code class="xref py py-mod docutils literal notranslate"><span class="pre">buildbot.process.remotecommand</span></code>, although imports from the previous path will continue to work.
+Similarly, the former <code class="docutils literal notranslate"><span class="pre">buildbot.process.buildstep.LogObserver</span></code> class and its subclasses are now in <a class="reference internal" href="../developer/cls-logobserver.html#module-buildbot.process.logobserver" title="buildbot.process.logobserver"><code class="xref py py-mod docutils literal notranslate"><span class="pre">buildbot.process.logobserver</span></code></a>, although imports from the previous path will continue to work.</p></li>
+<li><p>The undocumented BuildStep method <code class="docutils literal notranslate"><span class="pre">checkDisconnect</span></code> is deprecated and now does nothing as the handling of disconnects is now handled in the <code class="docutils literal notranslate"><span class="pre">failed</span></code> method.
+Any custom steps adding this method as a callback or errback should no longer do so.</p></li>
+<li><p>The build step <code class="docutils literal notranslate"><span class="pre">MsBuild</span></code> is now called <code class="docutils literal notranslate"><span class="pre">MsBuild4</span></code> as multiple versions are now supported. An alias is provided so existing setups will continue to work, but this will be removed in a future release.</p></li>
+</ul>
+</div>
+<div class="section" id="changes-for-developers">
+<h3>Changes for Developers<a class="headerlink" href="#changes-for-developers" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">CompositeStepMixin</span></code> now provides a <code class="docutils literal notranslate"><span class="pre">runGlob</span></code> method to check for files on the slave that match a given shell-style pattern.</p></li>
+<li><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">BuilderStatus</span></code> now allows you to pass a <code class="docutils literal notranslate"><span class="pre">filter_fn</span></code> argument to <code class="docutils literal notranslate"><span class="pre">generateBuilds</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="slave">
+<h2>Slave<a class="headerlink" href="#slave" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id165">
+<h3>Features<a class="headerlink" href="#id165" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Added zsh and bash tab-completions support for ‘buildslave’ command.</p></li>
+<li><p>RemoteShellCommands accept the new sigtermTime parameter from master. This allows processes to be killed by SIGTERM
+before resorting to SIGKILL (<a href="#id166"><span class="problematic" id="id167">:bug:`751`</span></a>)</p></li>
+<li><p>Commands will now throw a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code> if mandatory args are not present.</p></li>
+<li><p>Added a new remote command <code class="xref py py-class docutils literal notranslate"><span class="pre">GlobPath</span></code> that can be used to call Python’s <code class="docutils literal notranslate"><span class="pre">glob.glob</span></code> on the slave.</p></li>
+</ul>
+</div>
+<div class="section" id="id168">
+<h3>Fixes<a class="headerlink" href="#id168" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fixed an issue when buildstep stop() was raising an exception incorrectly if timeout for
+buildstep wasn’t set or was None (see <a href="#id169"><span class="problematic" id="id170">:pull:`753`</span></a>) thus keeping watched logfiles open
+(this prevented their removal on Windows in subsequent builds).</p></li>
+<li><p>Fixed a bug in P4 source step where the <code class="docutils literal notranslate"><span class="pre">timeout</span></code> parameter was ignored.</p></li>
+<li><p>Fixed a bug in P4 source step where using a custom view-spec could result in failed syncs
+due to incorrectly generated command-lines.</p></li>
+<li><p>The logwatcher will use <code class="docutils literal notranslate"><span class="pre">/usr/xpg4/bin/tail</span></code> on Solaris, it if is available (<a href="#id171"><span class="problematic" id="id172">:pull:`1065`</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="id173">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#id173" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>For a more detailed description of the changes made in this version, see the
+git log itself:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log v0.8.8..v0.8.9
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

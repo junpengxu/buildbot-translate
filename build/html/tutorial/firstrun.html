@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>1.1. 第一次启动 &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1.2. First Buildbot run with Docker" href="docker.html" />
+    <link rel="prev" title="1. Buildbot Tutorial" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Buildbot Tutorial</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. 第一次启动</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.1.1. 目标</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#buildbot">1.1.2. BuildBot 简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#getting-code-label">1.1.3. 准备好了</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#master">1.1.4. 创建 master</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#worker">1.1.5. 创建 worker</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="docker.html">1.2. First Buildbot run with Docker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tour.html">1.3. A Quick Tour</a></li>
+<li class="toctree-l2"><a class="reference internal" href="further.html">1.4. Further Reading</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">1. </span>Buildbot Tutorial</a> &raquo;</li>
+        
+      <li><span class="section-number">1.1. </span>第一次启动</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutorial/firstrun.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="first-run-label">
+<span id="id1"></span><h1><span class="section-number">1.1. </span>第一次启动<a class="headerlink" href="#first-run-label" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">1.1.1. </span>目标<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>这个教程将带你在不更改默认配置的前提下尽快的从0开始运行起你的第一个BuildBot的master和worker。</p>
+<p>以下教程只需占用你五分钟，在这五分钟内，我们想让你相信你的第一个BuildBot是可以工作的，并且会考虑学习整个系统。
+这个教程中不需要更改配置或者代码即可完成。</p>
+<p>本教程假设你运行在Unix系统下， 如果是Windowns的话，应该也是可以的。</p>
+<p>由于 <a class="reference external" href="https://pypi.python.org/pypi/virtualenv">virtualenv</a> ，很容易将buildbot安装在独立的环境中。</p>
+<p>对那些更加熟悉 <a class="reference external" href="https://docker.com">Docker</a> 的人，也有 <a class="reference internal" href="docker.html#first-run-docker-label"><span class="std std-ref">docker版的教程</span></a>.</p>
+<p>你可以将本教程中的每一个代码内容直接粘贴到你的终端中。</p>
+</div>
+<div class="section" id="buildbot">
+<h2><span class="section-number">1.1.2. </span>BuildBot 简介<a class="headerlink" href="#buildbot" title="Permalink to this headline">¶</a></h2>
+<p>在你尝试运行BuildBot之前，什么是BuildBot是必要的</p>
+<p>BuildBot是python编写的持续集成框架。
+它由master进程与可能有多个分布在不同机器上的worker进程组成。
+master进程通过运行一个web server来允许用户启动新的构建并且控制BuildBot实例的行为。
+master也可以给worker分发构建任务。
+woker进程连接到master进程，执行master下发的他们要去执行的构建的任务。</p>
+<p>本教程中，我们将会在一台机器上运行一个master和一个worker。</p>
+<p>更加全面的解释可以在 <a class="reference internal" href="../manual/introduction.html#introduction"><span class="std std-ref">manual section</span></a> Buildbot文档中查看</p>
+</div>
+<div class="section" id="getting-code-label">
+<span id="id3"></span><h2><span class="section-number">1.1.3. </span>准备好了<a class="headerlink" href="#getting-code-label" title="Permalink to this headline">¶</a></h2>
+<p>在你的电脑上有很多方式获取代码。我们将用最简单的一种，在 <a class="reference external" href="https://pypi.python.org/pypi/virtualenv">virtualenv</a> 中使用 <code class="docutils literal notranslate"><span class="pre">pip</span></code>。
+使用 <code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> 的一大优势在于不会污染你的系统，一切的变更都在独立的虚拟环境中。</p>
+<p>为了达成这种效果，你需要安装以下工具。</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.python.org/">Python</a></p></li>
+<li><p><a class="reference external" href="https://pypi.python.org/pypi/virtualenv">virtualenv</a></p></li>
+</ul>
+<p>用你的包管理工具去安装他们吧</p>
+<p>你需要联网，<code class="docutils literal notranslate"><span class="pre">virtualenv</span></code> 和 <code class="docutils literal notranslate"><span class="pre">pip</span></code> 会下载其他的项目，BuildBot master 和 构建进程（builder daemons）将连接 <code class="docutils literal notranslate"><span class="pre">github.com</span></code> 通过https协议，
+获取我们正在测试的仓库；如果你需要走代理的话，需要设置 <code class="docutils literal notranslate"><span class="pre">HTTPS_PROXY</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">ALL_PROXY</span></code> 的环境变量，例如通过执行 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">HTTPS_PROXY=http://localhost:9080</span></code>
+在我们执行启动进程（master 或者 worker）命令之前。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Buildbot不需要root权限
+正常执行命令就可以，不需要特殊权限</p>
+</div>
+</div>
+<div class="section" id="master">
+<h2><span class="section-number">1.1.4. </span>创建 master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
+<p>第一步是为master创建虚拟环境，
+我们将用单独的目录来掩饰 <code class="docutils literal notranslate"><span class="pre">master</span></code> 与 <code class="docutils literal notranslate"><span class="pre">worker</span></code> 的区别</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/tmp/bb-master
+<span class="nb">cd</span> ~/tmp/bb-master
+</pre></div>
+</div>
+<p>On Python 3:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv sandbox
+<span class="nb">source</span> sandbox/bin/activate
+</pre></div>
+</div>
+<p>现在我们准备好了，我们需要安装buildbot</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade pip
+pip install <span class="s1">&#39;buildbot[bundle]&#39;</span>
+</pre></div>
+</div>
+<p>buildbot安装好了，我们该创建master了</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>buildbot create-master master
+</pre></div>
+</div>
+<p>通过配置文件来控制Buildbot的行为，
+Buildbot 默认的配置文件是 <code class="docutils literal notranslate"><span class="pre">master.cfg</span></code> 。
+Buildbot 自带的配置文件样例 <code class="docutils literal notranslate"><span class="pre">master.cfg.sample</span></code> 。
+我们使用样例配置文件，不做任何更改。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv master/master.cfg.sample master/master.cfg
+</pre></div>
+</div>
+<p>最后，启动master</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>buildbot start master
+</pre></div>
+</div>
+<p>你将会看到日志信息，在启动master的终端中，最后一行像这样</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2014-11-01 15:52:55+0100 [-] BuildMaster is running
+The buildmaster appears to have (re)started correctly.
+</pre></div>
+</div>
+<p>现在访问 <a class="reference external" href="http://localhost:8010/">http://localhost:8010/</a></p>
+<p>我们的master至少需要一个woker去执行他的指令。为此，请看下一节。</p>
+</div>
+<div class="section" id="worker">
+<h2><span class="section-number">1.1.5. </span>创建 worker<a class="headerlink" href="#worker" title="Permalink to this headline">¶</a></h2>
+<p>worker将执行master发送的命令，在这个教程中，我们使用buildbot/hello-world项目作为演示。
+因此，你的worker需要通过执行 <a class="reference external" href="https://git-scm.com/">git</a> 命令查看代码，确保git已经安装了，否则构建会失败。</p>
+<p>我们对master做了什么，就对worker做一遍，为worker创建虚拟环境
+完全可以在另一台机器上操作，只要 <em>worker</em> 所在的计算机能连接 到  <em>master</em> 。</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p ~/tmp/bb-worker
+<span class="nb">cd</span> ~/tmp/bb-worker
+</pre></div>
+</div>
+<p>On Python 2:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>virtualenv --no-site-packages sandbox
+<span class="nb">source</span> sandbox/bin/activate
+</pre></div>
+</div>
+<p>On Python 3:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3 -m venv sandbox
+<span class="nb">source</span> sandbox/bin/activate
+</pre></div>
+</div>
+<p>安装 <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> 的命令:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install --upgrade pip
+pip install buildbot-worker
+<span class="c1"># required for `runtests` build</span>
+pip install setuptools-trial
+</pre></div>
+</div>
+<p>现在，创建worker</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>buildbot-worker create-worker worker localhost example-worker pass
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果你在另一台机器创建的话，你需要将 <code class="docutils literal notranslate"><span class="pre">localhost</span></code> 替换为运行master的机器的名字。</p>
+</div>
+<p>用户名 （<code class="docutils literal notranslate"><span class="pre">example-worker</span></code>） 密码 （<code class="docutils literal notranslate"><span class="pre">pass</span></code>） 需要与 <code class="file docutils literal notranslate"><span class="pre">master/master.cfg</span></code> 保持一致。在 <code class="docutils literal notranslate"><span class="pre">c['workers']</span></code> 部分可以看到用来验证</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat ../bb-master/master/master.cfg
+</pre></div>
+</div>
+<p>最后，启动worker</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>buildbot-worker start worker
+</pre></div>
+</div>
+<p>查看worker的输出，最后的输出行像这样</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2014-11-01 15:56:51+0100 [-] Connecting to localhost:9989
+2014-11-01 15:56:51+0100 [Broker,client] message from master: attached
+The worker appears to have (re)started correctly.
+</pre></div>
+</div>
+<p>同时在另一个终端中，在master的日志中（<code class="file docutils literal notranslate"><span class="pre">twisted.log</span></code> 在master目录下），你可以看到像下面的这些输出</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2014-11-01 15:56:51+0100 [Broker,1,127.0.0.1] worker &#39;example-worker&#39; attaching from
+IPv4Address(TCP, &#39;127.0.0.1&#39;, 54015)
+2014-11-01 15:56:51+0100 [Broker,1,127.0.0.1] Got workerinfo from &#39;example-worker&#39;
+2014-11-01 15:56:51+0100 [-] bot attached
+</pre></div>
+</div>
+<p>你应该能进入 <a class="reference external" href="http://localhost:8010">http://localhost:8010</a> ，你看到的web界面像这样的</p>
+<img alt="index page" src="../_images/index.png" />
+<p>点击右侧的 “Builds”  打开提交菜单然后 <a class="reference external" href="http://localhost:8010/#/builders">Builders</a> 可以看到你刚才启动的worker（由绿色气泡标识），连接到了master</p>
+<img alt="builder runtests is active." src="../_images/builders.png" />
+<p>你的master 正在静静的等待hello-world项目的提交，不过这种情况不会经常发生，下一节中，我们将会看一下如何手动执行一个构建。</p>
+<p>我们只想让你试试水，带你迈出第一步很容易，前提是我们尽可能不修改配置。你已经尝试过了， 你应该会对更多的东西感到好奇了。
+让我们加紧在下一个教程中通过更改配置来进行构建。
+继续查看 <a class="reference internal" href="tour.html#quick-tour-label"><span class="std std-ref">A Quick Tour</span></a>.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="docker.html" class="btn btn-neutral float-right" title="1.2. First Buildbot run with Docker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="1. Buildbot Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

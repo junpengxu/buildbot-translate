@@ -1,0 +1,239 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Release Notes for Buildbot 0.9.0b6 &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Release Notes for Buildbot 0.9.0b6</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/relnotes/0.9.0b6.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-for-buildbot-0-9-0b6">
+<h1>Release Notes for Buildbot 0.9.0b6<a class="headerlink" href="#release-notes-for-buildbot-0-9-0b6" title="Permalink to this headline">¶</a></h1>
+<p>The following are the release notes for Buildbot 0.9.0b6
+This version was released on January 20, 2016.</p>
+<p>See <a class="reference internal" href="../manual/upgrading/0.9-upgrade.html#upgrading-to-nine"><span class="std std-ref">Upgrading to Buildbot 0.9.0</span></a> for a guide to upgrading from 0.8.x to 0.9.x</p>
+<div class="section" id="master">
+<h2>Master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Builders ui page has improved tag filtering capabilities</p></li>
+<li><p>Home page enhanced with the list of recent builds sorted by builder</p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">:bb:reporter:`IRC`</span></a> reporter has been partially ported to work on data api.</p></li>
+</ul>
+</div>
+<div class="section" id="fixes">
+<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>better stability and reliability in the UI thanks to switch to buildbot data-module</p></li>
+<li><p>fix irc</p></li>
+</ul>
+</div>
+<div class="section" id="changes-for-developers">
+<h3>Changes for Developers<a class="headerlink" href="#changes-for-developers" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>properties object is now directly present in build, and not in build_status.
+This should not change much unless you try to access your properties via step.build.build_status.
+Remember that with PropertiesMixin, you can access properties via getProperties on the steps, and on the builds objects.</p></li>
+<li><p><a class="reference internal" href="../developer/www-data-module.html#www-data-module"><span class="std std-ref">Javascript Data Module</span></a> is now integrated, which sets a definitive API for accessing buildbot data in angularJS UI.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="slave">
+<h2>Slave<a class="headerlink" href="#slave" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id3">
+<h3>Features<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">DockerLatentBuildSlave</span></code> image attribute is now renderable (can take properties in account).</p></li>
+<li><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">DockerLatentBuildSlave</span></code> sets environment variables describing how to connect to the master.
+Example dockerfiles can be found in <a href="#id4"><span class="problematic" id="id5">:contrib-src:`master/contrib/docker`</span></a>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>For a more detailed description of the changes made in this version, see the git log itself:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log v0.9.0b5..v0.9.0b6
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

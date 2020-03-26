@@ -1,0 +1,248 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>WorkerManager &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>WorkerManager</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/cls-workermanager.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-buildbot.worker.manager">
+<span id="workermanager"></span><h1>WorkerManager<a class="headerlink" href="#module-buildbot.worker.manager" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="workerregistration">
+<h2>WorkerRegistration<a class="headerlink" href="#workerregistration" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="buildbot.worker.manager.WorkerRegistration">
+<em class="property">class </em><code class="sig-prename descclassname">buildbot.worker.manager.</code><code class="sig-name descname">WorkerRegistration</code><span class="sig-paren">(</span><em class="sig-param">master</em>, <em class="sig-param">worker</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.worker.manager.WorkerRegistration" title="Permalink to this definition">¶</a></dt>
+<dd><p>Represents single Worker registration</p>
+<dl class="method">
+<dt id="buildbot.worker.manager.WorkerRegistration.unregister">
+<code class="sig-name descname">unregister</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.worker.manager.WorkerRegistration.unregister" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove registration for <cite>worker</cite></p>
+</dd></dl>
+
+<dl class="method">
+<dt id="buildbot.worker.manager.WorkerRegistration.update">
+<code class="sig-name descname">update</code><span class="sig-paren">(</span><em class="sig-param">worker_config</em>, <em class="sig-param">global_config</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.worker.manager.WorkerRegistration.update" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>worker_config</strong> (<a class="reference internal" href="cls-worker.html#buildbot.worker.Worker" title="buildbot.worker.Worker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Worker</span></code></a>) – new Worker instance</p></li>
+<li><p><strong>global_config</strong> (<a class="reference internal" href="config.html#buildbot.config.MasterConfig" title="buildbot.config.MasterConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">MasterConfig</span></code></a>) – Buildbot config</p></li>
+</ul>
+</dd>
+</dl>
+<p>Update the registration in case the port or password has changed.</p>
+<p>NOTE: You should invoke this method after calling
+<cite>WorkerManager.register(worker)</cite></p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="id1">
+<h2>WorkerManager<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="buildbot.worker.manager.WorkerManager">
+<em class="property">class </em><code class="sig-prename descclassname">buildbot.worker.manager.</code><code class="sig-name descname">WorkerManager</code><span class="sig-paren">(</span><em class="sig-param">master</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.worker.manager.WorkerManager" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handle Worker registrations for multiple protocols</p>
+<dl class="method">
+<dt id="buildbot.worker.manager.WorkerManager.register">
+<code class="sig-name descname">register</code><span class="sig-paren">(</span><em class="sig-param">worker</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.worker.manager.WorkerManager.register" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>worker</strong> (<a class="reference internal" href="cls-worker.html#buildbot.worker.Worker" title="buildbot.worker.Worker"><code class="xref py py-class docutils literal notranslate"><span class="pre">Worker</span></code></a>) – new Worker instance</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><a class="reference internal" href="#buildbot.worker.manager.WorkerRegistration" title="buildbot.worker.manager.WorkerRegistration"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkerRegistration</span></code></a></p>
+</dd>
+</dl>
+<p>Creates <a class="reference internal" href="#buildbot.worker.manager.WorkerRegistration" title="buildbot.worker.manager.WorkerRegistration"><code class="xref py py-class docutils literal notranslate"><span class="pre">WorkerRegistration</span></code></a>
+instance.</p>
+<p>NOTE: You should invoke <cite>.update()</cite> on returned WorkerRegistration
+instance</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

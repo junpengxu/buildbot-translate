@@ -1,0 +1,224 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Configurators &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Configurators</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/manual/configuration/configurators.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="configurators">
+<h1>Configurators<a class="headerlink" href="#configurators" title="Permalink to this headline">¶</a></h1>
+<p>For advanced users or plugins writers, the <code class="docutils literal notranslate"><span class="pre">configurators</span></code> key is available, and holds a list of <code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.interfaces.IConfigurator</span></code>.
+Configurators will run after the <code class="docutils literal notranslate"><span class="pre">master.cfg</span></code> has been processed, and will modify the config dictionary.
+Configurator implementers should make sure that they are interoperable with each other, which means carefully modifying the config to avoid overriding a setting already made by the user or by another configurator.
+Configurators are run (thus prioritized) in the order of the <code class="docutils literal notranslate"><span class="pre">configurators</span></code> list.</p>
+<div class="section" id="janitorconfigurator">
+<h2>JanitorConfigurator<a class="headerlink" href="#janitorconfigurator" title="Permalink to this headline">¶</a></h2>
+<p>Buildbot stores historical information in its database.
+In a large installation, these can quickly consume disk space, yet in many cases developers never consult this historical information.</p>
+<p><a href="#id1"><span class="problematic" id="id2">:bb:configurator:`JanitorConfigurator`</span></a> creates a builder and <a href="#id3"><span class="problematic" id="id4">:bb:sched:`Nightly`</span></a> scheduler which will regularly remove old information.
+At the moment it only supports cleaning of logs, but it will contain more features as we implement them.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">buildbot.plugins</span> <span class="k">import</span> <span class="n">util</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="k">import</span> <span class="n">timedelta</span>
+
+<span class="c1"># configure a janitor which will delete all logs older than one month,</span>
+<span class="c1"># and will run on sundays at noon</span>
+<span class="n">c</span><span class="p">[</span><span class="s1">&#39;configurators&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">util</span><span class="o">.</span><span class="n">JanitorConfigurator</span><span class="p">(</span>
+    <span class="n">logHorizon</span><span class="o">=</span><span class="n">timedelta</span><span class="p">(</span><span class="n">weeks</span><span class="o">=</span><span class="mi">4</span><span class="p">),</span>
+    <span class="n">hour</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span>
+    <span class="n">dayOfWeek</span><span class="o">=</span><span class="mi">6</span>
+<span class="p">)]</span>
+</pre></div>
+</div>
+<p>Parameters for <a href="#id5"><span class="problematic" id="id6">:bb:configurator:`JanitorConfigurator`</span></a> are:</p>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">logHorizon</span></code></dt><dd><p>a <code class="docutils literal notranslate"><span class="pre">timedelta</span></code> object describing the minimum time for which the log data should be maintained</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">hour</span></code>, <code class="docutils literal notranslate"><span class="pre">dayOfWeek</span></code>, …</dt><dd><p>Arguments given to the <a href="#id7"><span class="problematic" id="id8">:bb:sched:`Nightly`</span></a> scheduler which is backing the <a href="#id9"><span class="problematic" id="id10">:bb:configurator:`JanitorConfigurator`</span></a>.
+Determines when the cleanup will be done.
+With this, you can configure it daily, weekly or even hourly if you wish.
+You probably want to schedule it when Buildbot is less loaded.</p>
+</dd>
+</dl>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

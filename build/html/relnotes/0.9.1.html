@@ -1,0 +1,335 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Release Notes for Buildbot 0.9.1 &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.1</span></code></li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/relnotes/0.9.1.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-for-buildbot-0-9-1">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.1</span></code><a class="headerlink" href="#release-notes-for-buildbot-0-9-1" title="Permalink to this headline">¶</a></h1>
+<p>The following are the release notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.1</span></code>.
+This version was released on November 1, 2016.</p>
+<p>See <a class="reference internal" href="../manual/upgrading/0.9-upgrade.html#upgrading-to-nine"><span class="std std-ref">Upgrading to Buildbot 0.9.0</span></a> for a guide to upgrading from 0.8.x to 0.9.x</p>
+<div class="section" id="master">
+<h2>Master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul>
+<li><p>Add support for hyper.sh via <code class="xref py py-class docutils literal notranslate"><span class="pre">HyperLatentWorker</span></code>
+<a class="reference external" href="https://hyper.sh">Hyper</a> is a CaaS solution for hosting docker container in the cloud, billed to the second.
+It forms a very cost efficient solution to run your CI in the cloud.</p></li>
+<li><p>The <a href="#id1"><span class="problematic" id="id2">:bb:step:`Trigger`</span></a> step now supports <code class="docutils literal notranslate"><span class="pre">unimportantSchedulerNames</span></code></p></li>
+<li><p>add a UI button to allow to cancel the whole queue for a builder</p></li>
+<li><p>Buildbot log viewer now support 256 colors ANSI codes</p></li>
+<li><p>new <a href="#id3"><span class="problematic" id="id4">:bb:step:`GitHub`</span></a> which correctly checkout the magic branch like <code class="docutils literal notranslate"><span class="pre">refs/pull/xx/merge</span></code>.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MailNotifier</span></code> now supports a <cite>schedulers</cite> constructor argument that
+allows you to send mail only for builds triggered by the specified list of
+schedulers.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MailNotifier</span></code> now supports a <cite>branches</cite> constructor argument that
+allows you to send mail only for builds triggered by the specified list of
+branches.</p></li>
+<li><p>Optimization of the data api filtering, sorting and paging, speeding up a lot the UI when the master has lots of builds.</p></li>
+<li><p><a href="#id5"><span class="problematic" id="id6">:bb:reporter:`GerritStatusPush`</span></a> now accepts a <code class="docutils literal notranslate"><span class="pre">notify</span></code> parameter to control who gets emailed by Gerrit.</p></li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">format_fn</span></code> parameter to the <code class="docutils literal notranslate"><span class="pre">HttpStatusPush</span></code> reporter to customize the information being pushed.</p></li>
+<li><p>Latent Workers can now start in parallel.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The build started by latent worker will be created while the latent worker is substantiated.</p></li>
+<li><p>Latent Workers will now report startup issues in the UI.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><dl class="simple">
+<dt>Workers will be temporarily put in quarantine in case of build preparation issues.</dt><dd><p>This avoids master and database overload in case of bad worker configuration.
+The quarantine is implemented with an exponential back-off timer.</p>
+</dd>
+</dl>
+</li>
+<li><p>Master Stop will now stop all builds, and wait for all workers to properly disconnect.
+Previously, the worker connections was stopped, which incidentally made all their builds marked retried.
+Now, builds started with a <code class="xref py py-class docutils literal notranslate"><span class="pre">Triggereable</span></code> scheduler will be cancelled, while other builds will be retried.
+The master will make sure that all latent workers are stopped.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">MessageFormatter</span></code> class also allows inline-templates with the <code class="docutils literal notranslate"><span class="pre">template</span></code> parameter.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">MessageFormatter</span></code> class allows custom mail’s subjects with the <code class="docutils literal notranslate"><span class="pre">subject</span></code> and <code class="docutils literal notranslate"><span class="pre">subject_name</span></code> parameters.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">MessageFormatter</span></code> class allows extending the context given to the Templates via the <code class="docutils literal notranslate"><span class="pre">ctx</span></code> parameter.</p></li>
+<li><p>The new <code class="docutils literal notranslate"><span class="pre">MessageFormatterMissingWorker</span></code> class allows to customize the message sent when a worker is missing.</p></li>
+<li><p>The <a href="#id7"><span class="problematic" id="id8">:bb:worker:`OpenStackLatentWorker`</span></a> worker now supports rendering the block device parameters.
+The <code class="docutils literal notranslate"><span class="pre">volume_size</span></code> parameter will be automatically calculated if it is <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="fixes">
+<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>fix the UI to allow to cancel a buildrequest (<a href="#id9"><span class="problematic" id="id10">:bug:`3582`</span></a>)</p></li>
+<li><p><a href="#id11"><span class="problematic" id="id12">:bb:chsrc:`GitHub`</span></a> change hook now correctly use the refs/pull/xx/merge branch for testing PRs.</p></li>
+<li><p>Fix the UI to better adapt to different screen width (<a href="#id13"><span class="problematic" id="id14">:bug:`3614`</span></a>)</p></li>
+<li><p>Don’t log <code class="xref py py-class docutils literal notranslate"><span class="pre">AlreadyClaimedError</span></code>.
+They are normal in case of <a href="#id15"><span class="problematic" id="id16">:bb:step:`Trigger`</span></a> cancelling, and in a multimaster configuration.</p></li>
+<li><p>Fix issues with worker disconnection.
+When a worker disconnects, its current buildstep must be interrupted and the buildrequests should be retried.</p></li>
+<li><p>Fix the worker missing email notification.</p></li>
+<li><p>Fix issue with worker builder list not being updated in UI when buildmaster is reconfigured (<a href="#id17"><span class="problematic" id="id18">:bug:`3629`</span></a>)</p></li>
+</ul>
+</div>
+<div class="section" id="changes-for-developers">
+<h3>Changes for Developers<a class="headerlink" href="#changes-for-developers" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id19">
+<h3>Features<a class="headerlink" href="#id19" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>New <code class="xref py py-class docutils literal notranslate"><span class="pre">SharedService</span></code> can be used by steps, reporters, etc to implement per master resource limit.</p></li>
+<li><p>New <code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPClientService</span></code> can be used by steps, reporters, etc to implement HTTP client.
+This class will automatically choose between <a class="reference external" href="https://pypi.python.org/pypi/treq">treq</a> and <a class="reference external" href="https://pypi.python.org/pypi/txrequests">txrequests</a>, whichever is installed, in order to access HTTP servers.
+This class comes with a fake implementation helping to write unit tests.</p></li>
+<li><p>All HTTP reporters have been ported to <code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPClientService</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="id20">
+<h3>Fixes<a class="headerlink" href="#id20" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="deprecations-removals-and-non-compatible-changes">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#deprecations-removals-and-non-compatible-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>By default, non-distinct commits received via
+<code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.status.web.hooks.github.GitHubEventHandler</span></code> now get recorded
+as a <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code>. In this way, a commit pushed to a branch that is not
+being watched (e.g. a dev branch) will still get acted on when it is later
+pushed to a branch that is being watched (e.g. master). In the past, such a
+commit would get ignored and not built because it was non-distinct. To disable
+this behavior and revert to the old behavior, install a <code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeFilter</span></code>
+that checks the <code class="docutils literal notranslate"><span class="pre">github_distinct</span></code> property:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ChangeFilter</span><span class="p">(</span><span class="n">filter_fn</span><span class="o">=</span><span class="k">lambda</span> <span class="n">c</span><span class="p">:</span> <span class="n">c</span><span class="o">.</span><span class="n">properties</span><span class="o">.</span><span class="n">getProperty</span><span class="p">(</span><span class="s1">&#39;github_distinct&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>setup.py ‘scripts’ have been converted to console_scripts entry point.
+This makes them more portable and compatible with wheel format.
+Most consequences are for the windows users:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">buildbot.bat</span></code> does not exist anymore, and is replaced by <code class="docutils literal notranslate"><span class="pre">buildbot.exe</span></code>, which is generated by the console_script entrypoint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buildbot_service.py</span></code> is replaced by <code class="docutils literal notranslate"><span class="pre">buildbot_windows_service.exe</span></code>, which is generated by the console_script entrypoint
+As this script has been written in 2006, has only inline documentation and no unit tests, it is not guaranteed to be working.
+Please help improving the windows situation.</p></li>
+</ul>
+</li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">user</span></code> and <code class="docutils literal notranslate"><span class="pre">password</span></code> parameters of the <code class="docutils literal notranslate"><span class="pre">HttpStatusPush</span></code> reporter have been deprecated in favor of the <code class="docutils literal notranslate"><span class="pre">auth</span></code> parameter.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">template_name</span></code> parameter of the <code class="docutils literal notranslate"><span class="pre">MessageFormatter</span></code> class has been deprecated in favor of <code class="docutils literal notranslate"><span class="pre">template_filename</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="worker">
+<h2>Worker<a class="headerlink" href="#worker" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id21">
+<h3>Fixes<a class="headerlink" href="#id21" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id22">
+<h3>Changes for Developers<a class="headerlink" href="#id22" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id23">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#id23" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The worker now requires at least Twisted 10.2.0.</p></li>
+<li><p>setup.py ‘scripts’ have been converted to console_scripts entry point.
+This makes them more portable and compatible with wheel format.
+Most consequences are for the windows users:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">buildbot_worker.bat</span></code> does not exist anymore, and is replaced by <code class="docutils literal notranslate"><span class="pre">buildbot_worker.exe</span></code>, which is generated by the console_script entrypoint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buildbot_service.py</span></code> is replaced by <code class="docutils literal notranslate"><span class="pre">buildbot_worker_windows_service.exe</span></code>, which is generated by the console_script entrypoint
+As this script has been written in 2006, has only inline documentation and no unit tests, it is not guaranteed to be working.
+Please help improving the windows situation.</p></li>
+</ul>
+</li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">AbstractLatentWorker</span></code> is now in <code class="xref py py-mod docutils literal notranslate"><span class="pre">buildbot.worker.latent</span></code> instead of <code class="xref py py-mod docutils literal notranslate"><span class="pre">buildbot.worker.base</span></code>.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>For a more detailed description of the changes made in this version, see the git log itself:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log v0.9.0..v0.9.1
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -1,0 +1,265 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Release Notes for Buildbot 0.9.0b2 &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Release Notes for Buildbot 0.9.0b2</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/relnotes/0.9.0b2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-for-buildbot-0-9-0b2">
+<h1>Release Notes for Buildbot 0.9.0b2<a class="headerlink" href="#release-notes-for-buildbot-0-9-0b2" title="Permalink to this headline">¶</a></h1>
+<p>The following are the release notes for Buildbot 0.9.0b2.
+Buildbot 0.9.0b2 was released on August, 2 2015.</p>
+<div class="section" id="master">
+<h2>Master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Mercurial hook was updated and modernized.
+It is no longer necessary to fork.
+One can now extend PYTHONPATH via the hook configuration.
+Among others, it permits to use a buildbot virtualenv instead of installing buildbot in all the system.
+Added documentation inside the hook.
+Misc. clean-up and reorganization in order to make the code a bit more readable.</p></li>
+<li><p>UI templates can now be customizable.
+You can provide html or jade overrides to the www plugins, to customize the UI</p></li>
+<li><p>UI side bar is now fixed by default for large screens.</p></li>
+</ul>
+</div>
+<div class="section" id="fixes">
+<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fix setup for missing www.hooks module</p></li>
+<li><p>Fix setup to install only on recents version of pip (&gt;=1.4).
+This prevents unexpected upgrade to nine from people who just use <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">buildbot</span></code></p></li>
+<li><p>Fix a crash in the git hook.</p></li>
+<li><p>Add checks to enforce slavenames are identifiers.</p></li>
+</ul>
+</div>
+<div class="section" id="deprecations-removals-and-non-compatible-changes">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#deprecations-removals-and-non-compatible-changes" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="changes-for-developers">
+<h3>Changes for Developers<a class="headerlink" href="#changes-for-developers" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="../developer/config.html#buildbot.config.BuilderConfig" title="buildbot.config.BuilderConfig"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuilderConfig</span></code></a> <code class="docutils literal notranslate"><span class="pre">nextSlave</span></code> keyword argument takes a callable.
+This callable now receives <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildRequest</span></code> instance in its signature as 3rd parameter.
+<strong>For retro-compatibility, all callable taking only 2 parameters will still work</strong>.</p></li>
+<li><p>Data api provides a way to query the build list per slave.</p></li>
+<li><p>Data api provides a way to query some build properties in a build list.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="slave">
+<h2>Slave<a class="headerlink" href="#slave" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">buildbot-slave</span></code> now requires Python 2.6</p></li>
+</ul>
+<div class="section" id="id1">
+<h3>Features<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Schedulers: the <code class="docutils literal notranslate"><span class="pre">codebases</span></code> parameter can now be specified in a simple list-of-strings form.</p></li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h3>Fixes<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Fix two race conditions in the integration tests</p></li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Providing Latent AWS EC2 credentials by the <code class="file docutils literal notranslate"><span class="pre">.ec2/aws_id</span></code> file is deprecated:
+Use the standard <code class="file docutils literal notranslate"><span class="pre">.aws/credentials</span></code> file, instead.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>For a more detailed description of the changes made in this version, see the git log itself:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log v0.9.0b1..v0.9.0b2
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

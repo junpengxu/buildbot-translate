@@ -1,0 +1,351 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ResultSpecs &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>ResultSpecs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/cls-resultspec.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-buildbot.data.resultspec">
+<span id="resultspecs"></span><h1>ResultSpecs<a class="headerlink" href="#module-buildbot.data.resultspec" title="Permalink to this headline">¶</a></h1>
+<p>Result specifications are used by the <a class="reference internal" href="data.html#data-api"><span class="std std-ref">Data API</span></a> to describe the desired results of a <code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code> call.
+They can be used to filter, sort and paginate the contents of collections, and to limit the fields returned for each item.</p>
+<p>Python calls to <code class="xref py py-meth docutils literal notranslate"><span class="pre">get()</span></code> call can pass a <a class="reference internal" href="#buildbot.data.resultspec.ResultSpec" title="buildbot.data.resultspec.ResultSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultSpec</span></code></a> instance directly.
+Requests to the HTTP REST API are converted into instances automatically.</p>
+<p>Implementers of Data API endpoints can ignore result specifications entirely, except where efficiency suffers.
+Any filters, sort keys, and so on still present after the endpoint returns its result are applied generically.
+<a class="reference internal" href="#buildbot.data.resultspec.ResultSpec" title="buildbot.data.resultspec.ResultSpec"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultSpec</span></code></a> instances are mutable, so endpoints that do apply some of the specification can remove parts of the specification.</p>
+<p>Result specifications are applied in the following order:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Field Selection (fields)</p></li>
+<li><p>Filters</p></li>
+<li><p>Order</p></li>
+<li><p>Pagination (limit/offset)</p></li>
+<li><p>Properties</p></li>
+</ul>
+</div></blockquote>
+<p>Only fields &amp; properties are applied to non-collection results.
+Endpoints processing a result specification should take care to replicate this behavior.</p>
+<dl class="class">
+<dt id="buildbot.data.resultspec.ResultSpec">
+<em class="property">class </em><code class="sig-prename descclassname">buildbot.data.resultspec.</code><code class="sig-name descname">ResultSpec</code><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec" title="Permalink to this definition">¶</a></dt>
+<dd><p>A result specification has the following attributes, which should be treated as read-only:</p>
+<dl class="attribute">
+<dt id="buildbot.data.resultspec.ResultSpec.filters">
+<code class="sig-name descname">filters</code><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.filters" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of <a class="reference internal" href="#buildbot.data.resultspec.Filter" title="buildbot.data.resultspec.Filter"><code class="xref py py-class docutils literal notranslate"><span class="pre">Filter</span></code></a> instances to be applied.
+The result is a logical AND of all filters.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="buildbot.data.resultspec.ResultSpec.fields">
+<code class="sig-name descname">fields</code><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.fields" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of field names that should be included, or <code class="docutils literal notranslate"><span class="pre">None</span></code> for no sorting.
+if the field names all begin with <code class="docutils literal notranslate"><span class="pre">-</span></code>, then those fields will be omitted and all others included.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="buildbot.data.resultspec.ResultSpec.order">
+<code class="sig-name descname">order</code><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.order" title="Permalink to this definition">¶</a></dt>
+<dd><p>A list of field names to sort on.
+if any field name begins with <code class="docutils literal notranslate"><span class="pre">-</span></code>, then the ordering on that field will be in reverse.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="buildbot.data.resultspec.ResultSpec.limit">
+<code class="sig-name descname">limit</code><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.limit" title="Permalink to this definition">¶</a></dt>
+<dd><p>The maximum number of collection items to return.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="buildbot.data.resultspec.ResultSpec.offset">
+<code class="sig-name descname">offset</code><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.offset" title="Permalink to this definition">¶</a></dt>
+<dd><p>The 0-based index of the first collection item to return.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="buildbot.data.resultspec.ResultSpec.properties">
+<code class="sig-name descname">properties</code><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.properties" title="Permalink to this definition">¶</a></dt>
+<dd><blockquote>
+<div><p>A list of <a class="reference internal" href="#buildbot.data.resultspec.Property" title="buildbot.data.resultspec.Property"><code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code></a> instances to be applied.
+The result is a logical AND of all properties.</p>
+</div></blockquote>
+<p>All of the attributes can be supplied as constructor keyword arguments.</p>
+<p>Endpoint implementations may call these methods to indicate that they have processed part of the result spec.
+A subsequent call to <a class="reference internal" href="#buildbot.data.resultspec.ResultSpec.apply" title="buildbot.data.resultspec.ResultSpec.apply"><code class="xref py py-meth docutils literal notranslate"><span class="pre">apply()</span></code></a> will then not waste time re-applying that part.</p>
+<dl class="method">
+<dt id="buildbot.data.resultspec.ResultSpec.popProperties">
+<code class="sig-name descname">popProperties</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.popProperties" title="Permalink to this definition">¶</a></dt>
+<dd><p>If a property exists, return its values list and remove it from the result spec.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="buildbot.data.resultspec.ResultSpec.popFilter">
+<code class="sig-name descname">popFilter</code><span class="sig-paren">(</span><em class="sig-param">field</em>, <em class="sig-param">op</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.popFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>If a filter exists for the given field and operator, return its values list and remove it from the result spec.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="buildbot.data.resultspec.ResultSpec.popBooleanFilter">
+<code class="sig-name descname">popBooleanFilter</code><span class="sig-paren">(</span><em class="sig-param">field</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.popBooleanFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>If a filter exists for the field, remove it and return the expected value (True or False); otherwise return None.
+This method correctly handles odd cases like <code class="docutils literal notranslate"><span class="pre">field__ne=false</span></code>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="buildbot.data.resultspec.ResultSpec.popStringFilter">
+<code class="sig-name descname">popStringFilter</code><span class="sig-paren">(</span><em class="sig-param">field</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.popStringFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>If one string filter exists for the field, remove it and return the expected value (as string); otherwise return None.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="buildbot.data.resultspec.ResultSpec.popIntegerFilter">
+<code class="sig-name descname">popIntegerFilter</code><span class="sig-paren">(</span><em class="sig-param">field</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.popIntegerFilter" title="Permalink to this definition">¶</a></dt>
+<dd><p>If one integer filter exists for the field, remove it and return the expected value (as integer); otherwise return None.
+raises ValueError if the field is not convertible to integer.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="buildbot.data.resultspec.ResultSpec.removePagination">
+<code class="sig-name descname">removePagination</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.removePagination" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the pagination attributes (<a class="reference internal" href="#buildbot.data.resultspec.ResultSpec.limit" title="buildbot.data.resultspec.ResultSpec.limit"><code class="xref py py-attr docutils literal notranslate"><span class="pre">limit</span></code></a> and <a class="reference internal" href="#buildbot.data.resultspec.ResultSpec.offset" title="buildbot.data.resultspec.ResultSpec.offset"><code class="xref py py-attr docutils literal notranslate"><span class="pre">offset</span></code></a>) from the result spec.
+And endpoint that calls this method should return a <code class="xref py py-class docutils literal notranslate"><span class="pre">ListResult</span></code> instance with its pagination attributes set appropriately.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="buildbot.data.resultspec.ResultSpec.removeOrder">
+<code class="sig-name descname">removeOrder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.removeOrder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove the order attribute.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="buildbot.data.resultspec.ResultSpec.popField">
+<code class="sig-name descname">popField</code><span class="sig-paren">(</span><em class="sig-param">field</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.popField" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove a single field from the <a class="reference internal" href="#buildbot.data.resultspec.ResultSpec.fields" title="buildbot.data.resultspec.ResultSpec.fields"><code class="xref py py-attr docutils literal notranslate"><span class="pre">fields</span></code></a> attribute, returning True if it was present.
+Endpoints can use this in conditionals to avoid fetching particularly expensive fields from the DB API.</p>
+</dd></dl>
+
+<p>The following method is used internally to apply any remaining parts of a result spec that are not handled by the endpoint.</p>
+<dl class="method">
+<dt id="buildbot.data.resultspec.ResultSpec.apply">
+<code class="sig-name descname">apply</code><span class="sig-paren">(</span><em class="sig-param">data</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.ResultSpec.apply" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply the result specification to the data, returning a transformed copy of the data.
+If the data is a collection, then the result will be a <code class="xref py py-class docutils literal notranslate"><span class="pre">ListResult</span></code> instance.</p>
+</dd></dl>
+
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="buildbot.data.resultspec.Filter">
+<em class="property">class </em><code class="sig-prename descclassname">buildbot.data.resultspec.</code><code class="sig-name descname">Filter</code><span class="sig-paren">(</span><em class="sig-param">field</em>, <em class="sig-param">op</em>, <em class="sig-param">values</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.Filter" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>field</strong> (<em>string</em>) – the field to filter on</p></li>
+<li><p><strong>op</strong> (<em>string</em>) – the comparison operator (e.g., “eq” or “gt”)</p></li>
+<li><p><strong>values</strong> (<em>list</em>) – the values on the right side of the operator</p></li>
+</ul>
+</dd>
+</dl>
+<p>A filter represents a limitation of the items from a collection that should be returned.</p>
+<p>Many operators, such as “gt”, only accept one value.
+Others, such as “eq” or “ne”, can accept multiple values.
+In either case, the values must be passed as a list.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="buildbot.data.resultspec.Property">
+<em class="property">class </em><code class="sig-prename descclassname">buildbot.data.resultspec.</code><code class="sig-name descname">Property</code><span class="sig-paren">(</span><em class="sig-param">values</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.data.resultspec.Property" title="Permalink to this definition">¶</a></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>values</strong> (<em>list</em>) – the values on the right side of the operator (<code class="docutils literal notranslate"><span class="pre">eq</span></code>)</p>
+</dd>
+</dl>
+<p>A property represents an item of a foreign table.</p>
+<p>In either case, the values must be passed as a list.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

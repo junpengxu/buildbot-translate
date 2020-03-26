@@ -1,0 +1,947 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Release Notes for Buildbot 0.9.15.post1 ( 2018-01-07 ) &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.15.post1</span></code> ( <code class="docutils literal notranslate"><span class="pre">2018-01-07</span></code> )</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/relnotes/0.9.2-0.9.15.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-for-buildbot-0-9-15-post1-2018-01-07">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.15.post1</span></code> ( <code class="docutils literal notranslate"><span class="pre">2018-01-07</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-15-post1-2018-01-07" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="bug-fixes">
+<h2>Bug fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix worker reconnection fails (<a href="#id1"><span class="problematic" id="id2">:issue:`3875`</span></a>, <a href="#id3"><span class="problematic" id="id4">:issue:`3876`</span></a>)</p></li>
+<li><p>Fix umask set to 0 when using LocalWorker (<a href="#id5"><span class="problematic" id="id6">:issue:`3878`</span></a>)</p></li>
+<li><p>Fix Buildbot reconfig, when badge plugin is installed (<a href="#id7"><span class="problematic" id="id8">:issue:`3879`</span></a>)</p></li>
+<li><p>Fix (<a href="#id9"><span class="problematic" id="id10">:issue:`3865`</span></a>) so that now
+<a class="reference internal" href="../manual/configuration/changesources.html#buildbot.changes.svnpoller.SVNPoller" title="buildbot.changes.svnpoller.SVNPoller"><code class="xref py py-class docutils literal notranslate"><span class="pre">SVNPoller</span></code></a> works with paths that
+contain valid UTF-8 characters which are not ASCII.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-15-2018-01-02">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.15</span></code> ( <code class="docutils literal notranslate"><span class="pre">2018-01-02</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-15-2018-01-02" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id11">
+<h2>Bug fixes<a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix builder page not showing any build (<a href="#id12"><span class="problematic" id="id13">:issue:`3820`</span></a>)</p></li>
+<li><p>Fix double Workers button in the menu. (<a href="#id14"><span class="problematic" id="id15">:issue:`3818`</span></a>)</p></li>
+<li><p>Fix bad icons in the worker action dialog.</p></li>
+<li><p>Fix url arguments in Buildbot <a class="reference internal" href="../manual/configuration/www.html#badges"><span class="std std-ref">Badges</span></a> for python3.</p></li>
+<li><p>Upgrading to <cite>guanlecoja-ui</cite> version 1.8.0, fixing two issues. Fixed issue
+where the console view would jump to the top of page when opening the build
+summary dialog (<a href="#id16"><span class="problematic" id="id17">:issue:`3657`</span></a>). Also improved sidebar behaviour by remembering
+previous pinned vs. collapsed state.</p></li>
+<li><p>Fixes issue with Buildbot <a href="#id18"><span class="problematic" id="id19">:bb:worker:`DockerLatentWorker`</span></a>, where Buildbot can kill running
+workers by mistake based on the form the worker name (<a href="#id20"><span class="problematic" id="id21">:issue:`3800`</span></a>).</p></li>
+<li><p>Fixes issue with Buildbot <a href="#id22"><span class="problematic" id="id23">:bb:worker:`DockerLatentWorker`</span></a> not reaping zombies process within its container environment.</p></li>
+<li><p>Update requirement text to use the modern “docker” module from the older
+“docker-py” module name</p></li>
+<li><p>When multiple <a href="#id24"><span class="problematic" id="id25">:bb:cfg:`reporter`</span></a> or <a href="#id26"><span class="problematic" id="id27">:bb:cfg:`services`</span></a> are configured with
+the same name, an error is now displayed instead of silently discarding all
+but the last one <a href="#id28"><span class="problematic" id="id29">:issue:`3813`</span></a>.</p></li>
+<li><p>Fixed exception when using <a class="reference internal" href="../manual/configuration/www.html#buildbot.www.auth.CustomAuth" title="buildbot.www.auth.CustomAuth"><code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.www.auth.CustomAuth</span></code></a></p></li>
+</ul>
+</div>
+<div class="section" id="features">
+<h2>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>New Buildbot SVG icons for web UI. The web UI now uses a colored favicon
+according to build results (<a href="#id30"><span class="problematic" id="id31">:issue:`3785`</span></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">paused</span></code> and <code class="docutils literal notranslate"><span class="pre">graceful</span></code> <a class="reference internal" href="../manual/configuration/workers.html#worker-states"><span class="std std-ref">Workers States</span></a> are now stored in the
+database.</p></li>
+<li><p><a class="reference internal" href="../manual/configuration/workers.html#worker-states"><span class="std std-ref">Workers States</span></a> are now displayed in the web UI.</p></li>
+<li><p>Quarantine timers is now using the <code class="docutils literal notranslate"><span class="pre">paused</span></code> worker state.</p></li>
+<li><p>Quarantine timer is now enabled when a build finish on <code class="docutils literal notranslate"><span class="pre">EXCEPTION</span></code> state.</p></li>
+<li><p>Standalone binaries for buildbot-worker package are now published for windows and linux (<code class="docutils literal notranslate"><span class="pre">amd64</span></code>).
+This allows to run a buildbot-worker without having a python environment.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span> <span class="pre">create-worker</span> <span class="pre">--maxretries</span></code> for <a class="reference internal" href="../manual/configuration/workers.html#latent-workers"><span class="std std-ref">Latent Workers</span></a>
+to quit if the master is or becomes unreachable.</p></li>
+<li><p>Badges can now display <cite>running</cite> as status.</p></li>
+<li><p>The database schema now supports cascade deletes for all objects instead of
+raising an error when deleting a record which has other records pointing to
+it via foreign keys.</p></li>
+<li><p>Buildbot can properly find its version if installed from a git archive tarball generated from a tag.</p></li>
+<li><p>Enhanced the test suite to add worker/master protocol interoperability tests between python3 and python2.</p></li>
+</ul>
+</div>
+<div class="section" id="deprecations-and-removals">
+<h2>Deprecations and Removals<a class="headerlink" href="#deprecations-and-removals" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>buildbot.util.ascii2unicode() is removed. buildbot.util.bytes2unicode()
+should be used instead.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-14-2017-12-08">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.14</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-12-08</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-14-2017-12-08" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id32">
+<h2>Bug fixes<a class="headerlink" href="#id32" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Compile step now properly takes the decodeRC parameter in account
+(<a href="#id33"><span class="problematic" id="id34">:issue:`3774`</span></a>)</p></li>
+<li><p>Fix duplicate build requests results in
+<a class="reference internal" href="../developer/database.html#buildbot.db.buildrequests.BuildRequestsConnectorComponent" title="buildbot.db.buildrequests.BuildRequestsConnectorComponent"><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildRequestsConnectorComponent</span></code></a> when
+querying the database (<a href="#id35"><span class="problematic" id="id36">:issue:`3712`</span></a>).</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">GitPoller</span></code> now accepts git branch
+names with UTF-8 characters (<a href="#id37"><span class="problematic" id="id38">:issue:`3769`</span></a>).</p></li>
+<li><p>Fixed inconsistent use of <cite>pointer</cite> style mouse cursor by removing it from
+the <cite>.label</cite> css rule and instead creating a new <cite>.clickable</cite> css rule which
+is used only in places which are clickable and would not otherwise
+automatically get the <cite>pointer</cite> icon, for example it is not needed for
+hyper-links. (<a href="#id39"><span class="problematic" id="id40">:issue:`3795`</span></a>).</p></li>
+<li><p>Rebuilding with the same revision now takes new change properties into
+account instead of re-using the original build change properties
+(<a href="#id41"><span class="problematic" id="id42">:issue:`3701`</span></a>).</p></li>
+<li><p>Worker authentication is now delayed via a DeferredLock until Buildbot
+configuration is finished. This fixes UnauthorizedLogin errors during
+buildbot restart (<a href="#id43"><span class="problematic" id="id44">:issue:`3462`</span></a>).</p></li>
+<li><p>Fixes python3 encoding issues with Windows Service (<a href="#id45"><span class="problematic" id="id46">:issue:`3796`</span></a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id47">
+<h2>Features<a class="headerlink" href="#id47" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>new :ref`badges` plugin which reimplement the buildbot eight png badge
+system.</p></li>
+<li><p>In progress worker control API. Worker can now be stopped and paused using the UI.
+Note that there is no UI yet to look the status of those actions (<a href="#id48"><span class="problematic" id="id49">:issue:`3429`</span></a>).</p></li>
+<li><p>Make maximum number of builds fetched on the builders page configurable.</p></li>
+<li><p>Include <cite>context</cite> in the log message for <cite>GitHubStatusPush</cite></p></li>
+<li><p>On ‘Builders’ page reload builds when tags change.</p></li>
+<li><p>Give reporters access to master single in renderables. This allows access to
+build logs amongst other things</p></li>
+<li><p>Added possibility to check www user credentials with a custom class.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-13-2017-11-07">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.13</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-11-07</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-13-2017-11-07" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id50">
+<h2>Deprecations and Removals<a class="headerlink" href="#id50" title="Permalink to this headline">¶</a></h2>
+<p>Following will help Buildbot to leverage new feature of twisted to implement important features like worker protocol encryption.</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">buildbot</span></code> and <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> packages now requires Python 2.7 or
+Python 3.4+ – Python 2.6 is no longer supported.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buildbot</span></code> and <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> packages now required Twisted versions
+&gt;= 16.1.0. Earlier versions of Twisted are not supported.</p></li>
+</ul>
+</div>
+<div class="section" id="id51">
+<h2>Bug fixes<a class="headerlink" href="#id51" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix Console View forced builds stacking at top (issue:<cite>3461</cite>)</p></li>
+<li><p>Improve buildrequest distributor to ensure all builders are processed. With
+previous version, builder list could be re-prioritized, while running the
+distributor, meaning some builders would never be run in case of master high
+load. (<a href="#id52"><span class="problematic" id="id53">:issue:`3661`</span></a>)</p></li>
+<li><p>Improve <code class="docutils literal notranslate"><span class="pre">getOldestRequestTime</span></code> function of buildrequest distributor to do
+sorting and paging in the database layer (<a href="#id54"><span class="problematic" id="id55">:issue:`3661`</span></a>).</p></li>
+<li><p>Arguments passed to GitLab push notifications now work with Python 3 (<a href="#id56"><span class="problematic" id="id57">:issue:`3720`</span></a>).</p></li>
+<li><p>Web hooks change sources which use twisted.web.http.Request have been fixed to use bytes, not
+native strings. This ensures web hooks work on Python 3. Please report any issues on web hooks in python3, as it is hard for us to test end to end.</p></li>
+<li><p>Fixed null value of steps and logs in reporter HttpStatusPush api. Fixes
+(<a href="#id58"><span class="problematic" id="id59">:issue:`3180`</span></a>)</p></li>
+<li><p>EC2LatentBuilder now correctly sets tags on spot instances (<a href="#id60"><span class="problematic" id="id61">:issue:`3739`</span></a>).</p></li>
+<li><p>Fixed operation of the Try scheduler for a code checked out from Subversion.</p></li>
+<li><p>Fix buildbot worker startup when running as a windows service</p></li>
+</ul>
+</div>
+<div class="section" id="id62">
+<h2>Features<a class="headerlink" href="#id62" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Make parameters for
+<code class="xref py py-class docutils literal notranslate"><span class="pre">WarningCountingShellCommand</span></code> renderable.
+These are <cite>suppressionList</cite>, <cite>warningPattern</cite>, <cite>directoryEnterPattern</cite>,
+<cite>directoryLeavePattern</cite> and <cite>maxWarnCount</cite>.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">GitHubEventHandler</span></code> now supports
+authentication for GitHub instances that do not allow anonymous access</p></li>
+<li><p>Added support for renderable builder locks. Previously only steps could have
+renderable locks.</p></li>
+<li><p>Added flag to Docker Latent Worker to always pull images</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-12-post1-2017-10-10">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.12.post1</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-10-10</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-12-post1-2017-10-10" title="Permalink to this headline">¶</a></h1>
+<p>This is a release which only exists for the <code class="docutils literal notranslate"><span class="pre">buildbot_grid_view</span></code> package.</p>
+<div class="section" id="id63">
+<h2>Bug fixes<a class="headerlink" href="#id63" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix Grid View plugin broken because of merge resolution mistake ( <a href="#id64"><span class="problematic" id="id65">:issue:`3603`</span></a> and <a href="#id66"><span class="problematic" id="id67">:issue:`3688`</span></a>.)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-12-2017-10-05">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.12</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-10-05</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-12-2017-10-05" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id68">
+<h2>Bug fixes<a class="headerlink" href="#id68" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed many issues related to connecting masters and workers with different major version of Python (<a href="#id69"><span class="problematic" id="id70">:issue:`3416`</span></a>).</p></li>
+<li><p>Fixed KeyError in the log when two buildrequests of the same buildset are finished at the same time (<a href="#id71"><span class="problematic" id="id72">:issue:`3472`</span></a>, <a href="#id73"><span class="problematic" id="id74">:issue:`3591`</span></a>)</p></li>
+<li><p>Fix for SVN.purge fails when modified files contain non-ascii characters (<a href="#id75"><span class="problematic" id="id76">:issue:`3576`</span></a>)</p></li>
+<li><p>Fix the GitHub change hook on Python 3 (<a href="#id77"><span class="problematic" id="id78">:issue:`3452`</span></a>).</p></li>
+<li><p>Fix <code class="xref py py-class docutils literal notranslate"><span class="pre">reporters.gitlab</span></code> to use correct commit status codes (<a href="#id79"><span class="problematic" id="id80">:issue:`3641`</span></a>).</p></li>
+<li><p>Fixed deadlock issue, when locks are taken at least 3 times by the 3 Buildstep with same configuration (<a href="#id81"><span class="problematic" id="id82">:issue:`3650`</span></a>)</p></li>
+<li><p>Fix the Gerrit source step in the presence of multiple Gerrit repos (<a href="#id83"><span class="problematic" id="id84">:issue:`3460`</span></a>).</p></li>
+<li><p>Add empty pidfile option to master and worker start script when <cite>–nodaemon</cite> option is on. (<a href="#id85"><span class="problematic" id="id86">:issue:`3012`</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="id87">
+<h2>Features<a class="headerlink" href="#id87" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Add possibility to specify a <a href="#id88"><span class="problematic" id="id89">:bb:sched:`PatchParameter`</span></a> for any <a href="#id90"><span class="problematic" id="id91">:bb:sched:`CodebaseParameter`</span></a> in a <a href="#id92"><span class="problematic" id="id93">:bb:sched:`ForceScheduler`</span></a> (part of <a href="#id94"><span class="problematic" id="id95">:issue:`3110`</span></a>).</p></li>
+<li><p>Latent Workers will no longer continually retry if they cannot substantiate (<a href="#id96"><span class="problematic" id="id97">:issue:`3572`</span></a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id98">
+<h2>Deprecations and Removals<a class="headerlink" href="#id98" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>buildbot.util.encodeString() has been removed. buildbot.util.unicode2bytes() should be used instead.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-11-2017-09-08">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.11</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-09-08</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-11-2017-09-08" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="incompatible-changes">
+<h2>Incompatible Changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Buildbot is not compatible with <code class="docutils literal notranslate"><span class="pre">python3-ldap</span></code> anymore. It now requires <code class="docutils literal notranslate"><span class="pre">ldap3</span></code> package for its ldap operations (<a href="#id99"><span class="problematic" id="id100">:issue:`3530`</span></a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id101">
+<h2>Bug fixes<a class="headerlink" href="#id101" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix issue with <code class="docutils literal notranslate"><span class="pre">logviewer</span></code> scrolling up indefinitely when loading logs
+(<a href="#id102"><span class="problematic" id="id103">:issue:`3154`</span></a>).</p></li>
+<li><p>Do not add the url if it already exists in the step. (<a href="#id104"><span class="problematic" id="id105">:issue:`3554`</span></a>)</p></li>
+<li><p>Fix filtering for REST resource attributes when SQL is involved in the backend (eq, ne, and
+contains operations, when there are several filters) (<a href="#id106"><span class="problematic" id="id107">:issue:`3526`</span></a>).</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">git</span></code> source step now uses <cite>git checkout -B</cite> rather than <cite>git branch -M</cite> to create local branches (<a href="#id108"><span class="problematic" id="id109">:issue:`3537`</span></a>)</p></li>
+<li><p>Fixed <a class="reference internal" href="../manual/configuration/www.html#gridview"><span class="std std-ref">Grid View</span></a> settings. It is now possible to configure “false” values.</p></li>
+<li><p>Fix performance issue when remote command does not send any line boundary
+(<a href="#id110"><span class="problematic" id="id111">:issue:`3517`</span></a>)</p></li>
+<li><p>Fix regression in GithHub oauth2 v3 api, when using enterprise edition.</p></li>
+<li><p>Fix the Perforce build step on Python 3 (<a href="#id112"><span class="problematic" id="id113">:issue:`3493`</span></a>)</p></li>
+<li><p>Make REST API’s filter __contains use OR connector rather than AND according
+to what the documentation suggests.</p></li>
+<li><p>Fixed secret plugins registration, so that they are correctly available in <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">buildbot.plugins.secrets</span></code>.
+changes to all secrets plugin to be imported and used.</p></li>
+<li><p>Fix secrets downloaded to worker with too wide permissions.</p></li>
+<li><p>Fix issue with stop build during latent worker substantiating, the build result
+was retried instead of cancelled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">'buildbot[bundle]'</span></code> now installs <code class="docutils literal notranslate"><span class="pre">grid_view</span></code> plugin.
+This fixes issues with the tutorial where <code class="docutils literal notranslate"><span class="pre">grid_view</span></code> is enabled by default.</p></li>
+</ul>
+</div>
+<div class="section" id="improved-documentation">
+<h2>Improved Documentation<a class="headerlink" href="#improved-documentation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed documentation regarding log obfuscation for passwords.</p></li>
+<li><p>Improve documentation of REST API’s __contains filter.</p></li>
+</ul>
+</div>
+<div class="section" id="id114">
+<h2>Features<a class="headerlink" href="#id114" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Added autopull for Docker images based on config. (<a href="#id115"><span class="problematic" id="id116">:issue:`3071`</span></a>)</p></li>
+<li><p>Allow to expose logs to summary callback of <a class="reference internal" href="../manual/configuration/reporters.html#GerritStatusPush" title="GerritStatusPush"><code class="xref py py-class docutils literal notranslate"><span class="pre">GerritStatusPush</span></code></a>.</p></li>
+<li><p>Implement GitHub change hook CI skipping (<a href="#id117"><span class="problematic" id="id118">:issue:`3443`</span></a>). Now buildbot will
+ignore the event, if the <code class="docutils literal notranslate"><span class="pre">[ci</span> <span class="pre">skip]</span></code> keyword (configurable) in commit
+message. For more info, please check out the <code class="docutils literal notranslate"><span class="pre">skip</span></code> parameter of
+<a href="#id119"><span class="problematic" id="id120">:bb:chsrc:`GitHub`</span></a> hook.</p></li>
+<li><p><a class="reference internal" href="../manual/configuration/reporters.html#buildbot.reporters.github.GitHubStatusPush" title="buildbot.reporters.github.GitHubStatusPush"><code class="xref py py-class docutils literal notranslate"><span class="pre">GitHubStatusPush</span></code></a> now support reporting
+to ssh style URLs, ie <cite>git&#64;github.com:Owner/RepoName.git</cite></p></li>
+<li><p>Added the possibility to filter builds according to results in <a class="reference internal" href="../manual/configuration/www.html#gridview"><span class="std std-ref">Grid
+View</span></a>.</p></li>
+<li><p><a class="reference internal" href="../manual/configuration/workers-openstack.html#buildbot.worker.openstack.OpenStackLatentWorker" title="buildbot.worker.openstack.OpenStackLatentWorker"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenStackLatentWorker</span></code></a> now supports V3
+authentication.</p></li>
+<li><p>Buildbot now tries harder at finding line boundaries. It now supports several
+cursor controlling ANSI sequences as well as use of lots of backspace to go
+back several characters.</p></li>
+<li><p>UI Improvements so that Buildbot build pages looks better on mobile.</p></li>
+<li><p><a class="reference internal" href="../manual/configuration/workers-openstack.html#buildbot.worker.openstack.OpenStackLatentWorker" title="buildbot.worker.openstack.OpenStackLatentWorker"><code class="xref py py-class docutils literal notranslate"><span class="pre">OpenStackLatentWorker</span></code></a> now supports
+region attribute.</p></li>
+<li><p>The <a class="reference internal" href="../manual/configuration/schedulers.html#schedulers"><span class="std std-ref">Schedulers</span></a> <code class="docutils literal notranslate"><span class="pre">builderNames</span></code> parameter can now be a
+<code class="xref py py-class docutils literal notranslate"><span class="pre">IRenderable</span></code> object that will render to a list of builder names.</p></li>
+<li><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">LdapUserInfo</span></code> now uses the
+python3-ldap successor ldap3 (<a href="#id121"><span class="problematic" id="id122">:issue:`3530`</span></a>).</p></li>
+<li><p>Added support for static suppressions parameter for shell commands.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-10-2017-08-03">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.10</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-08-03</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-10-2017-08-03" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id123">
+<h2>Bug fixes<a class="headerlink" href="#id123" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix ‘reconfig master causes worker lost’ error (<a href="#id124"><span class="problematic" id="id125">:issue:`3392`</span></a>).</p></li>
+<li><p>Fix bug where object names could not be larger than 150 characters
+(<a href="#id126"><span class="problematic" id="id127">:issue:`3449`</span></a>)</p></li>
+<li><p>Fix bug where notifier names could not be overridden (<a href="#id128"><span class="problematic" id="id129">:issue:`3450`</span></a>)</p></li>
+<li><p>Fix exception when shutting down a master (<a href="#id130"><span class="problematic" id="id131">:issue:`3478`</span></a>)</p></li>
+<li><p>Fix Manhole support to work with Python 3 and Twisted 16.0.0+
+(<a href="#id132"><span class="problematic" id="id133">:issue:`3160`</span></a>). <code class="xref py py-class docutils literal notranslate"><span class="pre">AuthorizedKeysManhole</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">PasswordManhole</span></code> now require a directory
+containing SSH host keys to be specified.</p></li>
+<li><p>Fix python 3 issue with displaying the properties when fetching builders
+(<a href="#id134"><span class="problematic" id="id135">:issue:`3418`</span></a>).</p></li>
+<li><p>Fix bug when <code class="xref py py-class docutils literal notranslate"><span class="pre">ShellArg</span></code> arguments
+were rendered only once during an instance’s lifetime.</p></li>
+<li><p>Fix waterfall tiny size of build status indicators (<a href="#id136"><span class="problematic" id="id137">:issue:`3475`</span></a>)</p></li>
+<li><p>Fix waterfall natural order of builder list</p></li>
+<li><p>Fix builder page use ‘pointer’ cursor style for tags (<a href="#id138"><span class="problematic" id="id139">:issue:`3473`</span></a>)</p></li>
+<li><p>Fix builder page update tag filter when using the browser’s back button (<a href="#id140"><span class="problematic" id="id141">:issue:`3474`</span></a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id142">
+<h2>Features<a class="headerlink" href="#id142" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>added support for builder names in REST API. Note that those endpoints are
+not (yet) available from the UI, as the events are not sent to the endpoints
+with builder names.</p></li>
+<li><p>Implemented new ability to set from by email domain. Implemented
+<code class="xref py py-class docutils literal notranslate"><span class="pre">RolesFromDomain</span></code>. (<a href="#id143"><span class="problematic" id="id144">:issue:`3422`</span></a>)</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-9-post2-2017-07-06">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.9.post2</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-07-06</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-9-post2-2017-07-06" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id145">
+<h2>Bug fixes<a class="headerlink" href="#id145" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">tried</span> <span class="pre">to</span> <span class="pre">complete</span> <span class="pre">100</span> <span class="pre">buildrequests,</span> <span class="pre">but</span> <span class="pre">only</span> <span class="pre">completed</span> <span class="pre">25</span></code> issue in
+buildrequest collapser (<a href="#id146"><span class="problematic" id="id147">:issue:`3406`</span></a>)</p></li>
+<li><p>Fixed issue when several mail notifiers are used with same parameters, but
+different modes (<a href="#id148"><span class="problematic" id="id149">:issue:`3398`</span></a>).</p></li>
+<li><p>Fixed release scripts for <code class="docutils literal notranslate"><span class="pre">postN</span></code> releases</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-9-post1-2017-07-01">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.9.post1</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-07-01</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-9-post1-2017-07-01" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id150">
+<h2>Bug fixes<a class="headerlink" href="#id150" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix regression with <a class="reference internal" href="../manual/configuration/www.html#buildbot.www.oauth2.GitHubAuth" title="buildbot.www.oauth2.GitHubAuth"><code class="xref py py-class docutils literal notranslate"><span class="pre">GitHubAuth</span></code></a> when API v3 is used.</p></li>
+<li><p>When using the <a class="reference internal" href="../manual/configuration/www.html#buildbot.www.oauth2.GitHubAuth" title="buildbot.www.oauth2.GitHubAuth"><code class="xref py py-class docutils literal notranslate"><span class="pre">GitHubAuth</span></code></a> v4 API,
+the generated GraphQL to get the user organizations uses a name alias for
+each organization. These aliases must not contain dashes.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-9-2017-06-29">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.9</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-06-29</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-9-2017-06-29" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id151">
+<h2>Bug fixes<a class="headerlink" href="#id151" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fixed a regression inn <code class="docutils literal notranslate"><span class="pre">UserPasswordAuth</span></code> where a list would create an
+error.</p></li>
+<li><p>Fix non ascii payload handling in base web hook (<a href="#id152"><span class="problematic" id="id153">:issue:`3321`</span></a>).</p></li>
+<li><p>Fixed default buildrequest collapsing (<a href="#id154"><span class="problematic" id="id155">:issue:`3151`</span></a>)</p></li>
+<li><p>_wait_for_request() would fail to format a log statement due to an invalid
+type being passed to log.msg (resulting in a broken build)</p></li>
+<li><p>Fix Windows compatibility with frontend development tool <code class="docutils literal notranslate"><span class="pre">gulp</span> <span class="pre">dev</span> <span class="pre">proxy</span></code>
+(<a href="#id156"><span class="problematic" id="id157">:issue:`3359`</span></a>)</p></li>
+</ul>
+</div>
+<div class="section" id="id158">
+<h2>Features<a class="headerlink" href="#id158" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>New <a class="reference internal" href="../manual/configuration/www.html#gridview"><span class="std std-ref">Grid View</span></a> UI plugin.</p></li>
+<li><p>The <a class="reference internal" href="../manual/configuration/wwwhooks.html#change-hooks"><span class="std std-ref">Change Hooks</span></a> system is now integrated in the <a class="reference internal" href="../manual/plugins.html#plugins"><span class="std std-ref">Plugin Infrastructure in Buildbot</span></a>
+system, making it easier to subclass hooks. There is still the need to re-
+factor hook by hook to allow better customizability.</p></li>
+<li><p>The <a class="reference internal" href="../manual/configuration/www.html#buildbot.www.oauth2.GitHubAuth" title="buildbot.www.oauth2.GitHubAuth"><code class="xref py py-class docutils literal notranslate"><span class="pre">GitHubAuth</span></code></a> now allows fetching the user
+team membership for all organizations the user belongs to. This requires
+access to a V4 GitHub API(GraphQL).</p></li>
+<li><p>GitLab merge request hook now create a change with repository to be the
+source repository and branch the source branch. Additional properties are
+created to point to destination branch and destination repository. This makes
+<a href="#id159"><span class="problematic" id="id160">:bb:reporter:`GitLabStatusPush`</span></a> push the correct status to GitLab, so that
+pipeline report is visible in the merge request page.</p></li>
+<li><p>The <code class="xref py py-class docutils literal notranslate"><span class="pre">GitHubEventHandler</span></code> now allows the
+inclusion of white-listed properties for push events.</p></li>
+<li><p>Allow sending a comment to a pull request for Bitbucket Server in
+<code class="xref py py-class docutils literal notranslate"><span class="pre">BitbucketServerPRCommentPush</span></code></p></li>
+<li><p>Implement support for Bitbucket Server webhook plugin in
+<code class="xref py py-class docutils literal notranslate"><span class="pre">BitbucketServerEventHandler</span></code></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-8-2017-06-14">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.8</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-06-14</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-8-2017-06-14" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="core-bug-fixes">
+<h2>Core Bug fixes<a class="headerlink" href="#core-bug-fixes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix incompatibility issue of <code class="docutils literal notranslate"><span class="pre">UserPasswordAuth</span></code> with python 3.</p></li>
+<li><p>Fix issue with oauth sequence not working with Firefox (<a href="#id161"><span class="problematic" id="id162">:issue:`3306`</span></a>)</p></li>
+<li><p>Update old <code class="docutils literal notranslate"><span class="pre">addChange</span></code> method to accept the new chdict names if only the
+new name is present. Fixes <a href="#id163"><span class="problematic" id="id164">:issue:`3191`</span></a>.</p></li>
+<li><p>fix bytes vs string issue on python3 with authorization of rest endpoints.</p></li>
+</ul>
+</div>
+<div class="section" id="core-features">
+<h2>Core Features<a class="headerlink" href="#core-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">doStepIf</span></code> is now renderable.</p></li>
+<li><p>Source step codebase is now renderable.</p></li>
+<li><p>Step names are now renderable.</p></li>
+<li><p>Added <code class="xref py py-func docutils literal notranslate"><span class="pre">giturlparse()</span></code> utility function to help buildbot components
+like reporters to parse git url from change sources.</p></li>
+<li><p>Factorized the mail reporter to be able to write new message based reporters, for other backend than SMTP.</p></li>
+<li><p>The class <code class="xref py py-class docutils literal notranslate"><span class="pre">Property</span></code> now allows being
+used with Python built in comparators. It will return a Renderable which
+executes the comparison.</p></li>
+</ul>
+</div>
+<div class="section" id="components-bug-fixes">
+<h2>Components Bug fixes<a class="headerlink" href="#components-bug-fixes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>GitLab reporter now correctly sets the status to running instead of pending
+when a build starts.</p></li>
+<li><p>GitLab reporter now correctly works when there are multiple codebase, and
+when the projects names contain url reserved characters.</p></li>
+<li><p>GitLab reporter now correctly reports the status even if there are several
+sourcestamps. Better parsing of change repository in GitLab reporter so that
+it understands ssh urls and https url. GitLab reporter do not use the project
+field anymore to know the repository to push to.</p></li>
+</ul>
+</div>
+<div class="section" id="components-features">
+<h2>Components Features<a class="headerlink" href="#components-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>GitLab hook now supports the merge_request event to automatically build from
+a merge request. Note that the results will not properly displayed in
+merge_request UI due to <a class="reference external" href="https://gitlab.com/gitlab-org/gitlab-ce/issues/33293">https://gitlab.com/gitlab-org/gitlab-ce/issues/33293</a></p></li>
+<li><p>Added a <a class="reference external" href="https://pushjet.io/">https://pushjet.io/</a> reporter as
+<code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.reporters.pushjet.PushjetNotifier</span></code></p></li>
+<li><p>New build step <code class="xref py py-class docutils literal notranslate"><span class="pre">Assert</span></code> Tests a renderable
+or constant if it evaluates to true. It will succeed or fail to step
+according to the result.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-7-2017-05-09">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.7</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-05-09</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-7-2017-05-09" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id165">
+<h2>Core Bug fixes<a class="headerlink" href="#id165" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix <code class="xref py py-class docutils literal notranslate"><span class="pre">UserPasswordAuth</span></code> authentication on <code class="docutils literal notranslate"><span class="pre">py3</span></code> and recent
+browsers. (<a href="#id166"><span class="problematic" id="id167">:issue:`3162`</span></a>, <a href="#id168"><span class="problematic" id="id169">:issue:`3163`</span></a>). The <code class="docutils literal notranslate"><span class="pre">py3</span></code> fix also requires
+Twisted <a class="reference external" href="https://github.com/twisted/twisted/pull/773">https://github.com/twisted/twisted/pull/773</a>.</p></li>
+<li><p><a class="reference internal" href="../manual/configuration/www.html#consoleview"><span class="std std-ref">Console View</span></a> now display changes the same way as in Recent Changes
+page.</p></li>
+<li><p>Fix issue with <a class="reference internal" href="../manual/configuration/www.html#consoleview"><span class="std std-ref">Console View</span></a> when no change source is configured but
+still builds have <code class="docutils literal notranslate"><span class="pre">got_revision</span></code> property</p></li>
+</ul>
+</div>
+<div class="section" id="id170">
+<h2>Components Bug fixes<a class="headerlink" href="#id170" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Allow renderables in options and definitions of step <code class="docutils literal notranslate"><span class="pre">CMake</span></code>. Currently
+only dicts and lists with renderables inside are allowed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">OAuth</span></code> Authentication are now working with <code class="xref py py-class docutils literal notranslate"><span class="pre">RolesFromEmails</span></code>.</p></li>
+<li><p><a class="reference internal" href="../manual/configuration/workers-docker.html#buildbot.worker.docker.DockerLatentWorker" title="buildbot.worker.docker.DockerLatentWorker"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerLatentWorker</span></code></a>: <code class="docutils literal notranslate"><span class="pre">_image_exists</span></code>
+does not raise anymore if it encounters an image with <code class="docutils literal notranslate"><span class="pre">&lt;none&gt;</span></code> tag</p></li>
+<li><p>Fix command line parameters for <code class="docutils literal notranslate"><span class="pre">Robocopy</span></code> step <code class="docutils literal notranslate"><span class="pre">verbose</span></code> option</p></li>
+</ul>
+</div>
+<div class="section" id="id171">
+<h2>Core Features<a class="headerlink" href="#id171" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Builds <code class="docutils literal notranslate"><span class="pre">state_string</span></code> is now automatically computed according to the
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">BuildStep.getResultSummary()</span></code>, <code class="xref py py-attr docutils literal notranslate"><span class="pre">BuildStep.description</span></code> and
+<code class="docutils literal notranslate"><span class="pre">updateBuildSummaryPolicy</span></code> from <a class="reference internal" href="../manual/configuration/buildsteps.html#buildstep-common-parameters"><span class="std std-ref">Common Parameters</span></a>. This
+allows the dashboards and reporters to get a descent summary text of the
+build without fetching the steps.</p></li>
+<li><p>New <a href="#id172"><span class="problematic" id="id173">:bb:cfg:`configurators`</span></a> section, which can be used to create higher level
+configuration modules for Buildbot.</p></li>
+<li><p>New <a href="#id174"><span class="problematic" id="id175">:bb:configurator:`JanitorConfigurator`</span></a> which can be used to create a
+builder which save disk space by removing old logs from the database.</p></li>
+</ul>
+</div>
+<div class="section" id="id176">
+<h2>Components Features<a class="headerlink" href="#id176" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Added a <a class="reference external" href="https://pushover.net/">https://pushover.net/</a> reporter as <a class="reference internal" href="../manual/configuration/reporters.html#buildbot.reporters.pushover.PushoverNotifier" title="buildbot.reporters.pushover.PushoverNotifier"><code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.reporters.pushover.PushoverNotifier</span></code></a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">property</span></code> argument in SetPropery is now renderable.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-6-2017-04-19">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.6</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-04-19</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-6-2017-04-19" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id177">
+<h2>Core Bug fixes<a class="headerlink" href="#id177" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="../manual/configuration/www.html#buildbot.www.authz.endpointmatchers.AnyControlEndpointMatcher" title="buildbot.www.authz.endpointmatchers.AnyControlEndpointMatcher"><code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.www.authz.endpointmatchers.AnyControlEndpointMatcher</span></code></a> now
+actually doesn’t match <cite>GET</cite> requests. Before it would act like an
+<cite>AnyEndpointMatcher</cite> since the <cite>GET</cite> had a different case.</p></li>
+<li><p>Passing <code class="docutils literal notranslate"><span class="pre">unicode</span></code> <code class="docutils literal notranslate"><span class="pre">builderNames</span></code> to <a href="#id178"><span class="problematic" id="id179">:bb:sched:`ForceScheduler`</span></a> no longer
+causes an error.</p></li>
+<li><p>Fix issue with :bb:sched::<cite>Nightly</cite> change classification raising foreign key
+exceptions (<a href="#id180"><span class="problematic" id="id181">:issue:`3021`</span></a>)</p></li>
+<li><p>Fixes an exception found <code class="xref py py-func docutils literal notranslate"><span class="pre">buildbot_net_usage_data._sendWithUrlib()</span></code> when running through the tutorial using Python 3.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">usePTY</span></code> configuration of the <a href="#id182"><span class="problematic" id="id183">:bb:step:`ShellCommand`</span></a> now works as expected
+with recent version of buildbot-worker.</p></li>
+</ul>
+</div>
+<div class="section" id="id184">
+<h2>Components Bug fixes<a class="headerlink" href="#id184" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pollAtLaunch</span></code> of the <a href="#id185"><span class="problematic" id="id186">:bb:chsrc:`GitHubPullrequestPoller`</span></a> now works as
+expected. Also the author email won’t be displayed as None</p></li>
+<li><p><a href="#id187"><span class="problematic" id="id188">:bb:chsrc:`GerritChangeSource`</span></a> and <a href="#id189"><span class="problematic" id="id190">:bb:reporter:`GerritStatusPush`</span></a> now use the master’s environment including PATH variable to find
+the ssh binary.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">SlaveDirectoryUploadCommand</span></code>
+no longer throws exceptions because the file “is used by another process”
+under Windows</p></li>
+</ul>
+</div>
+<div class="section" id="ui-bug-fixes">
+<h2>UI Bug fixes<a class="headerlink" href="#ui-bug-fixes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix waterfall scrolling and zooming in current browsers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">console_view</span></code> now properly uses <code class="docutils literal notranslate"><span class="pre">revlink</span></code> metadata to link to changes.</p></li>
+<li><p>Fixed Console View infinite loading spinner when no change have been recorded
+yet (<a href="#id191"><span class="problematic" id="id192">:issue:`3060`</span></a>).</p></li>
+</ul>
+</div>
+<div class="section" id="id193">
+<h2>Core Features<a class="headerlink" href="#id193" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>new <a class="reference internal" href="../manual/configuration/builders.html#virtual-builders"><span class="std std-ref">Virtual Builders</span></a> concept for better integration of frameworks
+which store the build config along side the source code.</p></li>
+</ul>
+</div>
+<div class="section" id="id194">
+<h2>Components Features<a class="headerlink" href="#id194" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a href="#id195"><span class="problematic" id="id196">:bb:chsrc:`BitBucket`</span></a> now sets the <code class="docutils literal notranslate"><span class="pre">event</span></code>
+property on each change to what the <code class="docutils literal notranslate"><span class="pre">X-Event-Key</span></code> header contains.</p></li>
+<li><p><a href="#id197"><span class="problematic" id="id198">:bb:chsrc:`GitHubPullrequestPoller`</span></a> now adds additional information about the
+pull request to properties. The property argument is removed and is populated
+with the repository full name.</p></li>
+<li><p><a href="#id199"><span class="problematic" id="id200">:bb:chsrc:`GitHub`</span></a> now sets
+the <code class="docutils literal notranslate"><span class="pre">event</span></code> property on each change to what the <code class="docutils literal notranslate"><span class="pre">X-GitHub-Event</span></code> header
+contains.</p></li>
+<li><p>Changed <a class="reference internal" href="../manual/configuration/www.html#buildbot.www.oauth2.GitHubAuth" title="buildbot.www.oauth2.GitHubAuth"><code class="xref py py-class docutils literal notranslate"><span class="pre">GitHubAuth</span></code></a> now supports GitHub
+Enterprise when setting new <code class="docutils literal notranslate"><span class="pre">serverURL</span></code> argument.</p></li>
+<li><p><a href="#id201"><span class="problematic" id="id202">:bb:chsrc:`GitLab`</span></a> now sets the <code class="docutils literal notranslate"><span class="pre">event</span></code> property
+on each change to what the <code class="docutils literal notranslate"><span class="pre">X-GitLab-Event</span></code> header contains.</p></li>
+<li><p><a href="#id203"><span class="problematic" id="id204">:bb:chsrc:`GitHub`</span></a> now process
+git tag push events</p></li>
+<li><p><a href="#id205"><span class="problematic" id="id206">:bb:chsrc:`GitHub`</span></a> now adds
+more information about the pull request to the properties. This syncs
+features with <a href="#id207"><span class="problematic" id="id208">:bb:chsrc:`GitHubPullrequestPoller`</span></a></p></li>
+<li><p><a href="#id209"><span class="problematic" id="id210">:bb:chsrc:`GitLab`</span></a> now process git tag push
+events</p></li>
+<li><p><a href="#id211"><span class="problematic" id="id212">:bb:chsrc:`GitLab`</span></a> now supports authentication
+with the secret token</p></li>
+</ul>
+</div>
+<div class="section" id="ui-features">
+<h2>UI Features<a class="headerlink" href="#ui-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Reworked <a class="reference internal" href="../manual/configuration/www.html#consoleview"><span class="std std-ref">Console View</span></a> and <a class="reference internal" href="../manual/configuration/www.html#waterfallview"><span class="std std-ref">Waterfall View</span></a> for better usability and better integration with virtual builders</p></li>
+<li><p><a class="reference internal" href="../developer/www-data-module.html#www-data-module"><span class="std std-ref">Javascript Data Module</span></a> collections now have a <code class="docutils literal notranslate"><span class="pre">$resolved</span></code> attribute which
+allows dashboard to know when the data is loaded.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-5-2017-03-18">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.5</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-03-18</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-5-2017-03-18" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id213">
+<h2>Bug fixes<a class="headerlink" href="#id213" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix issue with compressing empty log</p></li>
+<li><p>Fix issue with db being closed by wrong thread</p></li>
+<li><p>Fix issue with buildbot_worker not closing file handles when using the
+transfer steps</p></li>
+<li><p>Fix issue with buildbot requesting too many permissions from GitHub’s OAuth</p></li>
+<li><p>Fix <code class="xref py py-class docutils literal notranslate"><span class="pre">HTTPStep</span></code> to accept <code class="docutils literal notranslate"><span class="pre">json</span></code> as keyword
+argument.</p></li>
+<li><p>Updated <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenStackLatentWorker</span></code> to use
+keystoneauth1 so it will support latest python-novaclient packages.</p></li>
+<li><p>Include <code class="xref py py-class docutils literal notranslate"><span class="pre">RpmLint</span></code> step in steps
+plugins.</p></li>
+</ul>
+</div>
+<div class="section" id="id214">
+<h2>Core Features<a class="headerlink" href="#id214" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Experimental support for Python 3.5 and 3.6.
+Note that complete support depends on fixes to be released in Twisted 17.2.0.</p></li>
+<li><p>New experimental <a class="reference internal" href="../manual/secretsmanagement.html#secretmanagement"><span class="std std-ref">Secret Management</span></a> framework, which allows to securely declare secrets, reusable in your steps.</p></li>
+<li><p>New <a class="reference internal" href="../manual/customization.html#buildbot-wsgi-dashboards"><span class="std std-ref">Writing Dashboards with Flask or Bottle</span></a> plugin, which allows to write custom
+dashboard with traditional server side web frameworks.</p></li>
+<li><p>Added <code class="xref py py-class docutils literal notranslate"><span class="pre">AnyControlEndpointMatcher</span></code> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">EnableSchedulerEndpointMatcher</span></code> for better configurability of the
+access control. If you have access control to your Buildbot, it is
+recommended you add <code class="xref py py-class docutils literal notranslate"><span class="pre">AnyControlEndpointMatcher</span></code> at the end of your
+access control configuration.</p></li>
+<li><p>Schedulers can now be toggled on and off from the UI. Useful for temporarily
+disabling periodic timers.</p></li>
+</ul>
+</div>
+<div class="section" id="id215">
+<h2>Components Features<a class="headerlink" href="#id215" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">FileUpload</span></code> now supports setting the url
+title text that is visible in the web UI. <code class="xref py py-class docutils literal notranslate"><span class="pre">FileUpload</span></code> now supports custom <cite>description</cite> and
+<cite>descriptionDone</cite> text.</p></li>
+<li><p><a class="reference internal" href="../manual/configuration/workers-ec2.html#buildbot.worker.ec2.EC2LatentWorker" title="buildbot.worker.ec2.EC2LatentWorker"><code class="xref py py-class docutils literal notranslate"><span class="pre">EC2LatentWorker</span></code></a> now provides instance id as
+the <cite>instance</cite> property enabling use of the AWS toolkit.</p></li>
+<li><p>Add GitHub pull request Poller to list of available changesources.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">OAuth2LoginResource</span></code> now supports the <cite>token</cite> URL
+parameter. If a user wants to authenticate through OAuth2 with a pre-
+generated token (such as the <cite>access_token</cite> provided by GitHub) it can be
+passed to <cite>/auth/login</cite> as the <cite>token</cite> URL parameter and the user will be
+authenticated to buildbot with those credentials.</p></li>
+<li><p>New reporter <a class="reference internal" href="../manual/configuration/reporters.html#buildbot.reporters.github.GitHubCommentPush" title="buildbot.reporters.github.GitHubCommentPush"><code class="xref py py-class docutils literal notranslate"><span class="pre">GitHubCommentPush</span></code></a> can
+comment on GitHub PRs</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">GitPoller</span></code> now supports polling tags in a git
+repository.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">MultipleFilUpload</span></code> now supports the
+<cite>glob</cite> parameter. If <cite>glob</cite> is set to <cite>True</cite> all <cite>workersrcs</cite> parameters will
+be run through <cite>glob</cite> and the result will be uploaded to <cite>masterdest</cite></p></li>
+<li><p>Changed <code class="xref py py-class docutils literal notranslate"><span class="pre">OpenStackLatentWorker</span></code> to
+default to v2 of the Nova API. The novaclient package has had a deprecation
+warning about v1.1 and would use v2 anyway.</p></li>
+</ul>
+</div>
+<div class="section" id="id216">
+<h2>Deprecations and Removals<a class="headerlink" href="#id216" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">master/contrib</span></code> and <code class="docutils literal notranslate"><span class="pre">worker/contrib</span></code> directories have been moved to
+their own repository at <a class="reference external" href="https://github.com/buildbot/buildbot-contrib/">https://github.com/buildbot/buildbot-contrib/</a></p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-4-2017-02-08">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.4</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-02-08</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-4-2017-02-08" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="database-upgrade">
+<h2>Database upgrade<a class="headerlink" href="#database-upgrade" title="Permalink to this headline">¶</a></h2>
+<p>A database upgrade is necessary for this release (see <a href="#id217"><span class="problematic" id="id218">:bb:cmdline:`upgrade-master`</span></a>).</p>
+</div>
+<div class="section" id="id219">
+<h2>Bug fixes<a class="headerlink" href="#id219" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Like for <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">start</span></code>, <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">upgrade-master</span></code> will now erase an old pidfile if the process is not live anymore instead of just failing.</p></li>
+<li><p>Change properties ‘value’ changed from String(1024) to Text. Requires upgrade master. (<a href="#id220"><span class="problematic" id="id221">:bug:`3197`</span></a>)</p></li>
+<li><p>When using REST API, it is now possible to filter and sort in descending order at the same time.</p></li>
+<li><p>Fix issue with <a href="#id222"><span class="problematic" id="id223">:bb:reporter:`HttpStatusPush`</span></a> raising <code class="docutils literal notranslate"><span class="pre">datetime</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">JSON</span> <span class="pre">serializable</span></code> error.</p></li>
+<li><p>Fix issue with log viewer not properly rendering color codes.</p></li>
+<li><p>Fixed log viewer selection and copy-paste for Firefox (<a href="#id224"><span class="problematic" id="id225">:bug:`3662`</span></a>).</p></li>
+<li><p>Fix issue with <code class="docutils literal notranslate"><span class="pre">DelayedCalled</span></code> already called, and worker missing notification email never received.</p></li>
+<li><p><a href="#id226"><span class="problematic" id="id227">:bb:cfg:`schedulers`</span></a> and <a href="#id228"><span class="problematic" id="id229">:bb:cfg:`change_source`</span></a> are now properly taking configuration change in account with <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">reconfig</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setuptools</span></code> is now explicitly marked as required. The dependency was previously implicit.</p></li>
+<li><p><a href="#id230"><span class="problematic" id="id231">:bb:cfg:`buildbotNetUsageData`</span></a> now uses <code class="docutils literal notranslate"><span class="pre">requests</span></code> if available and will default to HTTP if a bogus SSL implementation is found.
+It will also correctly send information about the platform type.</p></li>
+</ul>
+</div>
+<div class="section" id="id232">
+<h2>Features<a class="headerlink" href="#id232" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p>Buildbot now uses <a class="reference external" href="https://en.wikipedia.org/wiki/JSON_Web_Token">JWT</a> to
+store its web UI Sessions.
+Sessions now persist upon buildbot restart.
+Sessions are shared between masters.
+Session expiration time is configurable with <code class="docutils literal notranslate"><span class="pre">c['www']['cookie_expiration_time']</span></code> see <a href="#id233"><span class="problematic" id="id234">:bb:cfg:`www`</span></a>.</p></li>
+<li><p>Builders page has been optimized and can now be displayed with 4 http requests whatever is the builder count (previously, there was one http request per builder).</p></li>
+<li><p>Builder and Worker page build list now have the <code class="docutils literal notranslate"><span class="pre">numbuilds=</span></code> option which allows to show more builds.</p></li>
+<li><p>Masters page now shows more information about a master (workers, builds, activity timer)</p></li>
+<li><p>Workers page improvements:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Shows which master the worker is connected to.</p></li>
+<li><p>Shows correctly the list of builders that this master is configured on (not the list of <code class="docutils literal notranslate"><span class="pre">buildermaster</span></code> which nobody cares about).</p></li>
+<li><p>Shows list of builds per worker similar to the builders page.</p></li>
+<li><p>New worker details page displays the list of builds built by this worker using database optimized query.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="id235">
+<h2>Deprecations and Removals<a class="headerlink" href="#id235" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Some deprecated broken <a class="reference internal" href="../manual/deploy.html#contrib-scripts"><span class="std std-ref">Contrib Scripts</span></a> were removed.</p></li>
+<li><p><code class="xref py py-data docutils literal notranslate"><span class="pre">buildbot.www.hooks.googlecode</span></code> has been removed, since the Google Code service has been shut down.</p></li>
+<li><p><code class="xref py py-data docutils literal notranslate"><span class="pre">buildbot.util.json</span></code> has been deprecated in favor of the standard library <code class="xref py py-mod docutils literal notranslate"><span class="pre">json</span></code>.
+<code class="docutils literal notranslate"><span class="pre">simplejson</span></code> will not be used anymore if found in the virtualenv.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-3-2017-01-11">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.3</span></code> ( <code class="docutils literal notranslate"><span class="pre">2017-01-11</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-3-2017-01-11" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id236">
+<h2>Bug fixes<a class="headerlink" href="#id236" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix <a href="#id237"><span class="problematic" id="id238">:bb:reporter:`BitbucketStatusPush`</span></a> <code class="docutils literal notranslate"><span class="pre">ep</span> <span class="pre">should</span> <span class="pre">start</span> <span class="pre">with</span> <span class="pre">/</span></code> assertion
+error.</p></li>
+<li><p>Fix duplicate worker use case, where a worker with the same name would make
+the other worker also disconnect (<a href="#id239"><span class="problematic" id="id240">:bug:`3656`</span></a>)</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">GitPoller</span></code>: <code class="docutils literal notranslate"><span class="pre">buildPushesWithNoCommits</span></code> now
+rebuilds for a known branch that was updated to an existing commit.</p></li>
+<li><p>Fix issue with log viewer not staying at bottom of the log when loading log
+lines.</p></li>
+<li><p>Fixed <cite>addBuildURLs</cite> in <code class="xref py py-class docutils literal notranslate"><span class="pre">Trigger</span></code> to use
+results from triggered builds to include in the URL name exposed by API.</p></li>
+<li><p>Fix <a class="reference internal" href="../manual/configuration/global.html#mq-wamp"><span class="std std-ref">Wamp</span></a> <a href="#id241"><span class="problematic" id="id242">:bb:cfg:`mq`</span></a> support by removing <code class="docutils literal notranslate"><span class="pre">debug</span></code>, <code class="docutils literal notranslate"><span class="pre">debug_amp</span></code>
+and <code class="docutils literal notranslate"><span class="pre">debug_app</span></code> from the <a href="#id243"><span class="problematic" id="id244">:bb:cfg:`mq`</span></a> config, which is not available in
+latest version of <a class="reference external" href="http://autobahn.ws">Python Autobahn</a>. You can now use
+<code class="docutils literal notranslate"><span class="pre">wamp_debug_level</span></code> option instead.</p></li>
+<li><p>fix issue with factory.workdir AttributeError are not properly reported.</p></li>
+</ul>
+</div>
+<div class="section" id="id245">
+<h2>Features<a class="headerlink" href="#id245" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Optimize the memory consumption of the log compression process. Buildbot do
+not load the whole log into memory anymore. This should improve a lot
+buildbot memory footprint.</p></li>
+<li><p>Changed the build page so that the preview of the logs are shown in live. It
+is a preview means the last lines of log. How many lines is configurable per
+user in the user settings page.</p></li>
+<li><p>Log viewer line numbers are no longer selectable, so that it is easier to
+copy paste.</p></li>
+<li><p><a class="reference internal" href="../manual/configuration/workers-docker.html#buildbot.plugins.worker.DockerLatentWorker" title="buildbot.plugins.worker.DockerLatentWorker"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerLatentWorker</span></code></a> accepts now
+renderable Dockerfile</p></li>
+<li><p><a class="reference internal" href="../manual/configuration/properties.html#renderer"><span class="std std-ref">Renderer</span></a> function can now return
+<code class="xref py py-class docutils literal notranslate"><span class="pre">IRenderable</span></code> objects.</p></li>
+<li><p>new <a href="#id246"><span class="problematic" id="id247">:bb:step:`SetProperties`</span></a> which allows to generate and transform
+properties separately.</p></li>
+<li><p>Handle new workers in <cite>windows_service.py</cite> script.</p></li>
+<li><p>Sort the builders in the waterfall view by name instead of ID.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="release-notes-for-buildbot-0-9-2-2016-12-13">
+<h1>Release Notes for Buildbot <code class="docutils literal notranslate"><span class="pre">0.9.2</span></code> ( <code class="docutils literal notranslate"><span class="pre">2016-12-13</span></code> )<a class="headerlink" href="#release-notes-for-buildbot-0-9-2-2016-12-13" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id248">
+<h2>Bug fixes<a class="headerlink" href="#id248" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Fix <a class="reference internal" href="../manual/configuration/www.html#buildbot.www.oauth2.GitHubAuth" title="buildbot.www.oauth2.GitHubAuth"><code class="xref py py-class docutils literal notranslate"><span class="pre">GitHubAuth</span></code></a> to retrieve all organizations
+instead of only those publicly available.</p></li>
+<li><p>Fixed <cite>ref</cite> to point to <cite>branch</cite> instead of commit <cite>sha</cite> in
+<code class="xref py py-class docutils literal notranslate"><span class="pre">GitLabStatusPush</span></code></p></li>
+<li><p><a href="#id249"><span class="problematic" id="id250">:bb:reporter:`IRC`</span></a> <code class="xref py py-meth docutils literal notranslate"><span class="pre">maybeColorize()</span></code> is able to highlight single words
+and stop colorization at the end. The previous implementation only stopped
+colorization but not boldface.</p></li>
+<li><p>fix compatibility issue with mysql5 (do not set default value for TEXT
+column).</p></li>
+<li><p>Fixed <cite>addChange</cite> in <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code> to use the
+<cite>revlink</cite> configuration option to generate the revlink.</p></li>
+<li><p>fix threading issue in
+<a class="reference internal" href="../manual/configuration/workers-docker.html#buildbot.plugins.worker.DockerLatentWorker" title="buildbot.plugins.worker.DockerLatentWorker"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerLatentWorker</span></code></a></p></li>
+</ul>
+</div>
+<div class="section" id="id251">
+<h2>Features<a class="headerlink" href="#id251" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Implement <a class="reference internal" href="../manual/configuration/www.html#buildbot.www.oauth2.BitbucketAuth" title="buildbot.www.oauth2.BitbucketAuth"><code class="xref py py-class docutils literal notranslate"><span class="pre">BitbucketAuth</span></code></a>.</p></li>
+<li><p>New <a href="#id252"><span class="problematic" id="id253">:bb:chsrc:`GerritEventLogPoller`</span></a> poller to poll Gerrit changes via http
+API.</p></li>
+<li><p>New <a href="#id254"><span class="problematic" id="id255">:bb:reporter:`GerritVerifyStatusPush`</span></a> can send multiple review status for
+the same Gerrit change.</p></li>
+<li><p><a href="#id256"><span class="problematic" id="id257">:bb:reporter:`IRC`</span></a> appends the builder URL to a successful/failed build if
+available</p></li>
+<li><p><a href="#id258"><span class="problematic" id="id259">:bb:reporter:`MailNotifier`</span></a> now accepts <code class="docutils literal notranslate"><span class="pre">useSmtps</span></code> parameter for initiating
+connection over an SSL/TLS encrypted connection (SMTPS)</p></li>
+<li><p>New support for <code class="docutils literal notranslate"><span class="pre">Mesos</span></code> and <a class="reference external" href="https://mesosphere.github.io/marathon/">Marathon</a> via
+<a class="reference internal" href="../manual/configuration/workers-docker.html#buildbot.plugins.worker.MarathonLatentWorker" title="buildbot.plugins.worker.MarathonLatentWorker"><code class="xref py py-class docutils literal notranslate"><span class="pre">MarathonLatentWorker</span></code></a>. <code class="docutils literal notranslate"><span class="pre">Marathon</span></code> is a
+production-grade container orchestration platform for Mesosphere’s Data-
+center Operating System (DC/OS) and Apache <code class="docutils literal notranslate"><span class="pre">Mesos</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">password</span></code> in <a class="reference internal" href="../manual/configuration/workers-docker.html#buildbot.plugins.worker.DockerLatentWorker" title="buildbot.plugins.worker.DockerLatentWorker"><code class="xref py py-class docutils literal notranslate"><span class="pre">DockerLatentWorker</span></code></a> and
+<code class="xref py py-class docutils literal notranslate"><span class="pre">HyperLatentWorker</span></code>, can be None. In that
+case, they will be auto-generated from random number.</p></li>
+<li><p><a href="#id260"><span class="problematic" id="id261">:bb:reporter:`BitbucketServerStatusPush`</span></a> now accepts <code class="docutils literal notranslate"><span class="pre">key</span></code>, <code class="docutils literal notranslate"><span class="pre">buildName</span></code>,
+<code class="docutils literal notranslate"><span class="pre">endDescription</span></code>, <code class="docutils literal notranslate"><span class="pre">startDescription</span></code>, and <code class="docutils literal notranslate"><span class="pre">verbose</span></code> parameters to
+control the JSON sent to Stash.</p></li>
+<li><p>Buildbot can now be configured to deny read access to REST api resources
+based on authorization rules.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

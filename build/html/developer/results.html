@@ -1,0 +1,307 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Build Result Codes &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Build Result Codes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/developer/results.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-buildbot.process.results">
+<span id="id1"></span><span id="build-result-codes"></span><h1>Build Result Codes<a class="headerlink" href="#module-buildbot.process.results" title="Permalink to this headline">¶</a></h1>
+<p>Buildbot represents the status of a step, build, or buildset using a set of
+numeric constants.  From Python, these constants are available in the module
+<code class="docutils literal notranslate"><span class="pre">buildbot.process.results</span></code>, but the values also appear in the database and in
+external tools, so the values are fixed.</p>
+<dl class="data">
+<dt id="buildbot.process.results.SUCCESS">
+<code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">SUCCESS</code><a class="headerlink" href="#buildbot.process.results.SUCCESS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value: 0; color: green; a successful run.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="buildbot.process.results.WARNINGS">
+<code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">WARNINGS</code><a class="headerlink" href="#buildbot.process.results.WARNINGS" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value: 1; color: orange; a successful run, with some warnings.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="buildbot.process.results.FAILURE">
+<code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">FAILURE</code><a class="headerlink" href="#buildbot.process.results.FAILURE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value: 2; color: red; a failed run, due to problems in the build itself, as
+opposed to a Buildbot misconfiguration or bug.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="buildbot.process.results.SKIPPED">
+<code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">SKIPPED</code><a class="headerlink" href="#buildbot.process.results.SKIPPED" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value: 3; color: white; a run that was skipped – usually a step skipped by
+<code class="docutils literal notranslate"><span class="pre">doStepIf</span></code> (see <a class="reference internal" href="../manual/configuration/buildsteps.html#buildstep-common-parameters"><span class="std std-ref">Common Parameters</span></a>)</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="buildbot.process.results.EXCEPTION">
+<code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">EXCEPTION</code><a class="headerlink" href="#buildbot.process.results.EXCEPTION" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value: 4; color: purple; a run that failed due to a problem in Buildbot
+itself.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="buildbot.process.results.RETRY">
+<code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">RETRY</code><a class="headerlink" href="#buildbot.process.results.RETRY" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value: 5; color: purple; a run that should be retried, usually due to a
+worker disconnection.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="buildbot.process.results.CANCELLED">
+<code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">CANCELLED</code><a class="headerlink" href="#buildbot.process.results.CANCELLED" title="Permalink to this definition">¶</a></dt>
+<dd><p>Value: 6; color: pink; a run that was cancelled by the user.</p>
+</dd></dl>
+
+<dl class="data">
+<dt id="buildbot.process.results.Results">
+<code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">Results</code><a class="headerlink" href="#buildbot.process.results.Results" title="Permalink to this definition">¶</a></dt>
+<dd><p>A dictionary mapping result codes to their lowercase names.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="buildbot.process.results.worst_status">
+<code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">worst_status</code><span class="sig-paren">(</span><em class="sig-param">a</em>, <em class="sig-param">b</em><span class="sig-paren">)</span><a class="headerlink" href="#buildbot.process.results.worst_status" title="Permalink to this definition">¶</a></dt>
+<dd><p>This function takes two status values, and returns the “worst” status of the two.
+This is used to aggregate step statuses into build statuses, and build statuses into buildset statuses.</p>
+</dd></dl>
+
+<dl class="function">
+<dt>
+<code class="sig-name descname">computeResultAndTermination(obj, result, previousResult):</code></dt>
+<dd><dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> – an object with the attributes of <a class="reference internal" href="#buildbot.process.results.ResultComputingConfigMixin" title="buildbot.process.results.ResultComputingConfigMixin"><code class="xref py py-class docutils literal notranslate"><span class="pre">ResultComputingConfigMixin</span></code></a></p></li>
+<li><p><strong>result</strong> – the new result</p></li>
+<li><p><strong>previousResult</strong> – the previous aggregated result</p></li>
+</ul>
+</dd>
+</dl>
+<p>Building on <a class="reference internal" href="#buildbot.process.results.worst_status" title="buildbot.process.results.worst_status"><code class="xref py py-func docutils literal notranslate"><span class="pre">worst_status()</span></code></a>, this function determines what the aggregated overall status is, as well as whether the attempt should be terminated, based on the configuration in <code class="docutils literal notranslate"><span class="pre">obj</span></code>.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="buildbot.process.results.ResultComputingConfigMixin">
+<em class="property">class </em><code class="sig-prename descclassname">buildbot.process.results.</code><code class="sig-name descname">ResultComputingConfigMixin</code><a class="headerlink" href="#buildbot.process.results.ResultComputingConfigMixin" title="Permalink to this definition">¶</a></dt>
+<dd><p>This simple mixin is intended to help implement classes that will use <code class="xref py py-meth docutils literal notranslate"><span class="pre">computeResultAndTermination()</span></code>.
+The class has, as class attributes, the result computing configuration parameters with default values:</p>
+<dl class="attribute">
+<dt id="buildbot.process.results.ResultComputingConfigMixin.haltOnFailure">
+<code class="sig-name descname">haltOnFailure</code><a class="headerlink" href="#buildbot.process.results.ResultComputingConfigMixin.haltOnFailure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="buildbot.process.results.ResultComputingConfigMixin.flunkOnWarnings">
+<code class="sig-name descname">flunkOnWarnings</code><a class="headerlink" href="#buildbot.process.results.ResultComputingConfigMixin.flunkOnWarnings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="buildbot.process.results.ResultComputingConfigMixin.flunkOnFailure">
+<code class="sig-name descname">flunkOnFailure</code><a class="headerlink" href="#buildbot.process.results.ResultComputingConfigMixin.flunkOnFailure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="buildbot.process.results.ResultComputingConfigMixin.warnOnWarnings">
+<code class="sig-name descname">warnOnWarnings</code><a class="headerlink" href="#buildbot.process.results.ResultComputingConfigMixin.warnOnWarnings" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="buildbot.process.results.ResultComputingConfigMixin.warnOnFailure">
+<code class="sig-name descname">warnOnFailure</code><a class="headerlink" href="#buildbot.process.results.ResultComputingConfigMixin.warnOnFailure" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<p>The names of these attributes are available in the following attribute:</p>
+<dl class="attribute">
+<dt id="buildbot.process.results.ResultComputingConfigMixin.resultConfig">
+<code class="sig-name descname">resultConfig</code><a class="headerlink" href="#buildbot.process.results.ResultComputingConfigMixin.resultConfig" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

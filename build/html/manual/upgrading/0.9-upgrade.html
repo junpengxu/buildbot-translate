@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Upgrading to Buildbot 0.9.0 &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>Upgrading to Buildbot 0.9.0</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/manual/upgrading/0.9-upgrade.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="upgrading-to-buildbot-0-9-0">
+<span id="upgrading-to-nine"></span><h1>Upgrading to Buildbot 0.9.0<a class="headerlink" href="#upgrading-to-buildbot-0-9-0" title="Permalink to this headline">¶</a></h1>
+<p>Upgrading a Buildbot instance from 0.8.x to 0.9.x may require a number of changes to the master configuration.
+Those changes are summarized here.
+If you are starting fresh with 0.9.0 or later, you can safely skip this section.</p>
+<p>First important note is that Buildbot does not support an upgrade of a 0.8.x instance to 0.9.x.
+Notably the build data and logs will not be accessible anymore if you upgraded, thus the database migration scripts have been dropped.</p>
+<p>You should not <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">upgrade</span> <span class="pre">-U</span> <span class="pre">buildbot</span></code>, but rather start from a clean virtualenv aside from your old master.
+You can keep your old master instance to serve the old build status.</p>
+<p>Buildbot is now composed of several Python packages and Javascript UI, and the easiest way to install it is to run the following command within a virtualenv:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install <span class="s1">&#39;buildbot[bundle]&#39;</span>
+</pre></div>
+</div>
+<div class="section" id="config-file-syntax">
+<h2>Config File Syntax<a class="headerlink" href="#config-file-syntax" title="Permalink to this headline">¶</a></h2>
+<p>In preparation for compatibility with Python 3, Buildbot configuration files no longer allow the print statement:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span> <span class="s2">&quot;foo&quot;</span>
+</pre></div>
+</div>
+<p>To fix, simply enclose the print arguments in parentheses:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="plugins">
+<h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<p>Although plugin support was available in 0.8.12, its use is now highly recommended.
+Instead of importing modules directly in <code class="docutils literal notranslate"><span class="pre">master.cfg</span></code>, import the plugin kind from <code class="docutils literal notranslate"><span class="pre">buildbot.plugins</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">buildbot.plugins</span> <span class="kn">import</span> <span class="n">steps</span>
+</pre></div>
+</div>
+<p>Then access the plugin itself as an attribute:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">steps</span><span class="o">.</span><span class="n">SetProperty</span><span class="p">(</span><span class="o">..</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">Plugin Infrastructure in Buildbot</span></a> for more information.</p>
+</div>
+<div class="section" id="web-status">
+<h2>Web Status<a class="headerlink" href="#web-status" title="Permalink to this headline">¶</a></h2>
+<p>The most prominent change is that the existing <code class="docutils literal notranslate"><span class="pre">WebStatus</span></code> class is now gone, replaced by the new <code class="docutils literal notranslate"><span class="pre">www</span></code> functionality.</p>
+<p>Thus an <code class="docutils literal notranslate"><span class="pre">html.WebStatus</span></code> entry in <code class="docutils literal notranslate"><span class="pre">c['status']</span></code> should be removed and replaced with configuration in <code class="docutils literal notranslate"><span class="pre">c['www']`</span></code>.
+For example, replace:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">buildbot.status</span> <span class="kn">import</span> <span class="n">html</span>
+<span class="n">c</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">WebStatus</span><span class="p">(</span><span class="n">http_port</span><span class="o">=</span><span class="mi">8010</span><span class="p">,</span> <span class="n">allowForce</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>with:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">8010</span><span class="p">,</span>
+                <span class="n">plugins</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">waterfall_view</span><span class="o">=</span><span class="p">{},</span>
+                <span class="n">console_view</span><span class="o">=</span><span class="p">{}))</span>
+</pre></div>
+</div>
+<p>See <a href="#id1"><span class="problematic" id="id2">:bb:cfg:`www`</span></a> for more information.</p>
+</div>
+<div class="section" id="status-classes">
+<h2>Status Classes<a class="headerlink" href="#status-classes" title="Permalink to this headline">¶</a></h2>
+<p>Where in 0.8.x most of the data about a build was available synchronously, it must now be fetched dynamically using the <a class="reference internal" href="../../developer/data.html#data-api"><span class="std std-ref">Data API</span></a>.
+All classes under the Python package <code class="docutils literal notranslate"><span class="pre">buildbot.status</span></code> should be considered deprecated.
+Many have already been removed, and the remainder have limited functionality.
+Any custom code which refers to these classes must be rewritten to use the Data API.
+Avoid the temptation to reach into the Buildbot source code to find other useful-looking methods!</p>
+<p>Common uses of the status API are:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">getBuild</span></code> in a custom renderable</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MailNotifier</span></code> message formatters (see below for upgrade hints)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">doStepIf</span></code> functions on steps</p></li>
+</ul>
+</div></blockquote>
+<p>Import paths for several classes under the <code class="docutils literal notranslate"><span class="pre">buildbot.status</span></code> package but which remain useful have changed.
+Most of these are now available as plugins (see above), but for the remainder, consult the source code.</p>
+</div>
+<div class="section" id="buildrequest-merging">
+<h2>BuildRequest Merging<a class="headerlink" href="#buildrequest-merging" title="Permalink to this headline">¶</a></h2>
+<p>Buildbot 0.9.x has replaced the old concept of request merging (<code class="docutils literal notranslate"><span class="pre">mergeRequests</span></code>) with a more flexible request-collapsing mechanism.
+See <a href="#id3"><span class="problematic" id="id4">:bb:cfg:`collapseRequests`</span></a> for more information.</p>
+</div>
+<div class="section" id="status-reporters">
+<h2>Status Reporters<a class="headerlink" href="#status-reporters" title="Permalink to this headline">¶</a></h2>
+<p>In fact, the whole <code class="docutils literal notranslate"><span class="pre">c['status']</span></code> configuration parameter is gone.</p>
+<p>Many of the status listeners used in the status hierarchy in 0.8.x have been replaced with “reporters” that are available as buildbot plugins.
+However, note that not all status listeners have yet been ported.
+See the release notes for details.</p>
+<p>Including the <code class="docutils literal notranslate"><span class="pre">&quot;status&quot;</span></code> key in the configuration object will cause a configuration error.
+All reporters should be included in <code class="docutils literal notranslate"><span class="pre">c['services']</span></code> as described in <a class="reference internal" href="../configuration/reporters.html#reporters"><span class="std std-ref">Reporters</span></a>.</p>
+<p>The available reporters as of 0.9.0 are</p>
+<ul class="simple">
+<li><p><a href="#id5"><span class="problematic" id="id6">:bb:reporter:`MailNotifier`</span></a></p></li>
+<li><p><a href="#id7"><span class="problematic" id="id8">:bb:reporter:`IRC`</span></a></p></li>
+<li><p><a href="#id9"><span class="problematic" id="id10">:bb:reporter:`HttpStatusPush`</span></a></p></li>
+<li><p><a href="#id11"><span class="problematic" id="id12">:bb:reporter:`GerritStatusPush`</span></a></p></li>
+<li><p><a href="#id13"><span class="problematic" id="id14">:bb:reporter:`GitHubStatusPush`</span></a> (replaces <code class="docutils literal notranslate"><span class="pre">buildbot.status.github.GitHubStatus</span></code>)</p></li>
+</ul>
+<p>See the reporter index for the full, current list.</p>
+<p>A few notes on changes to the configuration of these reporters:</p>
+<ul class="simple">
+<li><p><a href="#id15"><span class="problematic" id="id16">:bb:reporter:`MailNotifier`</span></a> argument <code class="docutils literal notranslate"><span class="pre">messageFormatter</span></code> should now be a <code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.reporters.message.MessageFormatter</span></code>, due to the removal of the status classes (see above), such formatters must be re-implemented using the Data API.</p></li>
+<li><p><a href="#id17"><span class="problematic" id="id18">:bb:reporter:`MailNotifier`</span></a> argument <code class="docutils literal notranslate"><span class="pre">previousBuildGetter</span></code> is not supported anymore</p></li>
+<li><p><a href="#id19"><span class="problematic" id="id20">:bb:reporter:`MailNotifier`</span></a> no longer forces SSL 3.0 when <code class="docutils literal notranslate"><span class="pre">useTls</span></code> is true.</p></li>
+<li><p><a href="#id21"><span class="problematic" id="id22">:bb:reporter:`GerritStatusPush`</span></a> callbacks slightly changed signature, and include a master reference instead of a status reference.</p></li>
+<li><p><a href="#id23"><span class="problematic" id="id24">:bb:reporter:`GitHubStatusPush`</span></a> now accepts a <code class="docutils literal notranslate"><span class="pre">context</span></code> parameter to be passed to the GitHub Status API.</p></li>
+<li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.status.builder.Results</span></code> and the constants <code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.status.results.SUCCESS</span></code> should be imported from the <a class="reference internal" href="../../developer/results.html#module-buildbot.process.results" title="buildbot.process.results"><code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.process.results</span></code></a> module instead.</p></li>
+</ul>
+</div>
+<div class="section" id="steps">
+<h2>Steps<a class="headerlink" href="#steps" title="Permalink to this headline">¶</a></h2>
+<p>Buildbot-0.8.9 introduced “new-style steps”, with an asynchronous <code class="docutils literal notranslate"><span class="pre">run</span></code> method.
+In the remaining 0.8.x releases, use of new-style and old-style steps were supported side-by-side.
+In 0.9.x, old-style steps are emulated using a collection of hacks to allow asynchronous calls to be called from synchronous code.
+This emulation is imperfect, and you are strongly encouraged to rewrite any custom steps as <a class="reference internal" href="0.9-new-style-steps.html#new-style-build-steps"><span class="std std-ref">New-Style Build Steps in Buildbot 0.9.0</span></a>.</p>
+<p>Note that new-style steps now “push” their status when it changes, so the <code class="docutils literal notranslate"><span class="pre">describe</span></code> method no longer exists.</p>
+</div>
+<div class="section" id="identifiers">
+<h2>Identifiers<a class="headerlink" href="#identifiers" title="Permalink to this headline">¶</a></h2>
+<p>Many strings in Buildbot must now be identifiers.
+Identifiers are designed to fit easily and unambiguously into URLs, AMQP routes, and the like.
+An “identifier” is a nonempty unicode string of limited length, containing only UTF-8 alphanumeric characters along with <code class="docutils literal notranslate"><span class="pre">-</span></code> (dash) and <code class="docutils literal notranslate"><span class="pre">_</span></code> (underscore), and not beginning with a digit</p>
+<p>Unfortunately, many existing names do not fit this pattern.</p>
+<p>The following fields are identifiers:</p>
+<ul class="simple">
+<li><p>worker name (50-character)</p></li>
+<li><p>builder name (70-character)</p></li>
+<li><p>step name (50-character)</p></li>
+</ul>
+</div>
+<div class="section" id="serving-static-files">
+<h2>Serving static files<a class="headerlink" href="#serving-static-files" title="Permalink to this headline">¶</a></h2>
+<p>Since version 0.9.0 Buildbot doesn’t use and don’t serve master’s <code class="docutils literal notranslate"><span class="pre">public_html</span></code> directory.
+You need to use third-party HTTP server for serving static files.</p>
+</div>
+<div class="section" id="transition-to-worker-terminology">
+<h2>Transition to “worker” terminology<a class="headerlink" href="#transition-to-worker-terminology" title="Permalink to this headline">¶</a></h2>
+<p>Since version 0.9.0 of Buildbot “slave”-based terminology is deprecated
+in favor of “worker”-based terminology.</p>
+<p>All identifiers, messages and documentation were updated to use “worker”
+instead of “slave”.
+Old API names are still available in Buildbot versions from 0.9.0 to 1.8.0, but deprecated.
+The support for old API names has been removed in Buildbot version 2.0.0.
+To upgrade pre-0.9.0 Buildbot installation a two-stage upgrade is recommended.
+First, upgrade to Buildbot version 1.8.0, then fix all deprecation warnings and finally upgrade to Buildbot version 2.x.y.</p>
+<p>For details about changed API and how to control generated warnings see
+<a class="reference internal" href="0.9-worker-transition.html#transition-to-worker-terminology"><span class="std std-ref">Transition to “worker” terminology in BuildBot 0.9.0</span></a>.</p>
+</div>
+<div class="section" id="other-config-settings">
+<h2>Other Config Settings<a class="headerlink" href="#other-config-settings" title="Permalink to this headline">¶</a></h2>
+<p>The default master.cfg file contains some new changes, which you should look over:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">c['protocols']</span> <span class="pre">=</span> <span class="pre">{'pb':</span> <span class="pre">{'port':</span> <span class="pre">9989}}</span></code> (the default port used by the workers)</p></li>
+<li><p>Waterfall View: requires installation (<code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">buildbot-waterfall-view</span></code>) and configuration (<code class="docutils literal notranslate"><span class="pre">c['www']</span> <span class="pre">=</span> <span class="pre">{</span> <span class="pre">...,</span> <span class="pre">'plugins':</span> <span class="pre">{'waterfall_view':</span> <span class="pre">{}</span> <span class="pre">}</span></code>).</p></li>
+</ul>
+</div>
+<div class="section" id="build-history">
+<h2>Build History<a class="headerlink" href="#build-history" title="Permalink to this headline">¶</a></h2>
+<p>There is no support for importing build history from 0.8.x (where the history was stored on-disk in pickle files) into 0.9.x (where it is stored in the database).</p>
+</div>
+<div class="section" id="data-lifetime">
+<h2>Data LifeTime<a class="headerlink" href="#data-lifetime" title="Permalink to this headline">¶</a></h2>
+<p>Buildbot Nine data being implemented fully in an SQL database, the <code class="docutils literal notranslate"><span class="pre">buildHorizon</span></code> feature had to be reworked.
+Instead of being number-of-things based, it is now time based.
+This makes more sense from a user perspective but makes it harder to predict the database average size.
+Please be careful to provision enough disk space for your database.</p>
+<p>The old <code class="docutils literal notranslate"><span class="pre">c['logHorizon']</span></code> way of configuring is not supported anymore.
+See <a href="#id25"><span class="problematic" id="id26">:bb:configurator:`JanitorConfigurator`</span></a> to learn how to configure.
+A new <code class="docutils literal notranslate"><span class="pre">__Janitor</span></code> builder will be created to help keep an eye on the cleanup activities.</p>
+</div>
+<div class="section" id="more-information">
+<h2>More Information<a class="headerlink" href="#more-information" title="Permalink to this headline">¶</a></h2>
+<p>For minor changes not mentioned here, consult the release notes for the versions over which you are upgrading.</p>
+<p>Buildbot-0.9.0 represents several years’ work, and as such we may have missed potential migration issues.</p>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

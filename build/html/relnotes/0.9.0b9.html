@@ -1,0 +1,274 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Release Notes for Buildbot 0.9.0b9 &mdash; buildbot-translate 0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> buildbot-translate
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">buildbot-translate</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Release Notes for Buildbot 0.9.0b9</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/relnotes/0.9.0b9.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="release-notes-for-buildbot-0-9-0b9">
+<h1>Release Notes for Buildbot 0.9.0b9<a class="headerlink" href="#release-notes-for-buildbot-0-9-0b9" title="Permalink to this headline">¶</a></h1>
+<p>The following are the release notes for Buildbot 0.9.0b9
+This version was released on May 10, 2016.</p>
+<p>See <a class="reference internal" href="../manual/upgrading/0.9-upgrade.html#upgrading-to-nine"><span class="std std-ref">Upgrading to Buildbot 0.9.0</span></a> for a guide to upgrading from 0.8.x to 0.9.x</p>
+<div class="section" id="master">
+<h2>Master<a class="headerlink" href="#master" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="features">
+<h3>Features<a class="headerlink" href="#features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>new <a href="#id1"><span class="problematic" id="id2">:bb:reporter:`GitLabStatusPush`</span></a> to report builds results to GitLab.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">stop</span></code> now waits for complete buildmaster stop by default.</p></li>
+<li><p>New <code class="docutils literal notranslate"><span class="pre">--no-wait</span></code> argument for <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">stop</span></code> which allows not to wait for complete master shutdown.</p></li>
+<li><p>Builder page is now sorted by builder name</p></li>
+<li><p>LogViewer page now supports ANSI color codes, and is displayed white on black.</p></li>
+</ul>
+</div>
+<div class="section" id="changes-for-developers">
+<h3>Changes for Developers<a class="headerlink" href="#changes-for-developers" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Speed improvements for integration tests by use of SynchronousTestCase, and in-memory sqlite.</p></li>
+<li><p>Buildbot now requires import to be sorted using <a class="reference external" href="https://isort.readthedocs.io/en/stable/">isort</a>.
+Please run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">isort</span></code> before creating a PR or use any available editor plugin in order to reorder your imports.</p></li>
+</ul>
+</div>
+<div class="section" id="fixes">
+<h3>Fixes<a class="headerlink" href="#fixes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>OpenStackLatentWorker uses the novaclient API correctly now.</p></li>
+<li><p>The <a href="#id3"><span class="problematic" id="id4">:bb:step:`MsBuild4`</span></a> and <a href="#id5"><span class="problematic" id="id6">:bb:step:`MsBuild12`</span></a> steps work again (<a href="#id7"><span class="problematic" id="id8">:bug:`2878`</span></a>).</p></li>
+<li><p>Scheduler changes are now identified by serviceid instead of objectid (<a href="#id9"><span class="problematic" id="id10">:bug:`3532`</span></a>)</p></li>
+<li><p>Make groups optional in LdapUserInfo (<a href="#id11"><span class="problematic" id="id12">:bug:`3511`</span></a>)</p></li>
+<li><p>Buildbot nine do not write pickles anymore in the master directory</p></li>
+<li><p>Fix build page to not display build urls, but rather directly the build-summary, which already contain the URL.</p></li>
+<li><p>UI Automatically reconnect on disconnection from the websocket. (<a href="#id13"><span class="problematic" id="id14">:bug:`3462`</span></a>)</p></li>
+</ul>
+</div>
+<div class="section" id="deprecations-removals-and-non-compatible-changes">
+<h3>Deprecations, Removals, and Non-Compatible Changes<a class="headerlink" href="#deprecations-removals-and-non-compatible-changes" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>The buildmaster now requires at least Twisted-14.0.1.</p></li>
+<li><p>The web ui has upgrade its web components dependencies to <a class="reference external" href="https://github.com/buildbot/guanlecoja-ui/tree/master#changelog">latest versions</a>.
+This can impact web-ui plugin.</p></li>
+<li><p>Web server does not provide /png and /redirect anymore (<a href="#id15"><span class="problematic" id="id16">:bug:`3357`</span></a>).
+This functionality is used to implement build status images.
+This should be easy to implement if you need it.
+One could port the old image generation code, or implement a redirection to <a class="reference external" href="http://shields.io/">http://shields.io/</a>.</p></li>
+<li><p>Support of worker-side <code class="docutils literal notranslate"><span class="pre">usePTY</span></code> was removed from <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code>.
+<code class="docutils literal notranslate"><span class="pre">usePTY</span></code> argument was removed from <code class="docutils literal notranslate"><span class="pre">WorkerForBuilder</span></code> and <code class="docutils literal notranslate"><span class="pre">Worker</span></code> classes.</p></li>
+<li><p>html is no longer permitted in ‘label’ attributes of forcescheduler parameters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LocalWorker</span></code> now requires <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> package, instead of <code class="docutils literal notranslate"><span class="pre">buildbot-slave</span></code>.</p></li>
+<li><p><a class="reference internal" href="../manual/customization.html#collapse-request-functions"><span class="std std-ref">Collapse Request Functions</span></a> now takes master as first argument.
+The previous callable contained too few data in order to be really usable.
+As collapseRequests has never been released outside of beta, backward compatibility with previous release has <strong>not</strong> been implemented.</p></li>
+<li><p>This is the last version of buildbot nine which supports python 2.6 for the master.
+Next version will drop python 2.6 support.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="worker">
+<h2>Worker<a class="headerlink" href="#worker" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id17">
+<h3>Fixes<a class="headerlink" href="#id17" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> script now outputs message to terminal.</p></li>
+<li><p>Windows helper script now called <code class="docutils literal notranslate"><span class="pre">buildbot-worker.bat</span></code> (was <code class="docutils literal notranslate"><span class="pre">buildbot_worker.bat</span></code>, notice underscore), so that <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> command can be used in virtualenv both on Windows and POSIX systems.</p></li>
+</ul>
+</div>
+<div class="section" id="id18">
+<h3>Changes for Developers<a class="headerlink" href="#id18" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SLAVEPASS</span></code> environment variable is not removed in default-generated <code class="docutils literal notranslate"><span class="pre">buildbot.tac</span></code>.
+Environment variables are cleared in places where they are used (e.g. in Docker Latent Worker contrib scripts).</p></li>
+<li><p>Master-part handling has been removed from <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> log watcher (<a href="#id19"><span class="problematic" id="id20">:bug:`3482`</span></a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WorkerDetectedError</span></code> exception type has been removed.</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>For a more detailed description of the changes made in this version, see the git log itself:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git log v0.9.0b8..v0.9.0b9
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, junpengxu
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
