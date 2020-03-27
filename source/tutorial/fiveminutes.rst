@@ -1,51 +1,45 @@
 .. _fiveminutes:
 
-===================================================
-Buildbot in 5 minutes - a user-contributed tutorial
-===================================================
+===============================
+一个用户贡献的五分钟BuildBot教程
+===============================
 
-(Ok, maybe 10.)
+（好吧，可能是十分钟）
 
-Buildbot is really an excellent piece of software, however it can be a bit confusing for a newcomer (like me when I first started looking at it).
-Typically, at first sight it looks like a bunch of complicated concepts that make no sense and whose relationships with each other are unclear.
-After some time and some reread, it all slowly starts to be more and more meaningful, until you finally say "oh!" and things start to make sense.
-Once you get there, you realize that the documentation is great, but only if you already know what it's about.
+BuildBot的确是一款出色的软件，不过对于新人来说可能有点难懂（像我刚开始看的时候一样）。通常，初次来看它看起来像一堆复杂的概念，没有任何意义，并且它们之间的关系也不清晰。
 
-This is what happened to me, at least.
-Here I'm going to (try to) explain things in a way that would have helped me more as a newcomer.
-The approach I'm taking is more or less the reverse of that used by the documentation, that is, I'm going to start from the components that do the actual work (the builders) and go up the chain from there up to change sources.
-I hope purists will forgive this unorthodoxy.
-Here I'm trying to clarify the concepts only, and will not go into the details of each object or property; the documentation explains those quite well.
+你需要多次阅读才会恍然大悟，事情才开始变得有意义。一旦你到了这种程度，你会知道文档写的是什么，你才会意识到文档很棒。
+至少对我来说是这样的。在这里，我将会用一种对新人容易理解的方式去解释。
 
-Installation
+我讲述的方法可能和文档中写的或多或少有些相反，我将会从实际工作的组件开始讲起（builders）然后反着去讲述。希望那些有规则洁癖的人不要怪我
+这里我只会去澄清概念，并不会详细的讲述每个对象或者属性的细节，文档里面写的很好了。
+
+安装
 ------------
 
-I won't cover the installation; both Buildbot master and worker are available as packages for the major distributions, and in any case the instructions in the official documentation are fine.
-This document will refer to Buildbot 0.8.5 which was current at the time of writing, but hopefully the concepts are not too different in other versions.
-All the code shown is of course python code, and has to be included in the master.cfg master configuration file.
+我就不写怎么安装的了，任何情况下，官方文档中的说明均适用与任何主要发行版的Buildbot master和worker。本文档将会引用Buildbot 0.8.5版本，幸运的是其他的版本都是差不多的。
+所有的代码都是python写的，并且都包含 master.cfg 主配置文件。
 
-We won't cover the basic things such as how to define the workers, project names, or other administrative information that is contained in that file; for that, again the official documentation is fine.
+我本不过多关注基础，比如怎么去定义workers和项目的名字或者是其他的配置文件中有的信息，如果想了解这些的话，去看官方文档吧。
 
-Builders: the workhorses
+主力：Builders
 ------------------------
 
-Since Buildbot is a tool whose goal is the automation of software builds, it makes sense to me to start from where we tell Buildbot how to build our software: the `builder` (or builders, since there can be more than one).
+BuildBot是一个将软件自动化构建作为目标的工具。对我而言，从告诉Buildbot如何构建软件的位置开始是有意义的：构建器（一个或多个构建器，因为可以有多个）
+简而言之，构建器是负责执行某些操作或一系列操作的元素，通常与构建软件有关（例如，检查源代码或`` make all  ``），它也可以运行任意命令。
 
-Simply put, a builder is an element that is in charge of performing some action or sequence of actions, normally something related to building software (for example, checking out the source, or ``make all``), but it can also run arbitrary commands.
+一个builder配置了多个可以执行任务的worker。
+builder需要的另一条基本信息是它必须要做的事情的清单（通常将在选定的worker上运行）在BuildBot中，这个清单是一个``BuildFactory`` 对象，其本质是一系列步骤，每个步骤定义一个特定的操作或命令。
 
-A builder is configured with a list of workers that it can use to carry out its task.
-The other fundamental piece of information that a builder needs is, of course, the list of things it has to do (which will normally run on the chosen worker).
-In Buildbot, this list of things is represented as a ``BuildFactory`` object, which is essentially a sequence of steps, each one defining a certain operation or command.
+说的够多了，我们来看的样例吧。我们假设我们的项目可以通过使用简单的命令 ``make all`` 执行构建，通过``make packages`` 可以完成打包操作，打包成rpm，deb，或者是tgz的二进制包。
+真实的情况可能更加复杂，（例如可能会有个 ``configure`` 配置的步骤或者多个）但是概念是相同的。这只是向builder添加更多步骤或创建多个builder的问题，尽管有时生成的builder可能非常复杂
 
-Enough talk, let's see an example.
-For this example, we are going to assume that our super software project can be built using a simple ``make all``, and there is another target ``make packages`` that creates rpm, deb and tgz packages of the binaries.
-In the real world things are usually more complex (for example there may be a ``configure`` step, or multiple targets), but the concepts are the same; it will just be a matter of adding more steps to a builder, or creating multiple builders, although sometimes the resulting builders can be quite complex.
-
-So to perform a manual build of our project we would type this from the command line (assuming we are at the root of the local copy of the repository):
+ (assuming we are at the root of the local copy of the repository):
+这里演示手动构建一个我们的工程，我们将输入这些命令行，假设我们位于项目仓库的的根目录
 
 .. code-block:: bash
 
-    $ make clean    # clean remnants of previous builds
+    $ make clean    # 清除先前版本的残留物
     ...
     $ svn update
     ...
@@ -53,27 +47,25 @@ So to perform a manual build of our project we would type this from the command 
     ...
     $ make packages
     ...
-    # optional but included in the example: copy packages to some central machine
+    # 这是可选的操作，将包拷贝到其他机器中
     $ scp packages/*.rpm packages/*.deb packages/*.tgz someuser@somehost:/repository
     ...
 
-Here we're assuming the repository is SVN, but again the concepts are the same with git, mercurial or any other VCS.
+假设我们使用SVN，其实使用git，mercurian或这其他的版本控制工具也是一样的
 
-Now, to automate this, we create a builder where each step is one of the commands we typed above.
-A step can be a shell command object, or a dedicated object that checks out the source code (there are various types for different repositories, see the docs for more info), or yet something else::
+现在，让整个过程自动化起来，我们创建一个builder，每一个步骤都是我们上面输入的命令
+一个操作步骤可以是一句shell命令或者源代码中的命令。（不同的仓库用法不同，可以参考文档）或者其他的信息::
 
     from buildbot.plugins import steps, util
 
-    # first, let's create the individual step objects
+    # 首先，我们单独创建每个步骤
 
-    # step 1: make clean; this fails if the worker has no local copy, but
-    # is harmless and will only happen the first time
+    # 步骤 1: make clean; 如果worker没有本地副本，可能会失败，只会在第一次运行的时候发生，不过影响很小
     makeclean = steps.ShellCommand(name="make clean",
                                    command=["make", "clean"],
                                    description="make clean")
 
-    # step 2: svn update (here updates trunk, see the docs for more
-    # on how to update a branch, or make it more generic).
+    # step 2: svn 更新 (可以查看文档怎么更新).
     checkout = steps.SVN(baseURL='svn://myrepo/projects/coolproject/trunk',
                          mode="update",
                          username="foo",
@@ -92,15 +84,14 @@ A step can be a shell command object, or a dedicated object that checks out the 
                                       haltOnFailure=True,
                                       description="make packages")
 
-    # step 5: upload packages to central server. This needs passwordless ssh
-    # from the worker to the server (set it up in advance as part of worker setup)
+    # step 5: 将包上传到中心服务器. 这一步需要通过不需要密码的ssh连接（提前设置好）
     uploadpackages = steps.ShellCommand(
         name="upload packages",
         description="upload packages",
         command="scp packages/*.rpm packages/*.deb packages/*.tgz someuser@somehost:/repository",
         haltOnFailure=True)
 
-    # create the build factory and add the steps to it
+    # 创建一个build工厂，将上面的步骤加入
     f_simplebuild = util.BuildFactory()
     f_simplebuild.addStep(makeclean)
     f_simplebuild.addStep(checkout)
@@ -108,7 +99,7 @@ A step can be a shell command object, or a dedicated object that checks out the 
     f_simplebuild.addStep(makepackages)
     f_simplebuild.addStep(uploadpackages)
 
-    # finally, declare the list of builders. In this case, we only have one builder
+    # 最后，声明builder列表，在这里，我们只有一个build
     c['builders'] = [
         util.BuilderConfig(name="simplebuild", workernames=['worker1', 'worker2', 'worker3'],
                            factory=f_simplebuild)

@@ -1,10 +1,10 @@
 .. _quick-tour-label:
 
 ============
-A Quick Tour
+快速开始
 ============
 
-Goal
+目标
 ----
 
 This tutorial will expand on the :ref:`first-run-label` tutorial by taking a quick tour around some of the features of buildbot that are hinted at in the comments in the sample configuration.

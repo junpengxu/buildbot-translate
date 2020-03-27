@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>1.3. A Quick Tour &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>1.3. 快速开始 &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -84,8 +84,8 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Buildbot Tutorial</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="firstrun.html">1.1. 第一次启动</a></li>
 <li class="toctree-l2"><a class="reference internal" href="docker.html">1.2. 用Docker启动BuildBot</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. A Quick Tour</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#goal">1.3.1. Goal</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. 快速开始</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">1.3.1. 目标</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#setting-project-name-and-url">1.3.2. Setting Project Name and URL</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuration-errors">1.3.3. Configuration Errors</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#your-first-build">1.3.4. Your First Build</a></li>
@@ -145,7 +145,7 @@
         
           <li><a href="index.html"><span class="section-number">1. </span>Buildbot Tutorial</a> &raquo;</li>
         
-      <li><span class="section-number">1.3. </span>A Quick Tour</li>
+      <li><span class="section-number">1.3. </span>快速开始</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -164,10 +164,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="a-quick-tour">
-<span id="quick-tour-label"></span><h1><span class="section-number">1.3. </span>A Quick Tour<a class="headerlink" href="#a-quick-tour" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="goal">
-<h2><span class="section-number">1.3.1. </span>Goal<a class="headerlink" href="#goal" title="Permalink to this headline">¶</a></h2>
+  <div class="section" id="quick-tour-label">
+<span id="id1"></span><h1><span class="section-number">1.3. </span>快速开始<a class="headerlink" href="#quick-tour-label" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="id2">
+<h2><span class="section-number">1.3.1. </span>目标<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial will expand on the <a class="reference internal" href="firstrun.html#first-run-label"><span class="std std-ref">第一次启动</span></a> tutorial by taking a quick tour around some of the features of buildbot that are hinted at in the comments in the sample configuration.
 We will simply change parts of the default configuration and explain the activated features.</p>
 <p>As a part of this tutorial, we will make buildbot do a few actual builds.</p>
@@ -290,7 +290,7 @@ Next, click on <a class="reference external" href="http://localhost:8010/#/water
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Security Note</p>
-<p>Please note that any user having access to your irc channel or can send the private message to the bot will be able to create or stop builds <a href="#id1"><span class="problematic" id="id2">:bug:`3377`</span></a>.</p>
+<p>Please note that any user having access to your irc channel or can send the private message to the bot will be able to create or stop builds <a href="#id3"><span class="problematic" id="id4">:bug:`3377`</span></a>.</p>
 </div>
 <p>First, start an IRC client of your choice, connect to irc.freenode.net and join an empty channel.
 In this example we will use <code class="docutils literal notranslate"><span class="pre">#buildbot-test</span></code>, so go join that channel.
@@ -333,7 +333,7 @@ In your IRC channel, type:</p>
 </div>
 <p>You can also see the new builds in the web interface.</p>
 <img alt="a successful test run from IRC happened." src="../_images/irc-testrun.png" />
-<p>The full documentation is available at <a href="#id3"><span class="problematic" id="id4">:bb:reporter:`IRC`</span></a>.</p>
+<p>The full documentation is available at <a href="#id5"><span class="problematic" id="id6">:bb:reporter:`IRC`</span></a>.</p>
 </div>
 <div class="section" id="setting-authorized-web-users">
 <h2><span class="section-number">1.3.6. </span>Setting Authorized Web Users<a class="headerlink" href="#setting-authorized-web-users" title="Permalink to this headline">¶</a></h2>
@@ -423,7 +423,7 @@ of pyasn1:</p>
                                     <span class="n">userpass</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;sampleuser&#39;</span><span class="p">,</span><span class="s1">&#39;samplepass&#39;</span><span class="p">)]))</span>
 </pre></div>
 </div>
-<p>Then you can submit changes using the <a href="#id5"><span class="problematic" id="id6">:bb:cmdline:`try`</span></a> command.</p>
+<p>Then you can submit changes using the <a href="#id7"><span class="problematic" id="id8">:bb:cmdline:`try`</span></a> command.</p>
 <p>Let’s try this out by making a one-line change to hello-world, say, to make it trace the tree by default:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/buildbot/hello-world.git hello-world-git
 <span class="nb">cd</span> hello-world-git/hello
@@ -444,7 +444,7 @@ You should see that another build has been started with your change (and stdout 
 The “Reason” for the job will be listed as “‘try’ job”, and the blamelist will be empty.</p>
 <p>To make yourself show up as the author of the change, use the <code class="docutils literal notranslate"><span class="pre">--who=emailaddr</span></code> option on <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">try</span></code> to pass your email address.</p>
 <p>To make a description of the change show up, use the <code class="docutils literal notranslate"><span class="pre">--properties=comment=&quot;this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">comment&quot;</span></code> option on <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">try</span></code>.</p>
-<p>To use ssh instead of a private username/password database, see <a href="#id7"><span class="problematic" id="id8">:bb:sched:`Try_Jobdir`</span></a>.</p>
+<p>To use ssh instead of a private username/password database, see <a href="#id9"><span class="problematic" id="id10">:bb:sched:`Try_Jobdir`</span></a>.</p>
 </div>
 </div>
 
