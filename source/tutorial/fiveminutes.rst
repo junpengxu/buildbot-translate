@@ -105,68 +105,60 @@ builder需要的另一条基本信息是它必须要做的事情的清单（通�
                            factory=f_simplebuild)
     ]
 
-So our builder is called ``simplebuild`` and can run on either of ``worker1``, ``worker2`` and ``worker3``.
-If our repository has other branches besides trunk, we could create another one or more builders to build them; in the example, only the checkout step would be different, in that it would need to check out the specific branch.
-Depending on how exactly those branches have to be built, the shell commands may be recycled, or new ones would have to be created if they are different in the branch.
-You get the idea.
-The important thing is that all the builders be named differently and all be added to the ``c['builders']`` value (as can be seen above, it is a list of ``BuilderConfig`` objects).
+所以我们的builder只是一个 ``simplebuild`` ， 可以被运行在 ``worker1``, ``worker2`` 和 ``worker3`` 上
+如果我们的仓库有其他的分支，我们也可以创建更多的builder去构建他们，在上面的演示中，只有checkout的部分会不一样，只需要特殊指定分支，shell 命令也可以重复使用，
+重要的一点是，所有的builder名称不同，并且都会被加入到 ``c['builders']`` 的值中（就像是我们在上面例子中看到的，他们是一个  ``BuilderConfig`` 对象列表
 
-Of course the type and number of steps will vary depending on the goal; for example, to just check that a commit doesn't break the build, we could include just up to the ``make all`` step.
-Or we could have a builder that performs a more thorough test by also doing ``make test`` or other targets.
-You get the idea.
-Note that at each step except the very first we use ``haltOnFailure=True`` because it would not make sense to execute a step if the previous one failed (ok, it wouldn't be needed for the last step, but it's harmless and protects us if one day we add another step after it).
+当然，步骤的类型和数量将取决于目标。例如仅检查一次提交不会破坏构建，我们可以包括直至 ``make all``步骤，或者，我们也可以让builder通过执行制造测试或其他目标来执行更全面的测试。你能了解吧，
+请注意，除了第一步以外，在每个步骤中，我们都使用haltOnFailure = True，因为如果前一个步骤失败，则执行步骤就没有意义（好的，这不是最后一步所必需的，加不加都可以，如果有一天我们在其后增加另一步操作，则可以保护我们）
 
-Schedulers
+调度者
 ----------
 
-Now this is all nice and dandy, but who tells the builder (or builders) to run, and when?
-This is the job of the `scheduler`, which is a fancy name for an element that waits for some event to happen, and when it does, based on that information decides whether and when to run a builder (and which one or ones).
-There can be more than one scheduler.
-I'm being purposely vague here because the possibilities are almost endless and highly dependent on the actual setup, build purposes, source repository layout and other elements.
+现在，一切都好，但是谁来告诉builder什么时候去运行呢？这是调度者的工作，调度者是一个等待某个事件发生的因素的名称。并且何时发生，根据该信息决定是否以及何时运行构建器（或者运行一个或多个构建器）。
+我在这里含糊其词，因为可能性几乎是无限的，并且高度取决于实际的设置，构建目的，源仓库设置和其他因素。
 
-So a scheduler needs to be configured with two main pieces of information: on one hand, which events to react to, and on the other hand, which builder or builders to trigger when those events are detected.
-(It's more complex than that, but if you understand this, you can get the rest of the details from the docs).
+因此，调度程序需要配置两条主要信息：一方面，对哪些事件做出反应，另一方面，在检测到这些事件时触发哪些构建器或哪些构建器。（实际上复杂多了，如果你都看明白了，剩下的细节都可以通过文档找到）
 
-A simple type of scheduler may be a periodic scheduler: when a configurable amount of time has passed, run a certain builder (or builders).
-In our example, that's how we would trigger a build every hour::
+一个简单的调度器可能是一个定期调度器，当设置的时间过去后，运行一个确定的builder或者多个builder，在我们的例子中，每小时触发一次构建。::
 
     from buildbot.plugins import schedulers
 
-    # define the periodic scheduler
+    # 定义定期调度程序
     hourlyscheduler = schedulers.Periodic(name="hourly",
                                           builderNames=["simplebuild"],
                                           periodicBuildTimer=3600)
 
-    # define the available schedulers
+    # 定义可用的调度程序
     c['schedulers'] = [hourlyscheduler]
 
-That's it.
-Every hour this ``hourly`` scheduler will run the ``simplebuild`` builder.
-If we have more than one builder that we want to run every hour, we can just add them to the ``builderNames`` list when defining the scheduler and they will all be run.
-Or since multiple scheduler are allowed, other schedulers can be defined and added to ``c['schedulers']`` in the same way.
+就是这了， ``hourly`` 调度器每小时会执行一次 ``simplebuild`` 构建器，如果我们有多个构建器也想每小时运行一次，我们也可以把他们加入到  ``builderNames`` 列表中，他们最后也会被运行。
 
-Other types of schedulers exist; in particular, there are schedulers that can be more dynamic than the periodic one.
-The typical dynamic scheduler is one that learns about changes in a source repository (generally because some developer checks in some change), and triggers one or more builders in response to those changes.
-Let's assume for now that the scheduler "magically" learns about changes in the repository (more about this later); here's how we would define it::
+使用多个调度程序也可以，可以用同样的方式将其他调度程序添加到 ``c['schedulers']`` 中
+
+也有其他类型的调度程序，特别是有些调度程序比周期性的调度程序更具动态性，典型的动态调度程序是一种了解代码仓库中的更改的动态调度程序（通常是因为某些开发人员加入了某些更改），并响应这些更改触发一个或多个构建器
+
+现在，让我们假设调度程序“神奇地”了解了代码仓库中的更改（稍后会详细介绍）；这是我们的定义方式::
 
     from buildbot.plugins import schedulers
 
-    # define the dynamic scheduler
+    # 定义一个动态调度器
     trunkchanged = schedulers.SingleBranchScheduler(name="trunkchanged",
                                                     change_filter=util.ChangeFilter(branch=None),
                                                     treeStableTimer=300,
                                                     builderNames=["simplebuild"])
 
-    # define the available schedulers
+    # 定义一个可用的调度器
     c['schedulers'] = [trunkchanged]
 
-This scheduler receives changes happening to the repository, and among all of them, pays attention to those happening in "trunk" (that's what ``branch=None`` means).
-In other words, it filters the changes to react only to those it's interested in.
-When such changes are detected, and the tree has been quiet for 5 minutes (300 seconds), it runs the ``simplebuild`` builder.
-The ``treeStableTimer`` helps in those situations where commits tend to happen in bursts, which would otherwise result in multiple build requests queuing up.
+这个调度者接收仓库的改变，并且在所有这些更改中，请注意“ trunk”中发生的更改（这就是branch = None的意思）
+总结来说，它会过滤更改以仅对感兴趣的更改做出处理，当检测到此类更改，并且"tree"已静默5分钟（300秒）时，它将运行simplebuild构建器
+使用 ``treeStableTimer`` 有助于突然提交的情况下，否则将导致多个构建请求排队。
+
 
 What if we want to act on two branches (say, trunk and 7.2)?
-First we create two builders, one for each branch (see the builders paragraph above), then we create two dynamic schedulers::
+如果我们想在两个分支（例如，trunk和7.2）上采取行动怎么办？
+首先，我们创建两个 builder，每个builder对应一个分支（可以参考builder段落），然后我们创建两个调度器::
 
     from buildbot.plugins import schedulers
 
