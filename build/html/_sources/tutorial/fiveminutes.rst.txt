@@ -151,52 +151,55 @@ builder需要的另一条基本信息是它必须要做的事情的清单（通�
     # 定义一个可用的调度器
     c['schedulers'] = [trunkchanged]
 
-这个调度者接收仓库的改变，并且在所有这些更改中，请注意“ trunk”中发生的更改（这就是branch = None的意思）
+这个调度者接收仓库的改变，并且在所有这些更改中，请注意“trunk”中发生的更改（这就是branch = None的意思）
 总结来说，它会过滤更改以仅对感兴趣的更改做出处理，当检测到此类更改，并且"tree"已静默5分钟（300秒）时，它将运行simplebuild构建器
 使用 ``treeStableTimer`` 有助于突然提交的情况下，否则将导致多个构建请求排队。
 
-
-What if we want to act on two branches (say, trunk and 7.2)?
 如果我们想在两个分支（例如，trunk和7.2）上采取行动怎么办？
 首先，我们创建两个 builder，每个builder对应一个分支（可以参考builder段落），然后我们创建两个调度器::
 
     from buildbot.plugins import schedulers
 
-    # define the dynamic scheduler for trunk
+    # 为trunk定义一个调度器
     trunkchanged = schedulers.SingleBranchScheduler(name="trunkchanged",
                                                     change_filter=util.ChangeFilter(branch=None),
                                                     treeStableTimer=300,
                                                     builderNames=["simplebuild-trunk"])
 
-    # define the dynamic scheduler for the 7.2 branch
+    # 为7.2 分支定义一个调度器
     branch72changed = schedulers.SingleBranchScheduler(
         name="branch72changed",
         change_filter=util.ChangeFilter(branch='branches/7.2'),
         treeStableTimer=300,
         builderNames=["simplebuild-72"])
 
-    # define the available schedulers
+    # 将调度器可用
     c['schedulers'] = [trunkchanged, branch72changed]
 
-The syntax of the change filter is VCS-dependent (above is for SVN), but again once the idea is clear, the documentation has all the details.
-Another feature of the scheduler is that it can be told which changes, within those it's paying attention to, are important and which are not.
-For example, there may be a documentation directory in the branch the scheduler is watching, but changes under that directory should not trigger a build of the binary.
-This finer filtering is implemented by means of the ``fileIsImportant`` argument to the scheduler (full details in the docs and - alas - in the sources).
+变更过滤器的语法取决于VCS（以上是针对SVN的），但是一旦思路清晰，该文档就会包含所有详细信息。
+调度程序的另一个功能是，它可以告诉你哪些变化是重要的，哪些不重要。
+例如，调度程序正在监视的分支中可能有一个文档目录，但是该目录下的更改不应触发二进制文件的构建。
+这种更精细的过滤是通过调度程序的 ``fileIsImportant`` 参数实现的（文档中的详细信息，以及源码中的全部）。
 
-Change sources
+变更资源
 --------------
 
-Earlier we said that a dynamic scheduler "magically" learns about changes; the final piece of the puzzle are `change sources`, which are precisely the elements in Buildbot whose task is to detect changes in the repository and communicate them to the schedulers.
-Note that periodic schedulers don't need a change source, since they only depend on elapsed time; dynamic schedulers, on the other hand, do need a change source.
+前面我们曾说过，动态调度程序可以“神奇地”了解更改。
+难题的最后一部分是变更源，这些正是Buildbot中的元素，其任务是检测存储库中的变更并将其传达给调度程序。
+请注意，定期计划程序不需要更改源，因为它们仅取决于经过的时间；
+另一方面，动态调度程序确实需要更改源
 
-A change source is generally configured with information about a source repository (which is where changes happen); a change source can watch changes at different levels in the hierarchy of the repository, so for example it is possible to watch the whole repository or a subset of it, or just a single branch.
-This determines the extent of the information that is passed down to the schedulers.
+通常，更改源配置有有关源存储库（发生更改的位置）的信息；
+变更源可以监视存储库层次结构中不同级别的更改，因此例如可以监视整个存储库或其一部分，或者仅监视单个分支。
+这确定了传递给调度程序的信息范围。
 
-There are many ways a change source can learn about changes; it can periodically poll the repository for changes, or the VCS can be configured (for example through hook scripts triggered by commits) to push changes into the change source.
-While these two methods are probably the most common, they are not the only possibilities; it is possible for example to have a change source detect changes by parsing some email sent to a mailing list when a commit happens, and yet other methods exist.
-The manual again has the details.
+变更源可以通过多种方式了解变更。
+它可以定期轮询存储库以查找更改，也可以配置VCS（例如通过提交触发的挂钩脚本）将更改推送到更改源中。
+虽然这两种方法可能是最常见的，但它们并不是唯一的可能性。
+例如，更改源可以通过在提交发生时解析发送到邮件列表的某些电子邮件来检测更改，并且还存在其他方法。
+该手册再次有详细信息。
 
-To complete our example, here's a change source that polls a SVN repository every 2 minutes::
+为了完成我们的示例，这里有一个更改源，该更改源每2分钟轮询一次SVN存储库::
 
     from buildbot.plugins import changes, util
 
@@ -208,19 +211,19 @@ To complete our example, here's a change source that polls a SVN repository ever
 
     c['change_source'] = svnpoller
 
-This poller watches the whole "coolproject" section of the repository, so it will detect changes in all the branches.
-We could have said::
+该轮询器监视存储库的整个“ coolproject”部分，因此它将检测所有分支中的更改。
+我们可以说::
 
     repourl = "svn://myrepo/projects/coolproject/trunk"
 
-or::
+或者::
 
     repourl = "svn://myrepo/projects/coolproject/branches/7.2"
 
-to watch only a specific branch.
+来监听特殊的分支。
 
-To watch another project, you need to create another change source -- and you need to filter changes by project.
-For instance, when you add a change source watching project 'superproject' to the above example, you need to change::
+要监听另一个项目，你需要创建另一个更改源–并且需要按项目过滤更改。
+例如，当你在上面的示例中添加监听更改源的项目“ superproject”时，您需要进行以下更改::
 
     trunkchanged = schedulers.SingleBranchScheduler(
         name="trunkchanged",
@@ -228,7 +231,7 @@ For instance, when you add a change source watching project 'superproject' to th
         # ...
         )
 
-to e.g.::
+例如::
 
     trunkchanged = schedulers.SingleBranchScheduler(
         name="trunkchanged",
@@ -236,25 +239,27 @@ to e.g.::
         # ...
         )
 
-else coolproject will be built when there's a change in superproject.
+coolproject将在superproject项目变更后构建
 
-Since we're watching more than one branch, we need a method to tell in which branch the change occurred when we detect one.
-This is what the ``split_file`` argument does, it takes a callable that Buildbot will call to do the job.
-The split_file_branches function, which comes with Buildbot, is designed for exactly this purpose so that's what the example above uses.
+由于我们正在观察多个分支，因此我们需要一种方法来在检测到一个分支时告诉更改发生在哪个分支。
+这就是split_file参数所做的事情，Buildbot将调用该Callable来完成这项工作。
+Buildbot带有的split_file_branches函数正是为此目的而设计的，因此上面的示例使用了该函数
 
-And of course this is all SVN-specific, but there are pollers for all the popular VCSs.
+当然，这都是特定于SVN的，但是对于所有流行的VCS都有轮询器。
 
-But note: if you have many projects, branches, and builders it probably pays to not hardcode all the schedulers and builders in the configuration, but generate them dynamically starting from list of all projects, branches, targets etc. and using loops to generate all possible combinations (or only the needed ones, depending on the specific setup), as explained in the documentation chapter about :doc:`../manual/customization`.
 
-Reporters
+但请注意：如果您有许多项目，分支和构建器，则可能不对配置中的所有调度程序和构建器进行硬编码，而是从所有项目，分支，目标等的列表开始动态生成它们，并使用循环生成所有
+可能的组合（或仅需要的组合，取决于特定的设置），如有关自定义的文档章节所述。 :doc:`../manual/customization`.
+
+报告者
 ---------
 
-Now that the basics are in place, let's go back to the builders, which is where the real work happens.
-`Reporters` are simply the means Buildbot uses to inform the world about what's happening, that is, how builders are doing.
-There are many reporters: a mail notifier, an IRC notifier, and others.
-They are described fairly well in the manual.
+现在已经具备了基础知识，让我们回到构建者那里，这是实际工作的地方。
+报告者只是Buildbot用来向世界通报正在发生的事情（即建造者的工作状况）的手段。
+报告者有很多：邮件通知者，IRC通知者和其他。
+在手册中对它们进行了很好的描述。
 
-One thing I've found useful is the ability to pass a domain name as the lookup argument to a ``mailNotifier``, which allows you to take an unqualified username as it appears in the SVN change and create a valid email address by appending the given domain name to it::
+我发现有用的一件事是能够将域名作为查找参数传递给mailNotifier的功能，该功能允许您采用SVN更改中出现的不合格用户名，并通过附加给定域名来创建有效的电子邮件地址::
 
     from buildbot.plugins import reporter
 
@@ -264,13 +269,17 @@ One thing I've found useful is the ability to pass a domain name as the lookup a
                                    lookup="example.org")
     c['reporters'].append(notifier)
 
-The mail notifier can be customized at will by means of the ``messageFormatter`` argument, which is a class that Buildbot calls to format the body of the email, and to which it makes available lots of information about the build.
-For more details, look into the :ref:`Reporters` section of the Buildbot manual.
+可以通过messageFormatter参数随意自定义邮件通知程序，该参数是Buildbot调用以格式化电子邮件正文的类，并且该类可提供有关构建的大量信息
+了解更多细节， 参考 :ref:`Reporters` Buildbot 手册中相关章节.
 
-Conclusion
+总结
 ----------
 
-Please note that this article has just scratched the surface; given the complexity of the task of build automation, the possibilities are almost endless.
-So there's much, much more to say about Buildbot. However, hopefully this is a preparation step before reading the official manual. Had I found an explanation as the one above when I was approaching Buildbot, I'd have had to read the manual just once, rather than multiple times. Hope this can help someone else.
+请注意，本文只是从头开始。
+考虑到构建自动化任务的复杂性，可能性几乎是无限的。
+因此，关于Buildbot还有很多要说的。
+但是，希望这是阅读正式手册之前的准备步骤。
+在我接触Buildbot时，如果能找到上述解释，那么我只需要阅读一次而不是多次阅读该手册。
+希望这可以帮助其他人
 
-(Thanks to Davide Brini for permission to include this tutorial, derived from one he originally posted at http://backreference.org .)
+（感谢Davide Brini允许发布此教程，该教程源于他最初在http://backreference.org上发布的教程。）
