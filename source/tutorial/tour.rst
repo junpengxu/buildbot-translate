@@ -7,9 +7,6 @@
 目标
 ----
 
-This tutorial will expand on the :ref:`first-run-label` tutorial by taking a quick tour around some of the features of buildbot that are hinted at in the comments in the sample configuration.
-We will simply change parts of the default configuration and explain the activated features.
-
 通过快速浏览示例配置注释中所提示的buildbot的某些功能，本教程将在 :ref:`首次运行`教程的基础上进行扩展。
 我们将仅更改默认配置的一部分并解释激活的功能。
 
