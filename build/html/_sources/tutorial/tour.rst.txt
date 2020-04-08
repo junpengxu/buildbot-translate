@@ -10,25 +10,28 @@
 This tutorial will expand on the :ref:`first-run-label` tutorial by taking a quick tour around some of the features of buildbot that are hinted at in the comments in the sample configuration.
 We will simply change parts of the default configuration and explain the activated features.
 
-As a part of this tutorial, we will make buildbot do a few actual builds.
+通过快速浏览示例配置注释中所提示的buildbot的某些功能，本教程将在 :ref:`首次运行`教程的基础上进行扩展。
+我们将仅更改默认配置的一部分并解释激活的功能。
 
-This section will teach you how to:
+作为本教程的一部分，我们将使用buildbot进行一些实际上的构建
 
-- make simple configuration changes and activate them
-- deal with configuration errors
-- force builds
-- enable and control the IRC bot
-- enable ssh debugging
-- add a 'try' scheduler
+这个章节中，我们将教你
 
-Setting Project Name and URL
+- 简单改变一些配置并激活他们
+- 处理一些配置上的错误
+- 强行构建
+- 使用并且控制IRC机器人
+- 通过ssh debug
+- 给调度器增加个 `try`
+
+设置项目的名字和URL
 ----------------------------
 
-Let's start simple by looking at where you would customize the buildbot's project name and URL.
+让我们从简单的位置开始，看看您将在哪里自定义buildbot的项目名称和URL。
 
-We continue where we left off in the :ref:`first-run-label` tutorial.
+我们从:ref:`first-run-label`教程继续
 
-Open a new terminal, go to the directory you created master in, activate the same virtualenv instance you created before, and open the master configuration file with an editor (here ``$EDITOR`` is your editor of choice like vim, gedit, or emacs):
+打开一个终端，进入你刚才创建的master目录，激活虚拟环境，然后打开master的配置进行编辑
 
 .. code-block:: bash
 
@@ -36,25 +39,24 @@ Open a new terminal, go to the directory you created master in, activate the sam
   source sandbox/bin/activate
   $EDITOR master/master.cfg
 
-Now, look for the section marked *PROJECT IDENTITY* which reads::
+现在，查找被标记为 *PROJECT IDENTITY* 部分写了什么::
 
   ####### PROJECT IDENTITY
 
-  # the 'title' string will appear at the top of this buildbot installation's
-  # home pages (linked to the 'titleURL').
+  # 'title'字符串将出现在buildbot安装目录的顶部.
 
   c['title'] = "Hello World CI"
   c['titleURL'] = "https://buildbot.github.io/hello-world/"
 
-If you want, you can change either of these links to anything you want to see what happens when you change them.
+你可以随意更改这些链接，如果你想看一下你改动了之后会发生什么
 
-After making a change go into the terminal and type:
+更改之后，进入终端，然后输入
 
 .. code-block:: bash
 
   buildbot reconfig master
 
-You will see a handful of lines of output from the master log, much like this:
+你会在master日志中看到几行比较少的输出，像下面这样
 
 .. code-block:: none
 
@@ -77,16 +79,16 @@ You will see a handful of lines of output from the master log, much like this:
 
     Reconfiguration appears to have completed successfully.
 
-The important lines are the ones telling you that it is loading the new configuration at the top, and the one at the bottom saying that the update is complete.
+重要的几行是告诉您它正在顶部加载新配置，而底部的行则表明更新已完成。
 
-Now, if you go back to `the waterfall page <http://localhost:8010/#/waterfall>`_, you will see that the project's name is whatever you may have changed it to and when you click on the URL of the project name at the bottom of the page it should take you to the link you put in the configuration.
+现在如果你回到 `the waterfall page <http://localhost:8010/#/waterfall>`_ 您会看到该项目的名称就是您可能要更改的名称，当您单击页面底部的项目名称的URL时，它应该带您进入配置中的链接。
 
-Configuration Errors
---------------------
+配置错误
+-------
 
-It is very common to make a mistake when configuring buildbot, so you might as well see now what happens in that case and what you can do to fix the error.
+配置buildbot出错是很常见的，所以你可以看下这个案例中发生了什么以及你该怎么处理错误
 
-Open up the config again and introduce a syntax error by removing the first single quote in the two lines you changed, so they read:
+再次打开配置，并通过删除更改的两行中的第一个单引号来引入语法错误，因此它们显示为：，
 
 ..
     Format a `none` since this is not a valid Python code
@@ -97,13 +99,14 @@ Open up the config again and introduce a syntax error by removing the first sing
   c[titleURL'] = "https://buildbot.github.io/hello-world/"
 
 This creates a Python ``SyntaxError``.
-Now go ahead and reconfig the buildmaster:
+
+现在回去更新buildmaster的配置
 
 .. code-block:: bash
 
   buildbot reconfig master
 
-This time, the output looks like:
+这次，输出是这个样子的:
 
 .. code-block:: none
 
@@ -130,86 +133,90 @@ This time, the output looks like:
     Reconfiguration failed. Please inspect the master.cfg file for errors,
     correct them, then try 'buildbot reconfig' again.
 
-This time, it's clear that there was a mistake in the configuration.
-Luckily, the Buildbot master will ignore the wrong configuration and keep running with the previous configuration.
+这次，明确的说有一个错误在配置中。幸运的是，buildbot master 会忽略这个配置错误，并且会继续使用以前的配置运行
 
-The message is clear enough, so open the configuration again, fix the error, and reconfig the master.
+这个消息够清楚了，所以，重新打开配置，处理这个错误，然后更新master的配置
 
-Your First Build
+你的第一次构建
 ----------------
 
 By now you're probably thinking: "All this time spent and still not done a single build? What was the name of this project again?"
+现在你可能会想，花了这么多时间还没执行完一次构建，这个项目叫什么？
 
-On the `Builders <http://localhost:8010/#/builders>`_ page, click on the runtests link.
+
+在 `Builders <http://localhost:8010/#/builders>`_ 页面, 点击runtests连接
+
 You'll see a builder page, and a blue "force" button that will bring up the
 following dialog box:
+你将看到一个builder page 页面，有一个蓝色 "force" 按钮， 淡季后将会弹出下面的对话框
+
 
 .. image:: _images/force-build.png
    :alt: force a build.
 
-Click *Start Build* - there's no need to fill in any of the fields in this case.
-Next, click on `view in waterfall <http://localhost:8010/#/waterfall?show=runtests>`_.
+点击 *Start Build* - 这次不需要填写任何东西
+下一步，点击 `view in waterfall <http://localhost:8010/#/waterfall?show=runtests>`_.
 
-You will now see:
+你会看到:
 
 .. image:: _images/runtests-success.png
    :alt: an successful test run happened.
 
-Enabling the IRC Bot
+激活IRC机器人
 --------------------
 
-Buildbot includes an IRC bot that you can tell to join a channel and control to report on the status of buildbot.
+buildbot 包括一个IRC机器人，你可以加入一个频道，然后了解buildbot的运行状态
 
-.. note:: Security Note
+.. note:: 安全须知
 
-    Please note that any user having access to your irc channel or can send the private message to the bot will be able to create or stop builds :bug:`3377`.
+请注意，任何有权访问您的irc频道或可以将私人消息发送给该漫游器的用户都可以创建或停止build :bug:`3377`.
 
-First, start an IRC client of your choice, connect to irc.freenode.net and join an empty channel.
-In this example we will use ``#buildbot-test``, so go join that channel.
-(*Note: please do not join the main buildbot channel!*)
+第一步，启动一个IRC客户端，连接irc.freenode.net  然后加入一个空的频道
+在这个样例中，我们使用 ``#buildbot-test`` ,所以，加入这个频道（注意，请不要加入buildbot主频道
 
-Edit :file:`master.cfg` and look for the *BUILDBOT SERVICES* section.
-At the end of that section add the lines::
+编辑 :file:`master.cfg` 然后找到 *BUILDBOT SERVICES* 部分.
+在这一章节的最后添加一行::
 
   c['services'].append(reporters.IRC(host="irc.freenode.net", nick="bbtest",
                                      channels=["#buildbot-test"]))
 
-Reconfigure the build master then do:
+重新配置build master的配置然后做如下操作:
 
 .. code-block:: bash
 
   grep -i irc master/twistd.log
 
-The log output should contain a line like this:
+输出的日志应该包含下面这一行:
 
 .. code-block:: none
 
   2016-11-13 15:53:06+0100 [-] Starting factory <...>
   2016-11-13 15:53:19+0100 [IrcStatusBot,client] <...>: I have joined #buildbot-test
 
-You should see the bot now joining in your IRC client.
-In your IRC channel, type:
+加入IRC频道看一下bot输出了什么.
+在你的IRC频道中输入:
 
 .. code-block:: none
 
   bbtest: commands
 
-to get a list of the commands the bot supports.
+获取bot能支持的命令列表.
 
-Let's tell the bot to notify certain events, to learn which EVENTS we can notify on:
+让我们告诉漫游器通知某些事件，以了解我们可以通知哪些事件:
 
 .. code-block:: none
 
   bbtest: help notify
 
-Now let's set some event notifications:
+现在让我们看一些事件通知:
 
 .. code-block:: irc
 
   <@lsblakk> bbtest: notify on started finished failure
   < bbtest> The following events are being notified: ['started', 'failure', 'finished']
 
-Now, go back to the web interface and force another build. Alternatively, ask the bot to force a build:
+现在，返回Web界面并强制进行另一个构建。
+或者，要求机器人强制构建：
 
 .. code-block:: irc
 
@@ -217,17 +224,18 @@ Now, go back to the web interface and force another build. Alternatively, ask th
   < bbtest> build #1 of runtests started
   < bbtest> Hey! build runtests #1 is complete: Success [finished]
 
-You can also see the new builds in the web interface.
+你可以在web界面上看到一个新的构建
 
 .. image:: _images/irc-testrun.png
    :alt: a successful test run from IRC happened.
 
-The full documentation is available at :bb:reporter:`IRC`.
+完整的文档可从以这里查看： :bb:reporter:`IRC`.
 
-Setting Authorized Web Users
+设置web用户权限
 ----------------------------
 
 The default configuration allows everyone to perform any task like creating or stopping builds via the web interface. To restrict this to a user, look for::
+默认配置允许所有人通过web界面执行任何任务，像创建或者停止构建，
 
   c['www'] = dict(port=8010,
                    plugins=dict(waterfall_view={}, console_view={}))

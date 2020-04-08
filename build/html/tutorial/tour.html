@@ -86,11 +86,11 @@
 <li class="toctree-l2"><a class="reference internal" href="docker.html">1.2. 用Docker启动BuildBot</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. 快速开始</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#id2">1.3.1. 目标</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#setting-project-name-and-url">1.3.2. Setting Project Name and URL</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#configuration-errors">1.3.3. Configuration Errors</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#your-first-build">1.3.4. Your First Build</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#enabling-the-irc-bot">1.3.5. Enabling the IRC Bot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#setting-authorized-web-users">1.3.6. Setting Authorized Web Users</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#url">1.3.2. 设置项目的名字和URL</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">1.3.3. 配置错误</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id8">1.3.4. 你的第一次构建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#irc">1.3.5. 激活IRC机器人</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#web">1.3.6. 设置web用户权限</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#debugging-with-manhole">1.3.7. Debugging with Manhole</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#adding-a-try-scheduler">1.3.8. Adding a ‘try’ scheduler</a></li>
 </ul>
@@ -170,43 +170,44 @@
 <h2><span class="section-number">1.3.1. </span>目标<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
 <p>This tutorial will expand on the <a class="reference internal" href="firstrun.html#first-run-label"><span class="std std-ref">第一次启动</span></a> tutorial by taking a quick tour around some of the features of buildbot that are hinted at in the comments in the sample configuration.
 We will simply change parts of the default configuration and explain the activated features.</p>
-<p>As a part of this tutorial, we will make buildbot do a few actual builds.</p>
-<p>This section will teach you how to:</p>
+<p>通过快速浏览示例配置注释中所提示的buildbot的某些功能，本教程将在 :ref:<a href="#id3"><span class="problematic" id="id4">`</span></a>首次运行`教程的基础上进行扩展。
+我们将仅更改默认配置的一部分并解释激活的功能。</p>
+<p>作为本教程的一部分，我们将使用buildbot进行一些实际上的构建</p>
+<p>这个章节中，我们将教你</p>
 <ul class="simple">
-<li><p>make simple configuration changes and activate them</p></li>
-<li><p>deal with configuration errors</p></li>
-<li><p>force builds</p></li>
-<li><p>enable and control the IRC bot</p></li>
-<li><p>enable ssh debugging</p></li>
-<li><p>add a ‘try’ scheduler</p></li>
+<li><p>简单改变一些配置并激活他们</p></li>
+<li><p>处理一些配置上的错误</p></li>
+<li><p>强行构建</p></li>
+<li><p>使用并且控制IRC机器人</p></li>
+<li><p>通过ssh debug</p></li>
+<li><p>给调度器增加个 <cite>try</cite></p></li>
 </ul>
 </div>
-<div class="section" id="setting-project-name-and-url">
-<h2><span class="section-number">1.3.2. </span>Setting Project Name and URL<a class="headerlink" href="#setting-project-name-and-url" title="Permalink to this headline">¶</a></h2>
-<p>Let’s start simple by looking at where you would customize the buildbot’s project name and URL.</p>
-<p>We continue where we left off in the <a class="reference internal" href="firstrun.html#first-run-label"><span class="std std-ref">第一次启动</span></a> tutorial.</p>
-<p>Open a new terminal, go to the directory you created master in, activate the same virtualenv instance you created before, and open the master configuration file with an editor (here <code class="docutils literal notranslate"><span class="pre">$EDITOR</span></code> is your editor of choice like vim, gedit, or emacs):</p>
+<div class="section" id="url">
+<h2><span class="section-number">1.3.2. </span>设置项目的名字和URL<a class="headerlink" href="#url" title="Permalink to this headline">¶</a></h2>
+<p>让我们从简单的位置开始，看看您将在哪里自定义buildbot的项目名称和URL。</p>
+<p>我们从:ref:<a href="#id5"><span class="problematic" id="id6">`</span></a>first-run-label`教程继续</p>
+<p>打开一个终端，进入你刚才创建的master目录，激活虚拟环境，然后打开master的配置进行编辑</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/tmp/bb-master
 <span class="nb">source</span> sandbox/bin/activate
 <span class="nv">$EDITOR</span> master/master.cfg
 </pre></div>
 </div>
-<p>Now, look for the section marked <em>PROJECT IDENTITY</em> which reads:</p>
+<p>现在，查找被标记为 <em>PROJECT IDENTITY</em> 部分写了什么:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">####### PROJECT IDENTITY</span>
 
-<span class="c1"># the &#39;title&#39; string will appear at the top of this buildbot installation&#39;s</span>
-<span class="c1"># home pages (linked to the &#39;titleURL&#39;).</span>
+<span class="c1"># &#39;title&#39;字符串将出现在buildbot安装目录的顶部.</span>
 
 <span class="n">c</span><span class="p">[</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;Hello World CI&quot;</span>
 <span class="n">c</span><span class="p">[</span><span class="s1">&#39;titleURL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s2">&quot;https://buildbot.github.io/hello-world/&quot;</span>
 </pre></div>
 </div>
-<p>If you want, you can change either of these links to anything you want to see what happens when you change them.</p>
-<p>After making a change go into the terminal and type:</p>
+<p>你可以随意更改这些链接，如果你想看一下你改动了之后会发生什么</p>
+<p>更改之后，进入终端，然后输入</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>buildbot reconfig master
 </pre></div>
 </div>
-<p>You will see a handful of lines of output from the master log, much like this:</p>
+<p>你会在master日志中看到几行比较少的输出，像下面这样</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2011-12-04 10:11:09-0600 [-] loading configuration from /path/to/buildbot/master.cfg
 2011-12-04 10:11:09-0600 [-] configuration update started
 2011-12-04 10:11:09-0600 [-] builder runtests is unchanged
@@ -227,23 +228,23 @@ We will simply change parts of the default configuration and explain the activat
 Reconfiguration appears to have completed successfully.
 </pre></div>
 </div>
-<p>The important lines are the ones telling you that it is loading the new configuration at the top, and the one at the bottom saying that the update is complete.</p>
-<p>Now, if you go back to <a class="reference external" href="http://localhost:8010/#/waterfall">the waterfall page</a>, you will see that the project’s name is whatever you may have changed it to and when you click on the URL of the project name at the bottom of the page it should take you to the link you put in the configuration.</p>
+<p>重要的几行是告诉您它正在顶部加载新配置，而底部的行则表明更新已完成。</p>
+<p>现在如果你回到 <a class="reference external" href="http://localhost:8010/#/waterfall">the waterfall page</a> 您会看到该项目的名称就是您可能要更改的名称，当您单击页面底部的项目名称的URL时，它应该带您进入配置中的链接。</p>
 </div>
-<div class="section" id="configuration-errors">
-<h2><span class="section-number">1.3.3. </span>Configuration Errors<a class="headerlink" href="#configuration-errors" title="Permalink to this headline">¶</a></h2>
-<p>It is very common to make a mistake when configuring buildbot, so you might as well see now what happens in that case and what you can do to fix the error.</p>
-<p>Open up the config again and introduce a syntax error by removing the first single quote in the two lines you changed, so they read:</p>
+<div class="section" id="id7">
+<h2><span class="section-number">1.3.3. </span>配置错误<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<p>配置buildbot出错是很常见的，所以你可以看下这个案例中发生了什么以及你该怎么处理错误</p>
+<p>再次打开配置，并通过删除更改的两行中的第一个单引号来引入语法错误，因此它们显示为：，</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>c[title&#39;] = &quot;Hello World CI&quot;
 c[titleURL&#39;] = &quot;https://buildbot.github.io/hello-world/&quot;
 </pre></div>
 </div>
-<p>This creates a Python <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>.
-Now go ahead and reconfig the buildmaster:</p>
+<p>This creates a Python <code class="docutils literal notranslate"><span class="pre">SyntaxError</span></code>.</p>
+<p>现在回去更新buildmaster的配置</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>buildbot reconfig master
 </pre></div>
 </div>
-<p>This time, the output looks like:</p>
+<p>这次，输出是这个样子的:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2015-08-14 18:40:46+0000 [-] beginning configuration update
 2015-08-14 18:40:46+0000 [-] Loading configuration from &#39;/data/buildbot/master/master.cfg&#39;
 2015-08-14 18:40:46+0000 [-] error while parsing config file:
@@ -268,80 +269,84 @@ Reconfiguration failed. Please inspect the master.cfg file for errors,
 correct them, then try &#39;buildbot reconfig&#39; again.
 </pre></div>
 </div>
-<p>This time, it’s clear that there was a mistake in the configuration.
-Luckily, the Buildbot master will ignore the wrong configuration and keep running with the previous configuration.</p>
-<p>The message is clear enough, so open the configuration again, fix the error, and reconfig the master.</p>
+<p>这次，明确的说有一个错误在配置中。幸运的是，buildbot master 会忽略这个配置错误，并且会继续使用以前的配置运行</p>
+<p>这个消息够清楚了，所以，重新打开配置，处理这个错误，然后更新master的配置</p>
 </div>
-<div class="section" id="your-first-build">
-<h2><span class="section-number">1.3.4. </span>Your First Build<a class="headerlink" href="#your-first-build" title="Permalink to this headline">¶</a></h2>
-<p>By now you’re probably thinking: “All this time spent and still not done a single build? What was the name of this project again?”</p>
-<p>On the <a class="reference external" href="http://localhost:8010/#/builders">Builders</a> page, click on the runtests link.
-You’ll see a builder page, and a blue “force” button that will bring up the
-following dialog box:</p>
+<div class="section" id="id8">
+<h2><span class="section-number">1.3.4. </span>你的第一次构建<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h2>
+<p>By now you’re probably thinking: “All this time spent and still not done a single build? What was the name of this project again?”
+现在你可能会想，花了这么多时间还没执行完一次构建，这个项目叫什么？</p>
+<p>在 <a class="reference external" href="http://localhost:8010/#/builders">Builders</a> 页面, 点击runtests连接</p>
+<p>You’ll see a builder page, and a blue “force” button that will bring up the
+following dialog box:
+你将看到一个builder page 页面，有一个蓝色 “force” 按钮， 淡季后将会弹出下面的对话框</p>
 <img alt="force a build." src="../_images/force-build.png" />
-<p>Click <em>Start Build</em> - there’s no need to fill in any of the fields in this case.
-Next, click on <a class="reference external" href="http://localhost:8010/#/waterfall?show=runtests">view in waterfall</a>.</p>
-<p>You will now see:</p>
+<p>点击 <em>Start Build</em> - 这次不需要填写任何东西
+下一步，点击 <a class="reference external" href="http://localhost:8010/#/waterfall?show=runtests">view in waterfall</a>.</p>
+<p>你会看到:</p>
 <img alt="an successful test run happened." src="../_images/runtests-success.png" />
 </div>
-<div class="section" id="enabling-the-irc-bot">
-<h2><span class="section-number">1.3.5. </span>Enabling the IRC Bot<a class="headerlink" href="#enabling-the-irc-bot" title="Permalink to this headline">¶</a></h2>
-<p>Buildbot includes an IRC bot that you can tell to join a channel and control to report on the status of buildbot.</p>
+<div class="section" id="irc">
+<h2><span class="section-number">1.3.5. </span>激活IRC机器人<a class="headerlink" href="#irc" title="Permalink to this headline">¶</a></h2>
+<p>buildbot 包括一个IRC机器人，你可以加入一个频道，然后了解buildbot的运行状态</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Security Note</p>
-<p>Please note that any user having access to your irc channel or can send the private message to the bot will be able to create or stop builds <a href="#id3"><span class="problematic" id="id4">:bug:`3377`</span></a>.</p>
+<p>安全须知</p>
 </div>
-<p>First, start an IRC client of your choice, connect to irc.freenode.net and join an empty channel.
-In this example we will use <code class="docutils literal notranslate"><span class="pre">#buildbot-test</span></code>, so go join that channel.
-(<em>Note: please do not join the main buildbot channel!</em>)</p>
-<p>Edit <code class="file docutils literal notranslate"><span class="pre">master.cfg</span></code> and look for the <em>BUILDBOT SERVICES</em> section.
-At the end of that section add the lines:</p>
+<p>请注意，任何有权访问您的irc频道或可以将私人消息发送给该漫游器的用户都可以创建或停止build <a href="#id9"><span class="problematic" id="id10">:bug:`3377`</span></a>.</p>
+<p>第一步，启动一个IRC客户端，连接irc.freenode.net  然后加入一个空的频道
+在这个样例中，我们使用 <code class="docutils literal notranslate"><span class="pre">#buildbot-test</span></code> ,所以，加入这个频道（注意，请不要加入buildbot主频道</p>
+<p>编辑 <code class="file docutils literal notranslate"><span class="pre">master.cfg</span></code> 然后找到 <em>BUILDBOT SERVICES</em> 部分.
+在这一章节的最后添加一行:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;services&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reporters</span><span class="o">.</span><span class="n">IRC</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;irc.freenode.net&quot;</span><span class="p">,</span> <span class="n">nick</span><span class="o">=</span><span class="s2">&quot;bbtest&quot;</span><span class="p">,</span>
                                    <span class="n">channels</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;#buildbot-test&quot;</span><span class="p">]))</span>
 </pre></div>
 </div>
-<p>Reconfigure the build master then do:</p>
+<p>重新配置build master的配置然后做如下操作:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>grep -i irc master/twistd.log
 </pre></div>
 </div>
-<p>The log output should contain a line like this:</p>
+<p>输出的日志应该包含下面这一行:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>2016-11-13 15:53:06+0100 [-] Starting factory &lt;...&gt;
 2016-11-13 15:53:19+0100 [IrcStatusBot,client] &lt;...&gt;: I have joined #buildbot-test
 </pre></div>
 </div>
-<p>You should see the bot now joining in your IRC client.
-In your IRC channel, type:</p>
+<p>加入IRC频道看一下bot输出了什么.
+在你的IRC频道中输入:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>bbtest: commands
 </pre></div>
 </div>
-<p>to get a list of the commands the bot supports.</p>
-<p>Let’s tell the bot to notify certain events, to learn which EVENTS we can notify on:</p>
+<p>获取bot能支持的命令列表.</p>
+<p>让我们告诉漫游器通知某些事件，以了解我们可以通知哪些事件:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>bbtest: help notify
 </pre></div>
 </div>
-<p>Now let’s set some event notifications:</p>
+<p>现在让我们看一些事件通知:</p>
 <div class="highlight-irc notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;@lsblakk&gt; </span><span class="na">bbtest:</span> notify on started finished failure
 <span class="nt">&lt; bbtest&gt; </span>The following events are being notified: [&#39;started&#39;, &#39;failure&#39;, &#39;finished&#39;]
 </pre></div>
 </div>
-<p>Now, go back to the web interface and force another build. Alternatively, ask the bot to force a build:</p>
+<p>现在，返回Web界面并强制进行另一个构建。
+或者，要求机器人强制构建：</p>
 <div class="highlight-irc notranslate"><div class="highlight"><pre><span></span><span class="nt">&lt;@lsblakk&gt; </span><span class="na">bbtest:</span> force build --codebase= runtests
 <span class="nt">&lt; bbtest&gt; </span>build #1 of runtests started
 <span class="nt">&lt; bbtest&gt; </span>Hey! build runtests #1 is complete: Success [finished]
 </pre></div>
 </div>
-<p>You can also see the new builds in the web interface.</p>
+<p>你可以在web界面上看到一个新的构建</p>
 <img alt="a successful test run from IRC happened." src="../_images/irc-testrun.png" />
-<p>The full documentation is available at <a href="#id5"><span class="problematic" id="id6">:bb:reporter:`IRC`</span></a>.</p>
+<p>完整的文档可从以这里查看： <a href="#id11"><span class="problematic" id="id12">:bb:reporter:`IRC`</span></a>.</p>
 </div>
-<div class="section" id="setting-authorized-web-users">
-<h2><span class="section-number">1.3.6. </span>Setting Authorized Web Users<a class="headerlink" href="#setting-authorized-web-users" title="Permalink to this headline">¶</a></h2>
-<p>The default configuration allows everyone to perform any task like creating or stopping builds via the web interface. To restrict this to a user, look for:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">8010</span><span class="p">,</span>
-                 <span class="n">plugins</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">waterfall_view</span><span class="o">=</span><span class="p">{},</span> <span class="n">console_view</span><span class="o">=</span><span class="p">{}))</span>
-</pre></div>
-</div>
+<div class="section" id="web">
+<h2><span class="section-number">1.3.6. </span>设置web用户权限<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h2>
+<p>The default configuration allows everyone to perform any task like creating or stopping builds via the web interface. To restrict this to a user, look for::
+默认配置允许所有人通过web界面执行任何任务，像创建或者停止构建，</p>
+<blockquote>
+<div><dl class="simple">
+<dt>c[‘www’] = dict(port=8010,</dt><dd><p>plugins=dict(waterfall_view={}, console_view={}))</p>
+</dd>
+</dl>
+</div></blockquote>
 <p>and append:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">][</span><span class="s1">&#39;authz&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">Authz</span><span class="p">(</span>
         <span class="n">allowRules</span> <span class="o">=</span> <span class="p">[</span>
@@ -423,7 +428,7 @@ of pyasn1:</p>
                                     <span class="n">userpass</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;sampleuser&#39;</span><span class="p">,</span><span class="s1">&#39;samplepass&#39;</span><span class="p">)]))</span>
 </pre></div>
 </div>
-<p>Then you can submit changes using the <a href="#id7"><span class="problematic" id="id8">:bb:cmdline:`try`</span></a> command.</p>
+<p>Then you can submit changes using the <a href="#id13"><span class="problematic" id="id14">:bb:cmdline:`try`</span></a> command.</p>
 <p>Let’s try this out by making a one-line change to hello-world, say, to make it trace the tree by default:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/buildbot/hello-world.git hello-world-git
 <span class="nb">cd</span> hello-world-git/hello
@@ -444,7 +449,7 @@ You should see that another build has been started with your change (and stdout 
 The “Reason” for the job will be listed as “‘try’ job”, and the blamelist will be empty.</p>
 <p>To make yourself show up as the author of the change, use the <code class="docutils literal notranslate"><span class="pre">--who=emailaddr</span></code> option on <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">try</span></code> to pass your email address.</p>
 <p>To make a description of the change show up, use the <code class="docutils literal notranslate"><span class="pre">--properties=comment=&quot;this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">comment&quot;</span></code> option on <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">try</span></code>.</p>
-<p>To use ssh instead of a private username/password database, see <a href="#id9"><span class="problematic" id="id10">:bb:sched:`Try_Jobdir`</span></a>.</p>
+<p>To use ssh instead of a private username/password database, see <a href="#id15"><span class="problematic" id="id16">:bb:sched:`Try_Jobdir`</span></a>.</p>
 </div>
 </div>
 
