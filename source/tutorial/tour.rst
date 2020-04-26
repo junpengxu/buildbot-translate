@@ -229,7 +229,7 @@ buildbot 包括一个IRC机器人，你可以加入一个频道，然后了解bu
 完整的文档可从以这里查看： :bb:reporter:`IRC`.
 
 设置web用户权限
-----------------------------
+-------------
 
 默认配置允许所有人通过web界面执行任何任务，像创建或者停止构建，要限制用户，查找这一行::
 
@@ -248,15 +248,14 @@ and append::
   )
   c['www']['auth'] = util.UserPasswordAuth([('Alice','Password1')])
 
-For more details, see :ref:`Web-Authentication`.
+想了解更多细节，查看 :ref:`Web-Authentication`.
 
-Debugging with Manhole
-----------------------
+使用Manhole调试
+--------------
 
-You can do some debugging by using manhole, an interactive Python shell.
-It exposes full access to the buildmaster's account (including the ability to modify and delete files), so it should not be enabled with a weak or easily guessable password.
+你可是使用manhole进行调试，一个交互的python终端，它开放了所有的buildmaster账户权限，包括删除文件的能力，因此不应使用弱密码或容易猜到的密码来启用它。
 
-To use this you will need to install an additional package or two to your virtualenv:
+你需要安装一到两个包在虚拟环境中，才能使用它
 
 .. code-block:: bash
 
@@ -265,18 +264,18 @@ To use this you will need to install an additional package or two to your virtua
   pip install -U pip
   pip install cryptography pyasn1
 
-You will also need to generate an SSH host key for the Manhole server.
+你也需要为Manhole server 生成一个SSH key
 
 .. code-block:: bash
 
   mkdir -p /data/ssh_host_keys
   ckeygen -t rsa -f /data/ssh_host_keys/ssh_host_rsa_key
 
-In your master.cfg find::
+在你的 master.cfg 寻找::
 
   c = BuildmasterConfig = {}
 
-Insert the following to enable debugging mode with manhole::
+插入下面的代码给manhole打开调试模式::
 
   ####### DEBUGGING
   from buildbot import manhole
@@ -284,7 +283,7 @@ Insert the following to enable debugging mode with manhole::
                                          "admin", "passwd",
                                          ssh_hostkey_dir="/data/ssh_host_keys/")
 
-After restarting the master, you can ssh into the master and get an interactive Python shell:
+重启master后， 你可以通过ssh登录到master，进入python交互环境
 
 .. code-block:: bash
 
@@ -306,20 +305,22 @@ After restarting the master, you can ssh into the master and get an interactive 
 
         pip install pyasn1-0.0.13b
 
-If you wanted to check which workers are connected and what builders those workers are assigned to you could do::
+如果你想检查哪个worker连接进来了，哪个worker承担了构建者的角色，你可以这么做::
 
   >>> master.workers.workers
   {'example-worker': <Worker 'example-worker', current builders: runtests>}
 
-Objects can be explored in more depth using `dir(x)` or the helper function `show(x)`.
 
-Adding a 'try' scheduler
-------------------------
+可以使用`dir(x)`或辅助函数`show(x)`来更深入地探索对象。
 
-Buildbot includes a way for developers to submit patches for testing without committing them to the source code control system.
-(This is really handy for projects that support several operating systems or architectures.)
+增加 try scheduler
+------------------
 
-To set this up, add the following lines to master.cfg::
+
+Buildbot提供了一种开发人员提交补丁进行测试而无需将其提交到源代码控制系统的方法。
+（这对于支持多个操作系统或体系结构的项目确实非常方便。）
+
+将下面的代码添加到 master.cfg 完成设置
 
   from buildbot.scheduler import Try_Userpass
   c['schedulers'] = []
@@ -329,9 +330,9 @@ To set this up, add the following lines to master.cfg::
                                       port=5555,
                                       userpass=[('sampleuser','samplepass')]))
 
-Then you can submit changes using the :bb:cmdline:`try` command.
+然后你可以这样提交变动 :bb:cmdline:`try` command.
 
-Let's try this out by making a one-line change to hello-world, say, to make it trace the tree by default:
+让我们通过对hello-world进行单行更改来进行尝试，例如，使其默认情况下跟踪树:
 
 .. code-block:: bash
 
@@ -340,7 +341,7 @@ Let's try this out by making a one-line change to hello-world, say, to make it t
   $EDITOR __init__.py
   # change 'return "hello " + who' on line 6 to 'return "greets " + who'
 
-Then run buildbot's ``try`` command as follows:
+然后，执行buildbot 中的 ``try`` 命令，像下面这样
 
 .. code-block:: bash
 
@@ -349,11 +350,11 @@ Then run buildbot's ``try`` command as follows:
     buildbot try --connect=pb --master=127.0.0.1:5555 \
         --username=sampleuser --passwd=samplepass --vc=git
 
-This will do ``git diff`` for you and send the resulting patch to the server for build and test against the latest sources from Git.
+这将为你执行 ``git diff`` 并将生成的补丁发送到服务器以针对Git的最新资源进行构建和测试。
 
-Now go back to the `waterfall <http://localhost:8010/#/waterfall>`_ page, click on the runtests link, and scroll down.
-You should see that another build has been started with your change (and stdout for the tests should be chock-full of parse trees as a result).
-The "Reason" for the job will be listed as "'try' job", and the blamelist will be empty.
+现在回到 `waterfall <http://localhost:8010/#/waterfall>`_页面，点击 runtests 连接， 然后向下翻，
+您应该看到所做的更改已经开始了另一个构建（因此，测试的stdout应该作为结果输出到屏幕）。
+该工作的“原因”将被列为“try' job”，而责任者将为空
 
 To make yourself show up as the author of the change, use the ``--who=emailaddr`` option on ``buildbot try`` to pass your email address.
 

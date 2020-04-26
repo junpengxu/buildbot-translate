@@ -91,8 +91,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#id8">1.3.4. 你的第一次构建</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#irc">1.3.5. 激活IRC机器人</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#web">1.3.6. 设置web用户权限</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#debugging-with-manhole">1.3.7. Debugging with Manhole</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#adding-a-try-scheduler">1.3.8. Adding a ‘try’ scheduler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#manhole">1.3.7. 使用Manhole调试</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#try-scheduler">1.3.8. 增加 try scheduler</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="further.html">1.4. Further Reading</a></li>
@@ -168,8 +168,6 @@
 <span id="id1"></span><h1><span class="section-number">1.3. </span>快速开始<a class="headerlink" href="#quick-tour-label" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id2">
 <h2><span class="section-number">1.3.1. </span>目标<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
-<p>This tutorial will expand on the <a class="reference internal" href="firstrun.html#first-run-label"><span class="std std-ref">第一次启动</span></a> tutorial by taking a quick tour around some of the features of buildbot that are hinted at in the comments in the sample configuration.
-We will simply change parts of the default configuration and explain the activated features.</p>
 <p>通过快速浏览示例配置注释中所提示的buildbot的某些功能，本教程将在 :ref:<a href="#id3"><span class="problematic" id="id4">`</span></a>首次运行`教程的基础上进行扩展。
 我们将仅更改默认配置的一部分并解释激活的功能。</p>
 <p>作为本教程的一部分，我们将使用buildbot进行一些实际上的构建</p>
@@ -339,14 +337,11 @@ following dialog box:
 </div>
 <div class="section" id="web">
 <h2><span class="section-number">1.3.6. </span>设置web用户权限<a class="headerlink" href="#web" title="Permalink to this headline">¶</a></h2>
-<p>The default configuration allows everyone to perform any task like creating or stopping builds via the web interface. To restrict this to a user, look for::
-默认配置允许所有人通过web界面执行任何任务，像创建或者停止构建，</p>
-<blockquote>
-<div><dl class="simple">
-<dt>c[‘www’] = dict(port=8010,</dt><dd><p>plugins=dict(waterfall_view={}, console_view={}))</p>
-</dd>
-</dl>
-</div></blockquote>
+<p>默认配置允许所有人通过web界面执行任何任务，像创建或者停止构建，要限制用户，查找这一行:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">port</span><span class="o">=</span><span class="mi">8010</span><span class="p">,</span>
+                 <span class="n">plugins</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">waterfall_view</span><span class="o">=</span><span class="p">{},</span> <span class="n">console_view</span><span class="o">=</span><span class="p">{}))</span>
+</pre></div>
+</div>
 <p>and append:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">][</span><span class="s1">&#39;authz&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">Authz</span><span class="p">(</span>
         <span class="n">allowRules</span> <span class="o">=</span> <span class="p">[</span>
@@ -359,29 +354,28 @@ following dialog box:
 <span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">][</span><span class="s1">&#39;auth&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">UserPasswordAuth</span><span class="p">([(</span><span class="s1">&#39;Alice&#39;</span><span class="p">,</span><span class="s1">&#39;Password1&#39;</span><span class="p">)])</span>
 </pre></div>
 </div>
-<p>For more details, see <a class="reference internal" href="../manual/configuration/www.html#web-authentication"><span class="std std-ref">Authentication plugins</span></a>.</p>
+<p>想了解更多细节，查看 <a class="reference internal" href="../manual/configuration/www.html#web-authentication"><span class="std std-ref">Authentication plugins</span></a>.</p>
 </div>
-<div class="section" id="debugging-with-manhole">
-<h2><span class="section-number">1.3.7. </span>Debugging with Manhole<a class="headerlink" href="#debugging-with-manhole" title="Permalink to this headline">¶</a></h2>
-<p>You can do some debugging by using manhole, an interactive Python shell.
-It exposes full access to the buildmaster’s account (including the ability to modify and delete files), so it should not be enabled with a weak or easily guessable password.</p>
-<p>To use this you will need to install an additional package or two to your virtualenv:</p>
+<div class="section" id="manhole">
+<h2><span class="section-number">1.3.7. </span>使用Manhole调试<a class="headerlink" href="#manhole" title="Permalink to this headline">¶</a></h2>
+<p>你可是使用manhole进行调试，一个交互的python终端，它开放了所有的buildmaster账户权限，包括删除文件的能力，因此不应使用弱密码或容易猜到的密码来启用它。</p>
+<p>你需要安装一到两个包在虚拟环境中，才能使用它</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/tmp/bb-master
 <span class="nb">source</span> sandbox/bin/activate
 pip install -U pip
 pip install cryptography pyasn1
 </pre></div>
 </div>
-<p>You will also need to generate an SSH host key for the Manhole server.</p>
+<p>你也需要为Manhole server 生成一个SSH key</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir -p /data/ssh_host_keys
 ckeygen -t rsa -f /data/ssh_host_keys/ssh_host_rsa_key
 </pre></div>
 </div>
-<p>In your master.cfg find:</p>
+<p>在你的 master.cfg 寻找:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="n">BuildmasterConfig</span> <span class="o">=</span> <span class="p">{}</span>
 </pre></div>
 </div>
-<p>Insert the following to enable debugging mode with manhole:</p>
+<p>插入下面的代码给manhole打开调试模式:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">####### DEBUGGING</span>
 <span class="kn">from</span> <span class="nn">buildbot</span> <span class="k">import</span> <span class="n">manhole</span>
 <span class="n">c</span><span class="p">[</span><span class="s1">&#39;manhole&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">manhole</span><span class="o">.</span><span class="n">PasswordManhole</span><span class="p">(</span><span class="s2">&quot;tcp:1234:interface=127.0.0.1&quot;</span><span class="p">,</span>
@@ -389,7 +383,7 @@ ckeygen -t rsa -f /data/ssh_host_keys/ssh_host_rsa_key
                                        <span class="n">ssh_hostkey_dir</span><span class="o">=</span><span class="s2">&quot;/data/ssh_host_keys/&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>After restarting the master, you can ssh into the master and get an interactive Python shell:</p>
+<p>重启master后， 你可以通过ssh登录到master，进入python交互环境</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh -p1234 admin@127.0.0.1
 <span class="c1"># enter passwd at prompt</span>
 </pre></div>
@@ -407,49 +401,51 @@ of pyasn1:</p>
 </pre></div>
 </div>
 </div>
-<p>If you wanted to check which workers are connected and what builders those workers are assigned to you could do:</p>
+<p>如果你想检查哪个worker连接进来了，哪个worker承担了构建者的角色，你可以这么做:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">master</span><span class="o">.</span><span class="n">workers</span><span class="o">.</span><span class="n">workers</span>
 <span class="go">{&#39;example-worker&#39;: &lt;Worker &#39;example-worker&#39;, current builders: runtests&gt;}</span>
 </pre></div>
 </div>
-<p>Objects can be explored in more depth using <cite>dir(x)</cite> or the helper function <cite>show(x)</cite>.</p>
+<p>可以使用`dir(x)`或辅助函数`show(x)`来更深入地探索对象。</p>
 </div>
-<div class="section" id="adding-a-try-scheduler">
-<h2><span class="section-number">1.3.8. </span>Adding a ‘try’ scheduler<a class="headerlink" href="#adding-a-try-scheduler" title="Permalink to this headline">¶</a></h2>
-<p>Buildbot includes a way for developers to submit patches for testing without committing them to the source code control system.
-(This is really handy for projects that support several operating systems or architectures.)</p>
-<p>To set this up, add the following lines to master.cfg:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">buildbot.scheduler</span> <span class="k">import</span> <span class="n">Try_Userpass</span>
-<span class="n">c</span><span class="p">[</span><span class="s1">&#39;schedulers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">c</span><span class="p">[</span><span class="s1">&#39;schedulers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">Try_Userpass</span><span class="p">(</span>
-                                    <span class="n">name</span><span class="o">=</span><span class="s1">&#39;try&#39;</span><span class="p">,</span>
-                                    <span class="n">builderNames</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;runtests&#39;</span><span class="p">],</span>
-                                    <span class="n">port</span><span class="o">=</span><span class="mi">5555</span><span class="p">,</span>
-                                    <span class="n">userpass</span><span class="o">=</span><span class="p">[(</span><span class="s1">&#39;sampleuser&#39;</span><span class="p">,</span><span class="s1">&#39;samplepass&#39;</span><span class="p">)]))</span>
-</pre></div>
-</div>
-<p>Then you can submit changes using the <a href="#id13"><span class="problematic" id="id14">:bb:cmdline:`try`</span></a> command.</p>
-<p>Let’s try this out by making a one-line change to hello-world, say, to make it trace the tree by default:</p>
+<div class="section" id="try-scheduler">
+<h2><span class="section-number">1.3.8. </span>增加 try scheduler<a class="headerlink" href="#try-scheduler" title="Permalink to this headline">¶</a></h2>
+<p>Buildbot提供了一种开发人员提交补丁进行测试而无需将其提交到源代码控制系统的方法。
+（这对于支持多个操作系统或体系结构的项目确实非常方便。）</p>
+<p>将下面的代码添加到 master.cfg 完成设置</p>
+<blockquote>
+<div><p>from buildbot.scheduler import Try_Userpass
+c[‘schedulers’] = []
+c[‘schedulers’].append(Try_Userpass(</p>
+<blockquote>
+<div><p>name=’try’,
+builderNames=[‘runtests’],
+port=5555,
+userpass=[(‘sampleuser’,’samplepass’)]))</p>
+</div></blockquote>
+</div></blockquote>
+<p>然后你可以这样提交变动 <a href="#id13"><span class="problematic" id="id14">:bb:cmdline:`try`</span></a> command.</p>
+<p>让我们通过对hello-world进行单行更改来进行尝试，例如，使其默认情况下跟踪树:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/buildbot/hello-world.git hello-world-git
 <span class="nb">cd</span> hello-world-git/hello
 <span class="nv">$EDITOR</span> __init__.py
 <span class="c1"># change &#39;return &quot;hello &quot; + who&#39; on line 6 to &#39;return &quot;greets &quot; + who&#39;</span>
 </pre></div>
 </div>
-<p>Then run buildbot’s <code class="docutils literal notranslate"><span class="pre">try</span></code> command as follows:</p>
+<p>然后，执行buildbot 中的 <code class="docutils literal notranslate"><span class="pre">try</span></code> 命令，像下面这样</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> ~/tmp/bb-master
 <span class="nb">source</span> sandbox/bin/activate
 buildbot try --connect<span class="o">=</span>pb --master<span class="o">=</span><span class="m">127</span>.0.0.1:5555 <span class="se">\</span>
     --username<span class="o">=</span>sampleuser --passwd<span class="o">=</span>samplepass --vc<span class="o">=</span>git
 </pre></div>
 </div>
-<p>This will do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> for you and send the resulting patch to the server for build and test against the latest sources from Git.</p>
-<p>Now go back to the <a class="reference external" href="http://localhost:8010/#/waterfall">waterfall</a> page, click on the runtests link, and scroll down.
-You should see that another build has been started with your change (and stdout for the tests should be chock-full of parse trees as a result).
-The “Reason” for the job will be listed as “‘try’ job”, and the blamelist will be empty.</p>
+<p>这将为你执行 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code> 并将生成的补丁发送到服务器以针对Git的最新资源进行构建和测试。</p>
+<p>现在回到 <a href="#id15"><span class="problematic" id="id16">`</span></a>waterfall &lt;<a class="reference external" href="http://localhost:8010/#/waterfall">http://localhost:8010/#/waterfall</a>&gt;`_页面，点击 runtests 连接， 然后向下翻，
+您应该看到所做的更改已经开始了另一个构建（因此，测试的stdout应该作为结果输出到屏幕）。
+该工作的“原因”将被列为“try’ job”，而责任者将为空</p>
 <p>To make yourself show up as the author of the change, use the <code class="docutils literal notranslate"><span class="pre">--who=emailaddr</span></code> option on <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">try</span></code> to pass your email address.</p>
 <p>To make a description of the change show up, use the <code class="docutils literal notranslate"><span class="pre">--properties=comment=&quot;this</span> <span class="pre">is</span> <span class="pre">a</span> <span class="pre">comment&quot;</span></code> option on <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">try</span></code>.</p>
-<p>To use ssh instead of a private username/password database, see <a href="#id15"><span class="problematic" id="id16">:bb:sched:`Try_Jobdir`</span></a>.</p>
+<p>To use ssh instead of a private username/password database, see <a href="#id17"><span class="problematic" id="id18">:bb:sched:`Try_Jobdir`</span></a>.</p>
 </div>
 </div>
 
