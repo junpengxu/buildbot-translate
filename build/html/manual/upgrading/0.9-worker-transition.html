@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Transition to “worker” terminology in BuildBot 0.9.0 &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.12.5. Transition to “worker” terminology in BuildBot 0.9.0 &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,8 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="2.12.4. New-Style Build Steps in Buildbot 0.9.0" href="0.9-new-style-steps.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +79,46 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html">2.5. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2.12. Upgrading</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2.0-upgrade.html">2.12.1. Upgrading to Buildbot 2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.0-upgrade.html">2.12.2. Upgrading to Buildbot 1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="0.9-upgrade.html">2.12.3. Upgrading to Buildbot 0.9.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="0.9-new-style-steps.html">2.12.4. New-Style Build Steps in Buildbot 0.9.0</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.12.5. Transition to “worker” terminology in BuildBot 0.9.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#old-names-fallback-settings">2.12.5.1. Old names fallback settings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#changed-api">2.12.5.2. Changed API</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plugins">2.12.5.3. Plugins</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#buildmasterconfig-changes">2.12.5.4. <code class="docutils literal notranslate"><span class="pre">BuildmasterConfig</span></code> changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#docker-latent-worker-changes">2.12.5.5. Docker latent worker changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ec2-latent-worker-changes">2.12.5.6. EC2 latent worker changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#steps-slave-setpropertiesfromenv-changes">2.12.5.7. <code class="docutils literal notranslate"><span class="pre">steps.slave.SetPropertiesFromEnv</span></code> changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#local-worker-changes">2.12.5.8. Local worker changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#worker-manager-changes">2.12.5.9. Worker Manager changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#properties">2.12.5.10. Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#metrics">2.12.5.11. Metrics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#database">2.12.5.12. Database</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#usepty-changes">2.12.5.13. <code class="docutils literal notranslate"><span class="pre">usePTY</span></code> changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#buildbot-worker">2.12.5.14. <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +164,11 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Transition to “worker” terminology in BuildBot 0.9.0</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2.12. </span>Upgrading</a> &raquo;</li>
+        
+      <li><span class="section-number">2.12.5. </span>Transition to “worker” terminology in BuildBot 0.9.0</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,7 +188,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="transition-to-worker-terminology-in-buildbot-0-9-0">
-<span id="transition-to-worker-terminology"></span><h1>Transition to “worker” terminology in BuildBot 0.9.0<a class="headerlink" href="#transition-to-worker-terminology-in-buildbot-0-9-0" title="Permalink to this headline">¶</a></h1>
+<span id="transition-to-worker-terminology"></span><h1><span class="section-number">2.12.5. </span>Transition to “worker” terminology in BuildBot 0.9.0<a class="headerlink" href="#transition-to-worker-terminology-in-buildbot-0-9-0" title="Permalink to this headline">¶</a></h1>
 <p>Since version 0.9.0 of Buildbot “slave”-based terminology is deprecated
 in favor of “worker”-based terminology.</p>
 <p>API change is done in backward compatible way, so old “slave”-containing
@@ -156,7 +199,7 @@ providing fallback.
 See release notes for the list of breaking changes of private interfaces.
 The fallbacks have been removed in Buildbot version 2.0.0.</p>
 <div class="section" id="old-names-fallback-settings">
-<h2>Old names fallback settings<a class="headerlink" href="#old-names-fallback-settings" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.1. </span>Old names fallback settings<a class="headerlink" href="#old-names-fallback-settings" title="Permalink to this headline">¶</a></h2>
 <p>Use of obsolete names will raise Python warnings with category
 <code class="xref py py-exc docutils literal notranslate"><span class="pre">buildbot.worker_transition.DeprecatedWorkerAPIWarning</span></code>.
 By default these warnings are printed in the application log.
@@ -175,7 +218,7 @@ available actions, in particular warnings can be disabled using
 using any other Buildbot classes.</p>
 </div>
 <div class="section" id="changed-api">
-<h2>Changed API<a class="headerlink" href="#changed-api" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.2. </span>Changed API<a class="headerlink" href="#changed-api" title="Permalink to this headline">¶</a></h2>
 <p>In general “Slave” and “Buildslave” parts in identifiers and messages were
 replaced with “Worker”; “SlaveBuilder” with “WorkerForBuilder”.</p>
 <p>Below is the list of changed API (use of old names from this list will work).
@@ -318,7 +361,7 @@ constructor argument <code class="docutils literal notranslate"><span class="pre
 </ul>
 </div>
 <div class="section" id="plugins">
-<h2>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.3. </span>Plugins<a class="headerlink" href="#plugins" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">buildbot.buildslave</span></code> entry point was renamed to <code class="docutils literal notranslate"><span class="pre">buildbot.worker</span></code>, new
 plugins should be updated accordingly.</p>
 <p>Plugins that use old <code class="docutils literal notranslate"><span class="pre">buildbot.buildslave</span></code> entry point are still available
@@ -348,7 +391,7 @@ name even if plugin uses old entry points:</p>
 </ul>
 </div>
 <div class="section" id="buildmasterconfig-changes">
-<h2><code class="docutils literal notranslate"><span class="pre">BuildmasterConfig</span></code> changes<a class="headerlink" href="#buildmasterconfig-changes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.4. </span><code class="docutils literal notranslate"><span class="pre">BuildmasterConfig</span></code> changes<a class="headerlink" href="#buildmasterconfig-changes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">c['slaves']</span></code> was replaced with <code class="docutils literal notranslate"><span class="pre">c['workers']</span></code>.
 Use of <code class="docutils literal notranslate"><span class="pre">c['slaves']</span></code> will work, but is considered deprecated, and will be
@@ -358,7 +401,7 @@ removed in the future versions of Buildbot.</p></li>
 </ul>
 </div>
 <div class="section" id="docker-latent-worker-changes">
-<h2>Docker latent worker changes<a class="headerlink" href="#docker-latent-worker-changes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.5. </span>Docker latent worker changes<a class="headerlink" href="#docker-latent-worker-changes" title="Permalink to this headline">¶</a></h2>
 <p>In addition to class being renamed, environment variables that are set inside
 container <code class="docutils literal notranslate"><span class="pre">SLAVENAME</span></code> and <code class="docutils literal notranslate"><span class="pre">SLAVEPASS</span></code> were renamed to
 <code class="docutils literal notranslate"><span class="pre">WORKERNAME</span></code> and <code class="docutils literal notranslate"><span class="pre">WORKERPASS</span></code> accordingly.
@@ -366,29 +409,29 @@ Old environment variable are still available, but are deprecated and will be
 removed in the future.</p>
 </div>
 <div class="section" id="ec2-latent-worker-changes">
-<h2>EC2 latent worker changes<a class="headerlink" href="#ec2-latent-worker-changes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.6. </span>EC2 latent worker changes<a class="headerlink" href="#ec2-latent-worker-changes" title="Permalink to this headline">¶</a></h2>
 <p>Use of default values of <code class="docutils literal notranslate"><span class="pre">keypair_name</span></code> and <code class="docutils literal notranslate"><span class="pre">security_name</span></code>
 constructor arguments of <a class="reference internal" href="../configuration/workers-ec2.html#buildbot.worker.ec2.EC2LatentWorker" title="buildbot.worker.ec2.EC2LatentWorker"><code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.worker.ec2.EC2LatentWorker</span></code></a>
 is deprecated. Please specify them explicitly.</p>
 </div>
 <div class="section" id="steps-slave-setpropertiesfromenv-changes">
-<h2><code class="docutils literal notranslate"><span class="pre">steps.slave.SetPropertiesFromEnv</span></code> changes<a class="headerlink" href="#steps-slave-setpropertiesfromenv-changes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.7. </span><code class="docutils literal notranslate"><span class="pre">steps.slave.SetPropertiesFromEnv</span></code> changes<a class="headerlink" href="#steps-slave-setpropertiesfromenv-changes" title="Permalink to this headline">¶</a></h2>
 <p>In addition to <code class="docutils literal notranslate"><span class="pre">buildbot.steps.slave</span></code> module being renamed to
 <code class="xref py py-mod docutils literal notranslate"><span class="pre">buildbot.steps.worker</span></code>, default <code class="docutils literal notranslate"><span class="pre">source</span></code> value for
 <code class="xref py py-class docutils literal notranslate"><span class="pre">SetPropertiesFromEnv</span></code> was changed from
 <code class="docutils literal notranslate"><span class="pre">&quot;SlaveEnvironment&quot;</span></code> to <code class="docutils literal notranslate"><span class="pre">&quot;WorkerEnvironment&quot;</span></code>.</p>
 </div>
 <div class="section" id="local-worker-changes">
-<h2>Local worker changes<a class="headerlink" href="#local-worker-changes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.8. </span>Local worker changes<a class="headerlink" href="#local-worker-changes" title="Permalink to this headline">¶</a></h2>
 <p>Working directory for local workers were changed from
 <code class="docutils literal notranslate"><span class="pre">master-basedir/slaves/name</span></code> to <code class="docutils literal notranslate"><span class="pre">master-basedir/workers/name</span></code>.</p>
 </div>
 <div class="section" id="worker-manager-changes">
-<h2>Worker Manager changes<a class="headerlink" href="#worker-manager-changes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.9. </span>Worker Manager changes<a class="headerlink" href="#worker-manager-changes" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">slave_config</span></code> function argument was renamed to <code class="docutils literal notranslate"><span class="pre">worker_config</span></code>.</p>
 </div>
 <div class="section" id="properties">
-<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.10. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">slavename</span></code> property is deprecated in favor of <code class="docutils literal notranslate"><span class="pre">workername</span></code> property.
 Render of deprecated property will produce warning.</p>
@@ -402,7 +445,7 @@ property with source <code class="docutils literal notranslate"><span class="pre
 </ul>
 </div>
 <div class="section" id="metrics">
-<h2>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.11. </span>Metrics<a class="headerlink" href="#metrics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.process.metrics.AttachedSlavesWatcher</span></code> was renamed to
 <code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.process.metrics.AttachedWorkersWatcher</span></code>.</p></li>
@@ -448,7 +491,7 @@ measurement class name changed from <code class="docutils literal notranslate"><
 </table>
 </div>
 <div class="section" id="database">
-<h2>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.12. </span>Database<a class="headerlink" href="#database" title="Permalink to this headline">¶</a></h2>
 <p>Schema changes:</p>
 <table class="docutils align-default">
 <colgroup>
@@ -519,11 +562,11 @@ measurement class name changed from <code class="docutils literal notranslate"><
 </ul>
 </div>
 <div class="section" id="usepty-changes">
-<h2><code class="docutils literal notranslate"><span class="pre">usePTY</span></code> changes<a class="headerlink" href="#usepty-changes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.5.13. </span><code class="docutils literal notranslate"><span class="pre">usePTY</span></code> changes<a class="headerlink" href="#usepty-changes" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">usePTY</span></code> default value has been changed from <code class="docutils literal notranslate"><span class="pre">slave-config</span></code> to <code class="docutils literal notranslate"><span class="pre">None</span></code> (use of <code class="docutils literal notranslate"><span class="pre">slave-config</span></code> will still work, but discouraged).</p>
 </div>
 <div class="section" id="buildbot-worker">
-<span id="worker-transition-buildbot-worker"></span><h2><code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code><a class="headerlink" href="#buildbot-worker" title="Permalink to this headline">¶</a></h2>
+<span id="worker-transition-buildbot-worker"></span><h2><span class="section-number">2.12.5.14. </span><code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code><a class="headerlink" href="#buildbot-worker" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">buildbot-slave</span></code> package has been renamed to <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code>.</p>
 <p><code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> has backward incompatible changes and requires buildmaster &gt;= 0.9.0b8.
 <code class="docutils literal notranslate"><span class="pre">buildbot-slave</span></code> from 0.8.x will work with both 0.8.x and 0.9.x versions of buildmaster, so there is no need to upgrade currently deployed buildbot-slaves during switch from 0.8.x to 0.9.x.</p>
@@ -561,6 +604,13 @@ measurement class name changed from <code class="docutils literal notranslate"><
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="0.9-new-style-steps.html" class="btn btn-neutral float-left" title="2.12.4. New-Style Build Steps in Buildbot 0.9.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

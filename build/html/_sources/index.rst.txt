@@ -11,6 +11,7 @@ Welcome to buildbot-translate's documentation!
    :numbered: 4
 
    tutorial/index
+   manual/index
 
 
 Indices and tables

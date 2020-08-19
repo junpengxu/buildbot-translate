@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>New-Style Build Steps in Buildbot 0.9.0 &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.12.4. New-Style Build Steps in Buildbot 0.9.0 &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.12.5. Transition to “worker” terminology in BuildBot 0.9.0" href="0.9-worker-transition.html" />
+    <link rel="prev" title="2.12.3. Upgrading to Buildbot 0.9.0" href="0.9-upgrade.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,40 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html">2.5. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2.12. Upgrading</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="2.0-upgrade.html">2.12.1. Upgrading to Buildbot 2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.0-upgrade.html">2.12.2. Upgrading to Buildbot 1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="0.9-upgrade.html">2.12.3. Upgrading to Buildbot 0.9.0</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.12.4. New-Style Build Steps in Buildbot 0.9.0</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#summary-of-changes">2.12.4.1. Summary of Changes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#backward-compatibility">2.12.4.2. Backward Compatibility</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rewriting-start">2.12.4.3. Rewriting <code class="docutils literal notranslate"><span class="pre">start</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#newly-asynchronous-methods">2.12.4.4. Newly Asynchronous Methods</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#properties">2.12.4.5. Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#log-objects">2.12.4.6. Log Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#status-strings">2.12.4.7. Status Strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#statistics">2.12.4.8. Statistics</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="0.9-worker-transition.html">2.12.5. Transition to “worker” terminology in BuildBot 0.9.0</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +159,11 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>New-Style Build Steps in Buildbot 0.9.0</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2.12. </span>Upgrading</a> &raquo;</li>
+        
+      <li><span class="section-number">2.12.4. </span>New-Style Build Steps in Buildbot 0.9.0</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,7 +183,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="new-style-build-steps-in-buildbot-0-9-0">
-<span id="new-style-build-steps"></span><h1>New-Style Build Steps in Buildbot 0.9.0<a class="headerlink" href="#new-style-build-steps-in-buildbot-0-9-0" title="Permalink to this headline">¶</a></h1>
+<span id="new-style-build-steps"></span><h1><span class="section-number">2.12.4. </span>New-Style Build Steps in Buildbot 0.9.0<a class="headerlink" href="#new-style-build-steps-in-buildbot-0-9-0" title="Permalink to this headline">¶</a></h1>
 <p>In Buildbot-0.9.0, many operations performed by BuildStep subclasses return a Deferred.
 As a result, custom build steps which call these methods will need to be rewritten.</p>
 <p>Buildbot-0.8.9 supports old-style steps natively, while new-style steps are emulated.
@@ -155,7 +193,7 @@ All custom steps should be rewritten in the new style as soon as possible.</p>
 <p>Buildbot distinguishes new-style from old-style steps by the presence of a <a class="reference internal" href="../../developer/cls-buildsteps.html#buildbot.process.buildstep.BuildStep.run" title="buildbot.process.buildstep.BuildStep.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a> method.
 If this method is present, then the step is a new-style step.</p>
 <div class="section" id="summary-of-changes">
-<h2>Summary of Changes<a class="headerlink" href="#summary-of-changes" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.4.1. </span>Summary of Changes<a class="headerlink" href="#summary-of-changes" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>New-style steps have a <code class="docutils literal notranslate"><span class="pre">run</span></code> method that is simpler to implement than the old <code class="docutils literal notranslate"><span class="pre">start</span></code> method.</p></li>
 <li><p>Many methods are now asynchronous (return Deferreds), as they perform operations on the database.</p></li>
@@ -171,7 +209,7 @@ For backward compatibility, the parameters may still be given as lists, but will
 </ul>
 </div>
 <div class="section" id="backward-compatibility">
-<h2>Backward Compatibility<a class="headerlink" href="#backward-compatibility" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.4.2. </span>Backward Compatibility<a class="headerlink" href="#backward-compatibility" title="Permalink to this headline">¶</a></h2>
 <p>Some hacks are in place to support old-style steps.
 These hacks are only activated when an old-style step is detected.
 Support for old-style steps will be dropped soon after Buildbot-0.9.0 is released.</p>
@@ -185,7 +223,7 @@ This means that logs returned from <code class="docutils literal notranslate"><s
 </ul>
 </div>
 <div class="section" id="rewriting-start">
-<h2>Rewriting <code class="docutils literal notranslate"><span class="pre">start</span></code><a class="headerlink" href="#rewriting-start" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.4.3. </span>Rewriting <code class="docutils literal notranslate"><span class="pre">start</span></code><a class="headerlink" href="#rewriting-start" title="Permalink to this headline">¶</a></h2>
 <p>If your custom buildstep implements the <code class="docutils literal notranslate"><span class="pre">start</span></code> method, then rename that method to <code class="docutils literal notranslate"><span class="pre">run</span></code> and set it up to return a Deferred, either explicitly or via <code class="docutils literal notranslate"><span class="pre">inlineCallbacks</span></code>.
 The value of the Deferred should be the result of the step (one of the codes in <a class="reference internal" href="../../developer/results.html#module-buildbot.process.results" title="buildbot.process.results"><code class="xref py py-mod docutils literal notranslate"><span class="pre">buildbot.process.results</span></code></a>), or a Twisted failure instance to complete the step as EXCEPTION.
 The new <code class="docutils literal notranslate"><span class="pre">run</span></code> method should <em>not</em> call <code class="docutils literal notranslate"><span class="pre">self.finished</span></code> or <code class="docutils literal notranslate"><span class="pre">self.failed</span></code>, instead signalling the same via Deferred.</p>
@@ -207,7 +245,7 @@ The new <code class="docutils literal notranslate"><span class="pre">run</span><
 </div>
 </div>
 <div class="section" id="newly-asynchronous-methods">
-<h2>Newly Asynchronous Methods<a class="headerlink" href="#newly-asynchronous-methods" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.4.4. </span>Newly Asynchronous Methods<a class="headerlink" href="#newly-asynchronous-methods" title="Permalink to this headline">¶</a></h2>
 <p>The following methods now return a Deferred:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="../../developer/cls-buildsteps.html#buildbot.process.buildstep.BuildStep.addLog" title="buildbot.process.buildstep.BuildStep.addLog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">buildbot.process.buildstep.BuildStep.addLog()</span></code></a></p></li>
@@ -248,13 +286,13 @@ Syntactically, <code class="docutils literal notranslate"><span class="pre">inli
 All methods that can be overridden in custom steps can return a Deferred.</p>
 </div>
 <div class="section" id="properties">
-<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.4.5. </span>Properties<a class="headerlink" href="#properties" title="Permalink to this headline">¶</a></h2>
 <p>Good news!
 The API for properties is the same synchronous API as was available in old-style steps.
 Properties are handled synchronously during the build, and persisted to the database at completion of each step.</p>
 </div>
 <div class="section" id="log-objects">
-<h2>Log Objects<a class="headerlink" href="#log-objects" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.4.6. </span>Log Objects<a class="headerlink" href="#log-objects" title="Permalink to this headline">¶</a></h2>
 <p>Old steps had two ways of interacting with logfiles, both of which have changed.</p>
 <p>The first is writing to logs while a step is executing.
 When using <a class="reference internal" href="../../developer/cls-buildsteps.html#buildbot.process.buildstep.BuildStep.addCompleteLog" title="buildbot.process.buildstep.BuildStep.addCompleteLog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">addCompleteLog()</span></code></a> or <a class="reference internal" href="../../developer/cls-buildsteps.html#buildbot.process.buildstep.BuildStep.addHTMLLog" title="buildbot.process.buildstep.BuildStep.addHTMLLog"><code class="xref py py-meth docutils literal notranslate"><span class="pre">addHTMLLog()</span></code></a>, this is straightforward, except that in new-style steps these methods return a Deferred.</p>
@@ -282,7 +320,7 @@ This method was primarily used by <a class="reference internal" href="../../deve
 Any other uses of the subscribe method should be refactored to use a <a class="reference internal" href="../../developer/cls-logobserver.html#buildbot.process.logobserver.LogObserver" title="buildbot.process.logobserver.LogObserver"><code class="xref py py-class docutils literal notranslate"><span class="pre">LogObserver</span></code></a>.</p>
 </div>
 <div class="section" id="status-strings">
-<h2>Status Strings<a class="headerlink" href="#status-strings" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.4.7. </span>Status Strings<a class="headerlink" href="#status-strings" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">self.step_status.setText</span></code> and <code class="docutils literal notranslate"><span class="pre">setText2</span></code> methods have been removed.
 Similarly, the <code class="docutils literal notranslate"><span class="pre">_describe</span></code> and <code class="docutils literal notranslate"><span class="pre">describe</span></code> methods are not used in new-style steps.
 In fact, steps no longer set their status directly.</p>
@@ -291,7 +329,7 @@ This method calls <a class="reference internal" href="../../developer/cls-builds
 Steps override the latter two methods to provide appropriate summaries.</p>
 </div>
 <div class="section" id="statistics">
-<h2>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.12.4.8. </span>Statistics<a class="headerlink" href="#statistics" title="Permalink to this headline">¶</a></h2>
 <p>Support for statistics has been moved to the <code class="docutils literal notranslate"><span class="pre">BuildStep</span></code> and <code class="docutils literal notranslate"><span class="pre">Build</span></code> objects.
 Calls to <code class="docutils literal notranslate"><span class="pre">self.step_status.setStatistic</span></code> should be rewritten as <code class="docutils literal notranslate"><span class="pre">self.setStatistic</span></code>.</p>
 </div>
@@ -302,6 +340,15 @@ Calls to <code class="docutils literal notranslate"><span class="pre">self.step_
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="0.9-worker-transition.html" class="btn btn-neutral float-right" title="2.12.5. Transition to “worker” terminology in BuildBot 0.9.0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="0.9-upgrade.html" class="btn btn-neutral float-left" title="2.12.3. Upgrading to Buildbot 0.9.0" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

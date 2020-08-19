@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Deployment &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.11. Deployment &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.12. Upgrading" href="upgrading/index.html" />
+    <link rel="prev" title="2.10. Plugin Infrastructure in Buildbot" href="plugins.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,37 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/index.html">2.5. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.11. Deployment</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-a-database-server">2.11.1. Using A Database Server</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#server-setup-example">2.11.1.1. Server Setup Example</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#additional-requirements">2.11.1.2. Additional Requirements</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#maintenance">2.11.2. Maintenance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#troubleshooting">2.11.3. Troubleshooting</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#starting-the-worker">2.11.3.1. Starting the worker</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#connecting-to-the-buildmaster">2.11.3.2. Connecting to the buildmaster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#contrib-scripts">2.11.3.3. Contrib Scripts</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/index.html">2.12. Upgrading</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +156,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Deployment</li>
+          <li><a href="index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+      <li><span class="section-number">2.11. </span>Deployment</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,7 +178,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="deployment">
-<h1>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2.11. </span>Deployment<a class="headerlink" href="#deployment" title="Permalink to this headline">¶</a></h1>
 <p>This page aims at describing the common pitfalls and best practices when deploying buildbot.</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
@@ -155,7 +188,7 @@
 </ul>
 </div>
 <div class="section" id="using-a-database-server">
-<span id="database-server"></span><h2><a class="toc-backref" href="#id12">Using A Database Server</a><a class="headerlink" href="#using-a-database-server" title="Permalink to this headline">¶</a></h2>
+<span id="database-server"></span><h2><a class="toc-backref" href="#id12"><span class="section-number">2.11.1. </span>Using A Database Server</a><a class="headerlink" href="#using-a-database-server" title="Permalink to this headline">¶</a></h2>
 <p>Buildbot uses the sqlite3 database backend by default.</p>
 <div class="admonition important">
 <p class="admonition-title">Important</p>
@@ -165,7 +198,7 @@ If you expect your Buildbot to grow over time, it is strongly advised to use a r
 </div>
 <p>If you want to use a database server as the database backend for your Buildbot, use option <cite>buildbot create-master –db</cite> to specify the <a class="reference internal" href="configuration/global.html#database-specification"><span class="std std-ref">connection string</span></a> for the database, and make sure that the same URL appears in the <code class="docutils literal notranslate"><span class="pre">db_url</span></code> of the <a href="#id1"><span class="problematic" id="id2">:bb:cfg:`db`</span></a> parameter in your configuration file.</p>
 <div class="section" id="server-setup-example">
-<h3>Server Setup Example<a class="headerlink" href="#server-setup-example" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.11.1.1. </span>Server Setup Example<a class="headerlink" href="#server-setup-example" title="Permalink to this headline">¶</a></h3>
 <p>Installing and configuring a database server can be complex.
 Here is a minimalist example on how to install and configure a PostgreSQL server for your Buildbot on a recent Ubuntu system.</p>
 <div class="admonition note">
@@ -224,7 +257,7 @@ There are other ways to do it without root access (e.g. docker, build from sourc
 </div>
 </div>
 <div class="section" id="additional-requirements">
-<h3>Additional Requirements<a class="headerlink" href="#additional-requirements" title="Permalink to this headline">¶</a></h3>
+<h3><span class="section-number">2.11.1.2. </span>Additional Requirements<a class="headerlink" href="#additional-requirements" title="Permalink to this headline">¶</a></h3>
 <p>Depending on the selected database, further Python packages will be required.
 Consult the <a class="reference external" href="http://www.sqlalchemy.org/">SQLAlchemy</a> dialect list for a full description.
 The most common choice for MySQL is <a class="reference external" href="https://github.com/PyMySQL/mysqlclient-python">mysqlclient</a>.
@@ -234,7 +267,7 @@ Any reasonably recent version should suffice.</p>
 </div>
 </div>
 <div class="section" id="maintenance">
-<span id="id3"></span><h2><a class="toc-backref" href="#id13">Maintenance</a><a class="headerlink" href="#maintenance" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2><a class="toc-backref" href="#id13"><span class="section-number">2.11.2. </span>Maintenance</a><a class="headerlink" href="#maintenance" title="Permalink to this headline">¶</a></h2>
 <p>The buildmaster can be configured to send out email notifications when a worker has been offline for a while.
 Be sure to configure the buildmaster with a contact email address for each worker so these notifications are sent to someone who can bring it back online.</p>
 <p>If you find you can no longer provide a worker to the project, please let the project admins know, so they can put out a call for a replacement.</p>
@@ -253,10 +286,10 @@ You can use something like the following (assuming builds are stored in <code cl
 <p>Alternatively, you can configure a maximum number of old logs to be kept using the <code class="docutils literal notranslate"><span class="pre">--log-count</span></code> command line option when running <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span> <span class="pre">create-worker</span></code> or <code class="docutils literal notranslate"><span class="pre">buildbot</span> <span class="pre">create-master</span></code>.</p>
 </div>
 <div class="section" id="troubleshooting">
-<span id="id4"></span><h2><a class="toc-backref" href="#id14">Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
+<span id="id4"></span><h2><a class="toc-backref" href="#id14"><span class="section-number">2.11.3. </span>Troubleshooting</a><a class="headerlink" href="#troubleshooting" title="Permalink to this headline">¶</a></h2>
 <p>Here are a few hints on diagnosing common problems.</p>
 <div class="section" id="starting-the-worker">
-<span id="id5"></span><h3>Starting the worker<a class="headerlink" href="#starting-the-worker" title="Permalink to this headline">¶</a></h3>
+<span id="id5"></span><h3><span class="section-number">2.11.3.1. </span>Starting the worker<a class="headerlink" href="#starting-the-worker" title="Permalink to this headline">¶</a></h3>
 <p>Cron jobs are typically run with a minimal shell (<code class="file docutils literal notranslate"><span class="pre">/bin/sh</span></code>, not <code class="file docutils literal notranslate"><span class="pre">/bin/bash</span></code>), and tilde expansion is not always performed in such commands.
 You may want to use explicit paths, because the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> is usually quite short and doesn’t include anything set by your shell’s startup scripts (<code class="file docutils literal notranslate"><span class="pre">.profile</span></code>, <code class="file docutils literal notranslate"><span class="pre">.bashrc</span></code>, etc).
 If you’ve installed buildbot (or other Python libraries) to an unusual location, you may need to add a <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> specification (note that Python will do tilde-expansion on <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PYTHONPATH</span></code> elements by itself).
@@ -269,7 +302,7 @@ Sometimes it is safer to fully-specify everything:</p>
 Otherwise, things will work fine for a while, but the first power outage or system reboot you have will stop the worker with nothing but the cries of sorrowful developers to remind you that it has gone away.</p>
 </div>
 <div class="section" id="connecting-to-the-buildmaster">
-<span id="id6"></span><h3>Connecting to the buildmaster<a class="headerlink" href="#connecting-to-the-buildmaster" title="Permalink to this headline">¶</a></h3>
+<span id="id6"></span><h3><span class="section-number">2.11.3.2. </span>Connecting to the buildmaster<a class="headerlink" href="#connecting-to-the-buildmaster" title="Permalink to this headline">¶</a></h3>
 <p>If the worker cannot connect to the buildmaster, the reason should be described in the <code class="file docutils literal notranslate"><span class="pre">twistd.log</span></code> logfile.
 Some common problems are an incorrect master hostname or port number, or a mistyped bot name or password.
 If the worker loses the connection to the master, it is supposed to attempt to reconnect with an exponentially-increasing backoff.
@@ -280,7 +313,7 @@ The reconnect time will depend upon how long the buildmaster is offline (i.e. ho
 Again, <code class="samp docutils literal notranslate"><span class="pre">buildbot-worker</span> <span class="pre">restart</span> <em><span class="pre">BASEDIR</span></em></code> will speed up the process.</p>
 </div>
 <div class="section" id="contrib-scripts">
-<span id="id7"></span><h3>Contrib Scripts<a class="headerlink" href="#contrib-scripts" title="Permalink to this headline">¶</a></h3>
+<span id="id7"></span><h3><span class="section-number">2.11.3.3. </span>Contrib Scripts<a class="headerlink" href="#contrib-scripts" title="Permalink to this headline">¶</a></h3>
 <p>While some features of Buildbot are included in the distribution, others are only available in <a href="#id8"><span class="problematic" id="id9">:contrib-src:`master/contrib/`</span></a> in the <code class="docutils literal notranslate"><span class="pre">buildbot-contrib</span></code> source directory.
 The latest versions of such scripts are available at <a href="#id10"><span class="problematic" id="id11">:contrib-src:`master/contrib`</span></a>.</p>
 </div>
@@ -292,6 +325,15 @@ The latest versions of such scripts are available at <a href="#id10"><span class
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="upgrading/index.html" class="btn btn-neutral float-right" title="2.12. Upgrading" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="plugins.html" class="btn btn-neutral float-left" title="2.10. Plugin Infrastructure in Buildbot" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

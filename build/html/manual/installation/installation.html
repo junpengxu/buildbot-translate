@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Installing the code &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.2.3. Installing the code &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.2.4. Buildmaster Setup" href="buildmaster.html" />
+    <link rel="prev" title="2.2.2. Requirements" href="requirements.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,38 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2.2. Installation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="components.html">2.2.1. Buildbot Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="requirements.html">2.2.2. Requirements</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.2.3. Installing the code</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#the-buildbot-packages">2.2.3.1. The Buildbot Packages</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-from-pypi">2.2.3.2. Installation From PyPI</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-from-tarballs">2.2.3.3. Installation From Tarballs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#installation-in-a-virtualenv">2.2.3.4. Installation in a Virtualenv</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-buildbot-s-tests-optional">2.2.3.5. Running Buildbot’s Tests (optional)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="buildmaster.html">2.2.4. Buildmaster Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html">2.2.5. Worker Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">2.2.6. Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html">2.5. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading/index.html">2.12. Upgrading</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +157,11 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Installing the code</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2.2. </span>Installation</a> &raquo;</li>
+        
+      <li><span class="section-number">2.2.3. </span>Installing the code</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,15 +181,15 @@
            <div itemprop="articleBody">
             
   <div class="section" id="installing-the-code">
-<span id="id1"></span><h1>Installing the code<a class="headerlink" href="#installing-the-code" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">2.2.3. </span>Installing the code<a class="headerlink" href="#installing-the-code" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="the-buildbot-packages">
-<h2>The Buildbot Packages<a class="headerlink" href="#the-buildbot-packages" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2.3.1. </span>The Buildbot Packages<a class="headerlink" href="#the-buildbot-packages" title="Permalink to this headline">¶</a></h2>
 <p>Buildbot comes in several parts: <code class="docutils literal notranslate"><span class="pre">buildbot</span></code> (the buildmaster), <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> (the worker), <code class="docutils literal notranslate"><span class="pre">buildbot-www</span></code>, and several web plugins such as <code class="docutils literal notranslate"><span class="pre">buildbot-waterfall-view</span></code>.</p>
 <p>The worker and buildmaster can be installed individually or together.
 The base web (<code class="docutils literal notranslate"><span class="pre">buildbot.www</span></code>) and web plugins are required to run a master with a web interface (the common configuration).</p>
 </div>
 <div class="section" id="installation-from-pypi">
-<h2>Installation From PyPI<a class="headerlink" href="#installation-from-pypi" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2.3.2. </span>Installation From PyPI<a class="headerlink" href="#installation-from-pypi" title="Permalink to this headline">¶</a></h2>
 <p>The preferred way to install Buildbot is using <code class="docutils literal notranslate"><span class="pre">pip</span></code>.
 For the master:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install buildbot
@@ -171,7 +207,7 @@ It may however be easier to install via distribution specific package mangers bu
 </div>
 </div>
 <div class="section" id="installation-from-tarballs">
-<h2>Installation From Tarballs<a class="headerlink" href="#installation-from-tarballs" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.2.3.3. </span>Installation From Tarballs<a class="headerlink" href="#installation-from-tarballs" title="Permalink to this headline">¶</a></h2>
 <p>Buildbot master and <code class="docutils literal notranslate"><span class="pre">buildbot-worker</span></code> are installed using the standard Python <a class="reference external" href="http://docs.python.org/library/distutils.html">distutils</a> process.
 For either component, after unpacking the tarball, the process is:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python setup.py build
@@ -196,11 +232,11 @@ If it says “no such command” or it gets an <code class="docutils literal not
 You will need to make sure that Python can find the libraries, and will probably find it convenient to have <strong class="command">buildbot</strong> on your <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
 </div>
 <div class="section" id="installation-in-a-virtualenv">
-<span id="id2"></span><h2>Installation in a Virtualenv<a class="headerlink" href="#installation-in-a-virtualenv" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2><span class="section-number">2.2.3.4. </span>Installation in a Virtualenv<a class="headerlink" href="#installation-in-a-virtualenv" title="Permalink to this headline">¶</a></h2>
 <p>If you cannot or do not wish to install the buildbot into a site-wide location like <code class="file docutils literal notranslate"><span class="pre">/usr</span></code> or <code class="file docutils literal notranslate"><span class="pre">/usr/local</span></code>, you can also install it into the account’s home directory or any other location using a tool like <a class="reference external" href="http://pypi.python.org/pypi/virtualenv">virtualenv</a>.</p>
 </div>
 <div class="section" id="running-buildbot-s-tests-optional">
-<span id="running-buildbots-tests-optional"></span><h2>Running Buildbot’s Tests (optional)<a class="headerlink" href="#running-buildbot-s-tests-optional" title="Permalink to this headline">¶</a></h2>
+<span id="running-buildbots-tests-optional"></span><h2><span class="section-number">2.2.3.5. </span>Running Buildbot’s Tests (optional)<a class="headerlink" href="#running-buildbot-s-tests-optional" title="Permalink to this headline">¶</a></h2>
 <p>If you wish, you can run the buildbot unit test suite.
 First, ensure you have the <a class="reference external" href="http://pypi.python.org/pypi/mock">mock</a> Python module installed from PyPI.
 You must not be using a Python wheels packaged version of Buildbot or have specified the bdist_wheel command when building.
@@ -229,6 +265,15 @@ This may be a good time to contact the Buildbot developers for help.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="buildmaster.html" class="btn btn-neutral float-right" title="2.2.4. Buildmaster Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="requirements.html" class="btn btn-neutral float-left" title="2.2.2. Requirements" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

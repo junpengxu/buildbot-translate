@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Build Steps &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.5.11. Build Steps &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.5.12. Interlocks" href="interlocks.html" />
+    <link rel="prev" title="2.5.10. Properties" href="properties.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,59 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2.5. Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="intro.html">2.5.1. Configuring Buildbot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="global.html">2.5.2. Global Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changesources.html">2.5.3. Change Sources and Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changesources.html#changes">2.5.4. Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="schedulers.html">2.5.5. Schedulers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workers.html">2.5.6. Workers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builders.html">2.5.7. Builder Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildfactories.html">2.5.8. Build Factories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsets.html">2.5.9. Build Sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties.html">2.5.10. Properties</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.5.11. Build Steps</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#common-parameters">2.5.11.1. Common Parameters</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#module-buildbot.steps.source">2.5.11.2. Source Checkout</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#other-source-operations">2.5.11.3. Other Source operations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#shellcommand">2.5.11.4. ShellCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#worker-filesystem-steps">2.5.11.5. Worker Filesystem Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python-buildsteps">2.5.11.6. Python BuildSteps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transferring-files">2.5.11.7. Transferring Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transferring-strings">2.5.11.8. Transferring Strings</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#running-commands-on-the-master">2.5.11.9. Running Commands on the Master</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-properties">2.5.11.10. Setting Properties</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#triggering-schedulers">2.5.11.11. Triggering Schedulers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rpm-related-steps">2.5.11.12. RPM-Related Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#debian-build-steps">2.5.11.13. Debian Build Steps</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#miscellaneous-buildsteps">2.5.11.14. Miscellaneous BuildSteps</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="interlocks.html">2.5.12. Interlocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporters.html">2.5.13. Reporters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="www.html">2.5.14. Web Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wwwhooks.html">2.5.15. Change Hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">2.5.16. Custom Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dbconfig.html">2.5.17. DbConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configurators.html">2.5.18. Configurators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading/index.html">2.12. Upgrading</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +178,11 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Build Steps</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2.5. </span>Configuration</a> &raquo;</li>
+        
+      <li><span class="section-number">2.5.11. </span>Build Steps</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,7 +202,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="build-steps">
-<span id="id1"></span><h1>Build Steps<a class="headerlink" href="#build-steps" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">2.5.11. </span>Build Steps<a class="headerlink" href="#build-steps" title="Permalink to this headline">¶</a></h1>
 <p><code class="xref py py-class docutils literal notranslate"><span class="pre">BuildStep</span></code>s are usually specified in the buildmaster’s configuration file, in a list that goes into the <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildFactory</span></code>.
 The <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildStep</span></code> instances in this list are used as templates to construct new independent copies for each build (so that state can be kept on the <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildStep</span></code> in one build without affecting a later build).
 Each <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildFactory</span></code> can be created with a list of steps, or the factory can be created empty and then steps added to it using the <code class="xref py py-meth docutils literal notranslate"><span class="pre">addStep()</span></code> method:</p>
@@ -284,7 +341,7 @@ A full list of build steps is available in the <a href="#id2"><span class="probl
 </ul>
 </div>
 <div class="section" id="common-parameters">
-<span id="buildstep-common-parameters"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id228">Common Parameters</a><a class="headerlink" href="#common-parameters" title="Permalink to this headline">¶</a></h2>
+<span id="buildstep-common-parameters"></span><span id="index-0"></span><h2><a class="toc-backref" href="#id228"><span class="section-number">2.5.11.1. </span>Common Parameters</a><a class="headerlink" href="#common-parameters" title="Permalink to this headline">¶</a></h2>
 <p>All <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildStep</span></code>s accept some common parameters.
 Some of these control how their individual status affects the overall build.
 Others are used to specify which <cite>Locks</cite> (see <a class="reference internal" href="interlocks.html#interlocks"><span class="std std-ref">Interlocks</span></a>) should be acquired before allowing the step to run.</p>
@@ -408,7 +465,7 @@ If not set or None, the default is computed according to other BuildStep paramet
 </dl>
 </div>
 <div class="section" id="module-buildbot.steps.source">
-<span id="id10"></span><span id="source-checkout"></span><h2><a class="toc-backref" href="#id229">Source Checkout</a><a class="headerlink" href="#module-buildbot.steps.source" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><span id="source-checkout"></span><h2><a class="toc-backref" href="#id229"><span class="section-number">2.5.11.2. </span>Source Checkout</a><a class="headerlink" href="#module-buildbot.steps.source" title="Permalink to this headline">¶</a></h2>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>Support for the old worker-side source checkout steps was removed in Buildbot-0.9.0.</p>
@@ -1203,7 +1260,7 @@ It performs all the incremental checkout behavior in <code class="docutils liter
 </div>
 </div>
 <div class="section" id="other-source-operations">
-<h2><a class="toc-backref" href="#id243">Other Source operations</a><a class="headerlink" href="#other-source-operations" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id243"><span class="section-number">2.5.11.3. </span>Other Source operations</a><a class="headerlink" href="#other-source-operations" title="Permalink to this headline">¶</a></h2>
 <p>Currently the only non-checkout steps that are related to version control are <code class="docutils literal notranslate"><span class="pre">GitCommit</span></code>, <code class="docutils literal notranslate"><span class="pre">GitPush</span></code> and <code class="docutils literal notranslate"><span class="pre">GitTag</span></code>.</p>
 <div class="section" id="gitcommit">
 <h3><a class="toc-backref" href="#id244">GitCommit</a><a class="headerlink" href="#gitcommit" title="Permalink to this headline">¶</a></h3>
@@ -1334,7 +1391,7 @@ If your repositories are particularly large, then you may need to increase this 
 </div>
 </div>
 <div class="section" id="shellcommand">
-<h2><a class="toc-backref" href="#id247">ShellCommand</a><a class="headerlink" href="#shellcommand" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id247"><span class="section-number">2.5.11.4. </span>ShellCommand</a><a class="headerlink" href="#shellcommand" title="Permalink to this headline">¶</a></h2>
 <p>Most interesting steps involve executing a process of some sort on the worker.
 The <a href="#id77"><span class="problematic" id="id78">:bb:step:`ShellCommand`</span></a> class handles this activity.</p>
 <p>Several subclasses of <a href="#id79"><span class="problematic" id="id80">:bb:step:`ShellCommand`</span></a> are provided as starting points for common build steps.</p>
@@ -1982,7 +2039,7 @@ By default <code class="docutils literal notranslate"><span class="pre">failureO
 </div>
 </div>
 <div class="section" id="worker-filesystem-steps">
-<span id="id127"></span><h2><a class="toc-backref" href="#id261">Worker Filesystem Steps</a><a class="headerlink" href="#worker-filesystem-steps" title="Permalink to this headline">¶</a></h2>
+<span id="id127"></span><h2><a class="toc-backref" href="#id261"><span class="section-number">2.5.11.5. </span>Worker Filesystem Steps</a><a class="headerlink" href="#worker-filesystem-steps" title="Permalink to this headline">¶</a></h2>
 <p>Here are some buildsteps for manipulating the worker’s filesystem.</p>
 <div class="section" id="fileexists">
 <h3><a class="toc-backref" href="#id262">FileExists</a><a class="headerlink" href="#fileexists" title="Permalink to this headline">¶</a></h3>
@@ -2037,7 +2094,7 @@ This is disabled by default.</p>
 </div>
 </div>
 <div class="section" id="python-buildsteps">
-<span id="id128"></span><h2><a class="toc-backref" href="#id266">Python BuildSteps</a><a class="headerlink" href="#python-buildsteps" title="Permalink to this headline">¶</a></h2>
+<span id="id128"></span><h2><a class="toc-backref" href="#id266"><span class="section-number">2.5.11.6. </span>Python BuildSteps</a><a class="headerlink" href="#python-buildsteps" title="Permalink to this headline">¶</a></h2>
 <p>Here are some <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildStep</span></code>s that are specifically useful for projects
 implemented in Python.</p>
 <div class="section" id="buildepydoc">
@@ -2198,7 +2255,7 @@ Notably, trial has a bad habit of finding old test modules.</p>
 </div>
 </div>
 <div class="section" id="transferring-files">
-<h2><a class="toc-backref" href="#id273">Transferring Files</a><a class="headerlink" href="#transferring-files" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id273"><span class="section-number">2.5.11.7. </span>Transferring Files</a><a class="headerlink" href="#transferring-files" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.steps.source.buildbot.steps.transfer.FileUpload">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.steps.transfer.</code><code class="sig-name descname">FileUpload</code><a class="headerlink" href="#buildbot.steps.source.buildbot.steps.transfer.FileUpload" title="Permalink to this definition">¶</a></dt>
@@ -2344,7 +2401,7 @@ The <cite>uploadDone</cite> method is called once for each uploaded file and can
 </div>
 </div>
 <div class="section" id="transferring-strings">
-<h2><a class="toc-backref" href="#id277">Transferring Strings</a><a class="headerlink" href="#transferring-strings" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id277"><span class="section-number">2.5.11.8. </span>Transferring Strings</a><a class="headerlink" href="#transferring-strings" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.steps.source.buildbot.steps.transfer.StringDownload">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.steps.transfer.</code><code class="sig-name descname">StringDownload</code><a class="headerlink" href="#buildbot.steps.source.buildbot.steps.transfer.StringDownload" title="Permalink to this definition">¶</a></dt>
@@ -2387,7 +2444,7 @@ Instead of having to create a temporary file and then use FileDownload, you can 
 <p><a href="#id179"><span class="problematic" id="id180">:bb:step:`JSONPropertiesDownload`</span></a> transfers a json-encoded string that represents a dictionary where properties maps to a dictionary of build property <code class="docutils literal notranslate"><span class="pre">name</span></code> to property <code class="docutils literal notranslate"><span class="pre">value</span></code>; and <code class="docutils literal notranslate"><span class="pre">sourcestamp</span></code> represents the build’s sourcestamp.</p>
 </div>
 <div class="section" id="running-commands-on-the-master">
-<h2><a class="toc-backref" href="#id278">Running Commands on the Master</a><a class="headerlink" href="#running-commands-on-the-master" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id278"><span class="section-number">2.5.11.9. </span>Running Commands on the Master</a><a class="headerlink" href="#running-commands-on-the-master" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.steps.source.buildbot.steps.master.MasterShellCommand">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.steps.master.</code><code class="sig-name descname">MasterShellCommand</code><a class="headerlink" href="#buildbot.steps.source.buildbot.steps.master.MasterShellCommand" title="Permalink to this definition">¶</a></dt>
@@ -2451,7 +2508,7 @@ It can be useful for debugging properties during a build.</p>
 </div>
 </div>
 <div class="section" id="setting-properties">
-<span id="index-31"></span><span id="id185"></span><h2><a class="toc-backref" href="#id281">Setting Properties</a><a class="headerlink" href="#setting-properties" title="Permalink to this headline">¶</a></h2>
+<span id="index-31"></span><span id="id185"></span><h2><a class="toc-backref" href="#id281"><span class="section-number">2.5.11.10. </span>Setting Properties</a><a class="headerlink" href="#setting-properties" title="Permalink to this headline">¶</a></h2>
 <p>These steps set properties on the master based on information from the worker.</p>
 <div class="section" id="setproperty">
 <span id="step-setproperty"></span><h3><a class="toc-backref" href="#id282">SetProperty</a><a class="headerlink" href="#setproperty" title="Permalink to this headline">¶</a></h3>
@@ -2590,7 +2647,7 @@ For previous versions, no environment variables are available (the worker enviro
 </div>
 </div>
 <div class="section" id="triggering-schedulers">
-<span id="id196"></span><h2><a class="toc-backref" href="#id286">Triggering Schedulers</a><a class="headerlink" href="#triggering-schedulers" title="Permalink to this headline">¶</a></h2>
+<span id="id196"></span><h2><a class="toc-backref" href="#id286"><span class="section-number">2.5.11.11. </span>Triggering Schedulers</a><a class="headerlink" href="#triggering-schedulers" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.steps.source.buildbot.steps.trigger.Trigger">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.steps.trigger.</code><code class="sig-name descname">Trigger</code><a class="headerlink" href="#buildbot.steps.source.buildbot.steps.trigger.Trigger" title="Permalink to this definition">¶</a></dt>
@@ -2670,7 +2727,7 @@ The sourcestamp configuration is however the same for each triggered build reque
 </div>
 </div>
 <div class="section" id="rpm-related-steps">
-<h2><a class="toc-backref" href="#id288">RPM-Related Steps</a><a class="headerlink" href="#rpm-related-steps" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id288"><span class="section-number">2.5.11.12. </span>RPM-Related Steps</a><a class="headerlink" href="#rpm-related-steps" title="Permalink to this headline">¶</a></h2>
 <p>These steps work with RPMs and spec files.</p>
 <div class="section" id="rpmbuild">
 <h3><a class="toc-backref" href="#id289">RpmBuild</a><a class="headerlink" href="#rpmbuild" title="Permalink to this headline">¶</a></h3>
@@ -2783,7 +2840,7 @@ watch for (and display) changes to <code class="file docutils literal notranslat
 </div>
 </div>
 <div class="section" id="debian-build-steps">
-<h2><a class="toc-backref" href="#id294">Debian Build Steps</a><a class="headerlink" href="#debian-build-steps" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id294"><span class="section-number">2.5.11.13. </span>Debian Build Steps</a><a class="headerlink" href="#debian-build-steps" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="debpbuilder">
 <h3><a class="toc-backref" href="#id295">DebPbuilder</a><a class="headerlink" href="#debpbuilder" title="Permalink to this headline">¶</a></h3>
 <p>The <a href="#id214"><span class="problematic" id="id215">:bb:step:`DebPbuilder`</span></a> step builds Debian packages within a chroot built by <strong class="command">pbuilder</strong>.
@@ -2831,7 +2888,7 @@ The packages or changes file to test is specified in <code class="docutils liter
 </div>
 </div>
 <div class="section" id="miscellaneous-buildsteps">
-<h2><a class="toc-backref" href="#id298">Miscellaneous BuildSteps</a><a class="headerlink" href="#miscellaneous-buildsteps" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id298"><span class="section-number">2.5.11.14. </span>Miscellaneous BuildSteps</a><a class="headerlink" href="#miscellaneous-buildsteps" title="Permalink to this headline">¶</a></h2>
 <p>A number of steps do not fall into any particular category.</p>
 <div class="section" id="hlint">
 <h3><a class="toc-backref" href="#id299">HLint</a><a class="headerlink" href="#hlint" title="Permalink to this headline">¶</a></h3>
@@ -2914,6 +2971,15 @@ In this case, it is not necessary to specify the method.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="interlocks.html" class="btn btn-neutral float-right" title="2.5.12. Interlocks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="properties.html" class="btn btn-neutral float-left" title="2.5.10. Properties" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

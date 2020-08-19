@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Plugin Infrastructure in Buildbot &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.10. Plugin Infrastructure in Buildbot &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.11. Deployment" href="deploy.html" />
+    <link rel="prev" title="2.9. Optimization" href="optimization.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,28 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/index.html">2.5. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.10. Plugin Infrastructure in Buildbot</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#finding-plugins">2.10.1. Finding Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#developing-plugins">2.10.2. Developing Plugins</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plugins-of-note">2.10.3. Plugins of note</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/index.html">2.12. Upgrading</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +147,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Plugin Infrastructure in Buildbot</li>
+          <li><a href="index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+      <li><span class="section-number">2.10. </span>Plugin Infrastructure in Buildbot</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,7 +169,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="plugin-infrastructure-in-buildbot">
-<span id="plugins"></span><h1>Plugin Infrastructure in Buildbot<a class="headerlink" href="#plugin-infrastructure-in-buildbot" title="Permalink to this headline">¶</a></h1>
+<span id="plugins"></span><h1><span class="section-number">2.10. </span>Plugin Infrastructure in Buildbot<a class="headerlink" href="#plugin-infrastructure-in-buildbot" title="Permalink to this headline">¶</a></h1>
 <div class="versionadded">
 <p><span class="versionmodified added">New in version 0.8.11.</span></p>
 </div>
@@ -185,16 +209,16 @@ For example, <a class="reference internal" href="configuration/builders.html"><s
 This is what sample <code class="docutils literal notranslate"><span class="pre">master.cfg</span></code> file uses.</p>
 </div>
 <div class="section" id="finding-plugins">
-<h2>Finding Plugins<a class="headerlink" href="#finding-plugins" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.10.1. </span>Finding Plugins<a class="headerlink" href="#finding-plugins" title="Permalink to this headline">¶</a></h2>
 <p>Buildbot maintains a list of plugins at <a class="reference external" href="https://github.com/buildbot/buildbot/wiki/PluginList">https://github.com/buildbot/buildbot/wiki/PluginList</a>.</p>
 </div>
 <div class="section" id="developing-plugins">
-<h2>Developing Plugins<a class="headerlink" href="#developing-plugins" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.10.2. </span>Developing Plugins<a class="headerlink" href="#developing-plugins" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference internal" href="customization.html#plugin-module"><span class="std std-ref">Distribute a Buildbot Plug-In</span></a> contains all necessary information for you to develop new plugins.
 Please edit <a class="reference external" href="https://github.com/buildbot/buildbot/wiki/PluginList">https://github.com/buildbot/buildbot/wiki/PluginList</a> to add a link to your plugin!</p>
 </div>
 <div class="section" id="plugins-of-note">
-<h2>Plugins of note<a class="headerlink" href="#plugins-of-note" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.10.3. </span>Plugins of note<a class="headerlink" href="#plugins-of-note" title="Permalink to this headline">¶</a></h2>
 <p>Plugins were introduced in Buildbot-0.8.11, so as of this writing, only components that are bundled with Buildbot are available as plugins.</p>
 <p>If you have an idea/need about extending Buildbot, head to <a class="reference internal" href="../developer/plugins-publish.html"><span class="doc">How to package Buildbot plugins</span></a>, create your own plugins and let the world know how Buildbot can be made even more useful.</p>
 </div>
@@ -205,6 +229,15 @@ Please edit <a class="reference external" href="https://github.com/buildbot/buil
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deploy.html" class="btn btn-neutral float-right" title="2.11. Deployment" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="optimization.html" class="btn btn-neutral float-left" title="2.9. Optimization" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

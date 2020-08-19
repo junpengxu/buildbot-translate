@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Upgrading &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.12. Upgrading &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.12.1. Upgrading to Buildbot 2.0" href="2.0-upgrade.html" />
+    <link rel="prev" title="2.11. Deployment" href="../deploy.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,30 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html">2.5. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.12. Upgrading</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="2.0-upgrade.html">2.12.1. Upgrading to Buildbot 2.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="1.0-upgrade.html">2.12.2. Upgrading to Buildbot 1.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="0.9-upgrade.html">2.12.3. Upgrading to Buildbot 0.9.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="0.9-new-style-steps.html">2.12.4. New-Style Build Steps in Buildbot 0.9.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="0.9-worker-transition.html">2.12.5. Transition to “worker” terminology in BuildBot 0.9.0</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +149,9 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Upgrading</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+      <li><span class="section-number">2.12. </span>Upgrading</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,7 +171,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="upgrading">
-<h1>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2.12. </span>Upgrading<a class="headerlink" href="#upgrading" title="Permalink to this headline">¶</a></h1>
 <p>This section describes the process of upgrading from old versions of Buildbot.</p>
 <p>Upgrades between multiple major versions at a time are not supported.
 To do so, first upgrade to the last version before the major version bump.
@@ -153,11 +179,11 @@ Then fix any deprecation warnings, migrate off APIs removed in the next major ve
 And finally, perform the upgrade to the next major version.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="2.0-upgrade.html">Upgrading to Buildbot 2.0</a></li>
-<li class="toctree-l1"><a class="reference internal" href="1.0-upgrade.html">Upgrading to Buildbot 1.0</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.9-upgrade.html">Upgrading to Buildbot 0.9.0</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.9-new-style-steps.html">New-Style Build Steps in Buildbot 0.9.0</a></li>
-<li class="toctree-l1"><a class="reference internal" href="0.9-worker-transition.html">Transition to “worker” terminology in BuildBot 0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2.0-upgrade.html">2.12.1. Upgrading to Buildbot 2.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="1.0-upgrade.html">2.12.2. Upgrading to Buildbot 1.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.9-upgrade.html">2.12.3. Upgrading to Buildbot 0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.9-new-style-steps.html">2.12.4. New-Style Build Steps in Buildbot 0.9.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="0.9-worker-transition.html">2.12.5. Transition to “worker” terminology in BuildBot 0.9.0</a></li>
 </ul>
 </div>
 </div>
@@ -167,6 +193,15 @@ And finally, perform the upgrade to the next major version.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="2.0-upgrade.html" class="btn btn-neutral float-right" title="2.12.1. Upgrading to Buildbot 2.0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../deploy.html" class="btn btn-neutral float-left" title="2.11. Deployment" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Docker latent worker" href="workers-docker.html" />
+    <link rel="prev" title="Libvirt" href="workers-libvirt.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,49 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2.5. Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="intro.html">2.5.1. Configuring Buildbot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="global.html">2.5.2. Global Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changesources.html">2.5.3. Change Sources and Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changesources.html#changes">2.5.4. Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="schedulers.html">2.5.5. Schedulers</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="workers.html">2.5.6. Workers</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="workers.html#defining-workers">2.5.6.1. Defining Workers</a></li>
+<li class="toctree-l4"><a class="reference internal" href="workers.html#worker-options">2.5.6.2. Worker Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="workers.html#local-workers">2.5.6.3. Local Workers</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="workers.html#latent-workers">2.5.6.4. Latent Workers</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="builders.html">2.5.7. Builder Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildfactories.html">2.5.8. Build Factories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsets.html">2.5.9. Build Sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties.html">2.5.10. Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsteps.html">2.5.11. Build Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interlocks.html">2.5.12. Interlocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporters.html">2.5.13. Reporters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="www.html">2.5.14. Web Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wwwhooks.html">2.5.15. Change Hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">2.5.16. Custom Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dbconfig.html">2.5.17. DbConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configurators.html">2.5.18. Configurators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading/index.html">2.12. Upgrading</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -124,6 +167,12 @@
   <ul class="wy-breadcrumbs">
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2.5. </span>Configuration</a> &raquo;</li>
+        
+          <li><a href="workers.html"><span class="section-number">2.5.6. </span>Workers</a> &raquo;</li>
         
       <li>OpenStack</li>
     
@@ -333,6 +382,15 @@ The <code class="docutils literal notranslate"><span class="pre">missing_timeout
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="workers-docker.html" class="btn btn-neutral float-right" title="Docker latent worker" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="workers-libvirt.html" class="btn btn-neutral float-left" title="Libvirt" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

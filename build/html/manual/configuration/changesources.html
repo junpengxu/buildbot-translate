@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Change Sources and Changes &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.5.3. Change Sources and Changes &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.5.5. Schedulers" href="schedulers.html" />
+    <link rel="prev" title="2.5.2. Global Configuration" href="global.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,72 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2.5. Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="intro.html">2.5.1. Configuring Buildbot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="global.html">2.5.2. Global Configuration</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.5.3. Change Sources and Changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#how-different-vc-systems-specify-sources">2.5.3.1. How Different VC Systems Specify Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#choosing-a-change-source">2.5.3.2. Choosing a Change Source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#configuring-change-sources">2.5.3.3. Configuring Change Sources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mail-parsing-changesources">2.5.3.4. Mail-parsing ChangeSources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#pbchangesource">2.5.3.5. PBChangeSource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#p4source">2.5.3.6. P4Source</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#svnpoller">2.5.3.7. SVNPoller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bzr-poller">2.5.3.8. Bzr Poller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gitpoller">2.5.3.9. GitPoller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#hgpoller">2.5.3.10. HgPoller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#githubpullrequestpoller">2.5.3.11. GitHubPullrequestPoller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bitbucketpullrequestpoller">2.5.3.12. BitbucketPullrequestPoller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gerritchangesource">2.5.3.13. GerritChangeSource</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gerriteventlogpoller">2.5.3.14. GerritEventLogPoller</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gerritchangefilter">2.5.3.15. GerritChangeFilter</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#change-hooks-http-notifications">2.5.3.16. Change Hooks (HTTP Notifications)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#changes">2.5.4. Changes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#who">2.5.4.1. Who</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#files">2.5.4.2. Files</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#comments">2.5.4.3. Comments</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#project">2.5.4.4. Project</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#repository">2.5.4.5. Repository</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#codebase">2.5.4.6. Codebase</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#revision">2.5.4.7. Revision</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#branches">2.5.4.8. Branches</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#change-properties">2.5.4.9. Change Properties</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="schedulers.html">2.5.5. Schedulers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workers.html">2.5.6. Workers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builders.html">2.5.7. Builder Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildfactories.html">2.5.8. Build Factories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsets.html">2.5.9. Build Sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties.html">2.5.10. Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsteps.html">2.5.11. Build Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interlocks.html">2.5.12. Interlocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporters.html">2.5.13. Reporters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="www.html">2.5.14. Web Server</a></li>
+<li class="toctree-l3"><a class="reference internal" href="wwwhooks.html">2.5.15. Change Hooks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">2.5.16. Custom Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dbconfig.html">2.5.17. DbConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configurators.html">2.5.18. Configurators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading/index.html">2.12. Upgrading</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +191,11 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Change Sources and Changes</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2.5. </span>Configuration</a> &raquo;</li>
+        
+      <li><span class="section-number">2.5.3. </span>Change Sources and Changes</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,7 +215,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="change-sources-and-changes">
-<span id="change-sources"></span><h1>Change Sources and Changes<a class="headerlink" href="#change-sources-and-changes" title="Permalink to this headline">¶</a></h1>
+<span id="change-sources"></span><h1><span class="section-number">2.5.3. </span>Change Sources and Changes<a class="headerlink" href="#change-sources-and-changes" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><p><a class="reference internal" href="#how-different-vc-systems-specify-sources" id="id264">How Different VC Systems Specify Sources</a></p>
@@ -200,7 +270,7 @@
 For example, for CVS Buildbot must guess that version updates made to multiple files within a short time represent a single change.</p>
 <p><code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code>s can be provided by a variety of <code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeSource</span></code> types, although any given project will typically have only a single <code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeSource</span></code> active.</p>
 <div class="section" id="how-different-vc-systems-specify-sources">
-<span id="id1"></span><h2><a class="toc-backref" href="#id264">How Different VC Systems Specify Sources</a><a class="headerlink" href="#how-different-vc-systems-specify-sources" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><a class="toc-backref" href="#id264"><span class="section-number">2.5.3.1. </span>How Different VC Systems Specify Sources</a><a class="headerlink" href="#how-different-vc-systems-specify-sources" title="Permalink to this headline">¶</a></h2>
 <p>For CVS, the static specifications are <em>repository</em> and <em>module</em>.
 In addition to those, each build uses a timestamp (or omits the timestamp to mean <em>the latest</em>) and <em>branch tag</em> (which defaults to <code class="docutils literal notranslate"><span class="pre">HEAD</span></code>).
 These parameters collectively specify a set of sources from which a build may be performed.</p>
@@ -321,7 +391,7 @@ This is implemented as a timer, with builds not scheduled until no changes have 
 </div>
 </div>
 <div class="section" id="choosing-a-change-source">
-<span id="id2"></span><h2><a class="toc-backref" href="#id267">Choosing a Change Source</a><a class="headerlink" href="#choosing-a-change-source" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2><a class="toc-backref" href="#id267"><span class="section-number">2.5.3.2. </span>Choosing a Change Source</a><a class="headerlink" href="#choosing-a-change-source" title="Permalink to this headline">¶</a></h2>
 <p>There are a variety of <code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeSource</span></code> classes available, some of which are meant to be used in conjunction with other tools to deliver <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code> events from the VC repository to the buildmaster.</p>
 <p>As a quick guide, here is a list of VC systems and the <code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeSource</span></code>s that might be useful with them.
 Note that some of these modules are in Buildbot’s <a href="#id3"><span class="problematic" id="id4">:contrib-src:`master/contrib`</span></a> directory, meaning that they have been offered by other users in hopes they may be useful, and might require some additional work to make them functional.</p>
@@ -386,7 +456,7 @@ The interface is simple, so adding your own handlers (and sharing!) should be a 
 <p>See <a href="#id83"><span class="problematic" id="id84">:bb:index:`chsrc`</span></a> for a full list of change sources.</p>
 </div>
 <div class="section" id="configuring-change-sources">
-<h2><a class="toc-backref" href="#id268">Configuring Change Sources</a><a class="headerlink" href="#configuring-change-sources" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id268"><span class="section-number">2.5.3.3. </span>Configuring Change Sources</a><a class="headerlink" href="#configuring-change-sources" title="Permalink to this headline">¶</a></h2>
 <p>The <a href="#id85"><span class="problematic" id="id86">:bb:cfg:`change_source`</span></a> configuration key holds all active change sources for the configuration.</p>
 <p>Most configurations have a single <code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeSource</span></code>, watching only a single tree, e.g.,</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">buildbot.plugins</span> <span class="kn">import</span> <span class="n">changes</span>
@@ -413,7 +483,7 @@ Schedulers can filter on project, so you can configure different builders to run
 </div>
 </div>
 <div class="section" id="mail-parsing-changesources">
-<span id="id87"></span><h2><a class="toc-backref" href="#id270">Mail-parsing ChangeSources</a><a class="headerlink" href="#mail-parsing-changesources" title="Permalink to this headline">¶</a></h2>
+<span id="id87"></span><h2><a class="toc-backref" href="#id270"><span class="section-number">2.5.3.4. </span>Mail-parsing ChangeSources</a><a class="headerlink" href="#mail-parsing-changesources" title="Permalink to this headline">¶</a></h2>
 <p>Many projects publish information about changes to their source tree by sending an email message out to a mailing list, frequently named <code class="samp docutils literal notranslate"><em><span class="pre">PROJECT</span></em><span class="pre">-commits</span></code> or <code class="samp docutils literal notranslate"><em><span class="pre">PROJECT</span></em><span class="pre">-changes</span></code>.
 Each message usually contains a description of the change (who made the change, which files were affected) and sometimes a copy of the diff.
 Humans can subscribe to this list to stay informed about what’s happening to the source tree.</p>
@@ -605,7 +675,7 @@ However, it is possible to set the bzr <cite>append_revisions_only</cite> option
 </div>
 </div>
 <div class="section" id="pbchangesource">
-<span id="id116"></span><h2><a class="toc-backref" href="#id277">PBChangeSource</a><a class="headerlink" href="#pbchangesource" title="Permalink to this headline">¶</a></h2>
+<span id="id116"></span><h2><a class="toc-backref" href="#id277"><span class="section-number">2.5.3.5. </span>PBChangeSource</a><a class="headerlink" href="#pbchangesource" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.changes.pb.PBChangeSource">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.changes.pb.</code><code class="sig-name descname">PBChangeSource</code><a class="headerlink" href="#buildbot.changes.pb.PBChangeSource" title="Permalink to this definition">¶</a></dt>
@@ -689,7 +759,7 @@ When Buildbot no longer has a hardcoded password, it will be a configuration opt
 </div>
 </div>
 <div class="section" id="p4source">
-<span id="id134"></span><h2><a class="toc-backref" href="#id279">P4Source</a><a class="headerlink" href="#p4source" title="Permalink to this headline">¶</a></h2>
+<span id="id134"></span><h2><a class="toc-backref" href="#id279"><span class="section-number">2.5.3.6. </span>P4Source</a><a class="headerlink" href="#p4source" title="Permalink to this headline">¶</a></h2>
 <p>The <a href="#id135"><span class="problematic" id="id136">:bb:chsrc:`P4Source`</span></a> periodically polls a <a class="reference external" href="http://www.perforce.com/">Perforce</a> depot for changes.
 It accepts the following arguments:</p>
 <dl class="simple">
@@ -769,7 +839,7 @@ It watches a project in which the branch name is simply the next path component,
 </div>
 </div>
 <div class="section" id="svnpoller">
-<span id="id140"></span><h2><a class="toc-backref" href="#id282">SVNPoller</a><a class="headerlink" href="#svnpoller" title="Permalink to this headline">¶</a></h2>
+<span id="id140"></span><h2><a class="toc-backref" href="#id282"><span class="section-number">2.5.3.7. </span>SVNPoller</a><a class="headerlink" href="#svnpoller" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.changes.svnpoller.SVNPoller">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.changes.svnpoller.</code><code class="sig-name descname">SVNPoller</code><a class="headerlink" href="#buildbot.changes.svnpoller.SVNPoller" title="Permalink to this definition">¶</a></dt>
@@ -863,7 +933,7 @@ For a poller that is only monitoring trunk, the default split file function is a
 See <a class="reference internal" href="../customization.html#customizing-svnpoller"><span class="std std-ref">Customizing SVNPoller</span></a> for details and some common scenarios.</p>
 </div>
 <div class="section" id="bzr-poller">
-<span id="id164"></span><h2><a class="toc-backref" href="#id283">Bzr Poller</a><a class="headerlink" href="#bzr-poller" title="Permalink to this headline">¶</a></h2>
+<span id="id164"></span><h2><a class="toc-backref" href="#id283"><span class="section-number">2.5.3.8. </span>Bzr Poller</a><a class="headerlink" href="#bzr-poller" title="Permalink to this headline">¶</a></h2>
 <p>If you cannot insert a Bzr hook in the server, you can use the <a href="#id165"><span class="problematic" id="id166">:bb:chsrc:`BzrPoller`</span></a>.
 To use it, put <a href="#id167"><span class="problematic" id="id168">:contrib-src:`master/contrib/bzr_buildbot.py`</span></a> somewhere that your Buildbot configuration can import it.
 Even putting it in the same directory as the <code class="file docutils literal notranslate"><span class="pre">master.cfg</span></code> should work.
@@ -894,7 +964,7 @@ Set this value to <code class="docutils literal notranslate"><span class="pre">T
 </dl>
 </div>
 <div class="section" id="gitpoller">
-<span id="id171"></span><h2><a class="toc-backref" href="#id284">GitPoller</a><a class="headerlink" href="#gitpoller" title="Permalink to this headline">¶</a></h2>
+<span id="id171"></span><h2><a class="toc-backref" href="#id284"><span class="section-number">2.5.3.9. </span>GitPoller</a><a class="headerlink" href="#gitpoller" title="Permalink to this headline">¶</a></h2>
 <p>If you cannot take advantage of post-receive hooks as provided by <a href="#id172"><span class="problematic" id="id173">:contrib-src:`master/contrib/git_buildbot.py`</span></a> for example, then you can use the <a href="#id174"><span class="problematic" id="id175">:bb:chsrc:`GitPoller`</span></a>.</p>
 <p>The <a href="#id176"><span class="problematic" id="id177">:bb:chsrc:`GitPoller`</span></a> periodically fetches from a remote Git repository and processes any changes.
 It requires its own working directory for operation.
@@ -978,7 +1048,7 @@ This may be either a <a class="reference internal" href="../secretsmanagement.ht
 </div>
 </div>
 <div class="section" id="hgpoller">
-<span id="id186"></span><h2><a class="toc-backref" href="#id285">HgPoller</a><a class="headerlink" href="#hgpoller" title="Permalink to this headline">¶</a></h2>
+<span id="id186"></span><h2><a class="toc-backref" href="#id285"><span class="section-number">2.5.3.10. </span>HgPoller</a><a class="headerlink" href="#hgpoller" title="Permalink to this headline">¶</a></h2>
 <p>The <a href="#id187"><span class="problematic" id="id188">:bb:chsrc:`HgPoller`</span></a> periodically pulls a named branch from a remote Mercurial repository and processes any changes.
 It requires its own working directory for operation, which must be specified via the <code class="docutils literal notranslate"><span class="pre">workdir</span></code> property.</p>
 <p>The <a href="#id189"><span class="problematic" id="id190">:bb:chsrc:`HgPoller`</span></a> requires a working <code class="docutils literal notranslate"><span class="pre">hg</span></code> executable, and at least a read-only access to the repository it polls (possibly through ssh keys or by tweaking the <code class="docutils literal notranslate"><span class="pre">hgrc</span></code> of the system user Buildbot runs as).</p>
@@ -1042,7 +1112,7 @@ Defaults to lambda branch, revision: (u’’)</p>
 </div>
 </div>
 <div class="section" id="githubpullrequestpoller">
-<span id="id203"></span><h2><a class="toc-backref" href="#id286">GitHubPullrequestPoller</a><a class="headerlink" href="#githubpullrequestpoller" title="Permalink to this headline">¶</a></h2>
+<span id="id203"></span><h2><a class="toc-backref" href="#id286"><span class="section-number">2.5.3.11. </span>GitHubPullrequestPoller</a><a class="headerlink" href="#githubpullrequestpoller" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.changes.github.GitHubPullrequestPoller">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.changes.github.</code><code class="sig-name descname">GitHubPullrequestPoller</code><a class="headerlink" href="#buildbot.changes.github.GitHubPullrequestPoller" title="Permalink to this definition">¶</a></dt>
@@ -1079,7 +1149,7 @@ This will then be set in any changes generated by the <a href="#id210"><span cla
 </dl>
 </div>
 <div class="section" id="bitbucketpullrequestpoller">
-<span id="id214"></span><h2><a class="toc-backref" href="#id287">BitbucketPullrequestPoller</a><a class="headerlink" href="#bitbucketpullrequestpoller" title="Permalink to this headline">¶</a></h2>
+<span id="id214"></span><h2><a class="toc-backref" href="#id287"><span class="section-number">2.5.3.12. </span>BitbucketPullrequestPoller</a><a class="headerlink" href="#bitbucketpullrequestpoller" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.changes.bitbucket.BitbucketPullrequestPoller">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.changes.bitbucket.</code><code class="sig-name descname">BitbucketPullrequestPoller</code><a class="headerlink" href="#buildbot.changes.bitbucket.BitbucketPullrequestPoller" title="Permalink to this definition">¶</a></dt>
@@ -1158,7 +1228,7 @@ The pull request is only processed if at least 3 people have already approved it
 </div>
 </div>
 <div class="section" id="gerritchangesource">
-<span id="id225"></span><h2><a class="toc-backref" href="#id288">GerritChangeSource</a><a class="headerlink" href="#gerritchangesource" title="Permalink to this headline">¶</a></h2>
+<span id="id225"></span><h2><a class="toc-backref" href="#id288"><span class="section-number">2.5.3.13. </span>GerritChangeSource</a><a class="headerlink" href="#gerritchangesource" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.changes.gerritchangesource.GerritChangeSource">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.changes.gerritchangesource.</code><code class="sig-name descname">GerritChangeSource</code><a class="headerlink" href="#buildbot.changes.gerritchangesource.GerritChangeSource" title="Permalink to this definition">¶</a></dt>
@@ -1289,7 +1359,7 @@ Typically, this kind of event can lead to a complete rebuild of the project, and
 <p>See <code class="file docutils literal notranslate"><span class="pre">master/docs/examples/git_gerrit.cfg</span></code> or <code class="file docutils literal notranslate"><span class="pre">master/docs/examples/repo_gerrit.cfg</span></code> in the Buildbot distribution for a full example setup of Git+Gerrit or Repo+Gerrit of <a href="#id236"><span class="problematic" id="id237">:bb:chsrc:`GerritChangeSource`</span></a>.</p>
 </div>
 <div class="section" id="gerriteventlogpoller">
-<span id="id238"></span><h2><a class="toc-backref" href="#id289">GerritEventLogPoller</a><a class="headerlink" href="#gerriteventlogpoller" title="Permalink to this headline">¶</a></h2>
+<span id="id238"></span><h2><a class="toc-backref" href="#id289"><span class="section-number">2.5.3.14. </span>GerritEventLogPoller</a><a class="headerlink" href="#gerriteventlogpoller" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.changes.gerritchangesource.GerritEventLogPoller">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.changes.gerritchangesource.</code><code class="sig-name descname">GerritEventLogPoller</code><a class="headerlink" href="#buildbot.changes.gerritchangesource.GerritEventLogPoller" title="Permalink to this definition">¶</a></dt>
@@ -1335,7 +1405,7 @@ This allows to debug event content, but will eventually fill your logs with usel
 <p>The same customization can be done as <a href="#id255"><span class="problematic" id="id256">:bb:chsrc:`GerritChangeSource`</span></a> for handling special events.</p>
 </div>
 <div class="section" id="gerritchangefilter">
-<h2><a class="toc-backref" href="#id290">GerritChangeFilter</a><a class="headerlink" href="#gerritchangefilter" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id290"><span class="section-number">2.5.3.15. </span>GerritChangeFilter</a><a class="headerlink" href="#gerritchangefilter" title="Permalink to this headline">¶</a></h2>
 <dl class="class">
 <dt id="buildbot.changes.gerritchangesource.GerritChangeFilter">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.changes.gerritchangesource.</code><code class="sig-name descname">GerritChangeFilter</code><a class="headerlink" href="#buildbot.changes.gerritchangesource.GerritChangeFilter" title="Permalink to this definition">¶</a></dt>
@@ -1364,13 +1434,13 @@ It has the same api as <a class="reference internal" href="schedulers.html#chang
 </div>
 </div>
 <div class="section" id="change-hooks-http-notifications">
-<span id="id259"></span><h2><a class="toc-backref" href="#id291">Change Hooks (HTTP Notifications)</a><a class="headerlink" href="#change-hooks-http-notifications" title="Permalink to this headline">¶</a></h2>
+<span id="id259"></span><h2><a class="toc-backref" href="#id291"><span class="section-number">2.5.3.16. </span>Change Hooks (HTTP Notifications)</a><a class="headerlink" href="#change-hooks-http-notifications" title="Permalink to this headline">¶</a></h2>
 <p>Buildbot already provides a web frontend, and that frontend can easily be used to receive HTTP push notifications of commits from services like GitHub.
 See <a class="reference internal" href="wwwhooks.html#change-hooks"><span class="std std-ref">Change Hooks</span></a> for more information.</p>
 </div>
 </div>
 <div class="section" id="changes">
-<span id="change-attrs"></span><h1>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h1>
+<span id="change-attrs"></span><h1><span class="section-number">2.5.4. </span>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="buildbot.changes.changes.Change">
 <em class="property">class </em><code class="sig-prename descclassname">buildbot.changes.changes.</code><code class="sig-name descname">Change</code><a class="headerlink" href="#buildbot.changes.changes.Change" title="Permalink to this definition">¶</a></dt>
@@ -1380,7 +1450,7 @@ See <a class="reference internal" href="wwwhooks.html#change-hooks"><span class=
 In version control systems that support the notion of atomic check-ins a change represents a changeset or commit.
 Instances of <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code> have the following attributes.</p>
 <div class="section" id="who">
-<span id="change-attr-who"></span><h2>Who<a class="headerlink" href="#who" title="Permalink to this headline">¶</a></h2>
+<span id="change-attr-who"></span><h2><span class="section-number">2.5.4.1. </span>Who<a class="headerlink" href="#who" title="Permalink to this headline">¶</a></h2>
 <p>Each <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code> has a <code class="xref py py-attr docutils literal notranslate"><span class="pre">who</span></code> attribute, which specifies which developer is responsible for the change.
 This is a string which comes from a namespace controlled by the VC repository.
 Frequently this means it is a username on the host which runs the repository, but not all VC systems require this.
@@ -1389,7 +1459,7 @@ Each <code class="xref py py-class docutils literal notranslate"><span class="pr
 Currently, only <code class="docutils literal notranslate"><span class="pre">who</span></code> attributes in Changes from <code class="docutils literal notranslate"><span class="pre">git</span></code> repositories are translated into user objects, but in the future all incoming Changes will have their <code class="docutils literal notranslate"><span class="pre">who</span></code> parsed and stored.</p>
 </div>
 <div class="section" id="files">
-<span id="change-attr-files"></span><h2>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h2>
+<span id="change-attr-files"></span><h2><span class="section-number">2.5.4.2. </span>Files<a class="headerlink" href="#files" title="Permalink to this headline">¶</a></h2>
 <p>It also has a list of <code class="xref py py-attr docutils literal notranslate"><span class="pre">files</span></code>, which are just the tree-relative filenames of any files that were added, deleted, or modified for this <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code>.
 These filenames are used by the <code class="xref py py-func docutils literal notranslate"><span class="pre">fileIsImportant()</span></code> function (in the scheduler) to decide whether it is worth triggering a new build or not, e.g. the function could use the following function to only run a build if a C file were checked in:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">has_C_files</span><span class="p">(</span><span class="n">change</span><span class="p">):</span>
@@ -1402,30 +1472,30 @@ These filenames are used by the <code class="xref py py-func docutils literal no
 <p>Certain <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildStep</span></code>s can also use the list of changed files to run a more targeted series of tests, e.g. the <code class="docutils literal notranslate"><span class="pre">python_twisted.Trial</span></code> step can run just the unit tests that provide coverage for the modified .py files instead of running the full test suite.</p>
 </div>
 <div class="section" id="comments">
-<span id="change-attr-comments"></span><h2>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<span id="change-attr-comments"></span><h2><span class="section-number">2.5.4.3. </span>Comments<a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
 <p>The Change also has a <code class="xref py py-attr docutils literal notranslate"><span class="pre">comments</span></code> attribute, which is a string containing any checkin comments.</p>
 </div>
 <div class="section" id="project">
-<span id="change-attr-project"></span><h2>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
+<span id="change-attr-project"></span><h2><span class="section-number">2.5.4.4. </span>Project<a class="headerlink" href="#project" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="xref py py-attr docutils literal notranslate"><span class="pre">project</span></code> attribute of a change or source stamp describes the project to which it corresponds, as a short human-readable string.
 This is useful in cases where multiple independent projects are built on the same buildmaster.
 In such cases, it can be used to control which builds are scheduled for a given commit, and to limit status displays to only one project.</p>
 </div>
 <div class="section" id="repository">
-<span id="change-attr-repository"></span><h2>Repository<a class="headerlink" href="#repository" title="Permalink to this headline">¶</a></h2>
+<span id="change-attr-repository"></span><h2><span class="section-number">2.5.4.5. </span>Repository<a class="headerlink" href="#repository" title="Permalink to this headline">¶</a></h2>
 <p>This attribute specifies the repository in which this change occurred.
 In the case of DVCS’s, this information may be required to check out the committed source code.
 However, using the repository from a change has security risks: if Buildbot is configured to blindly trust this information, then it may easily be tricked into building arbitrary source code, potentially compromising the workers and the integrity of subsequent builds.</p>
 </div>
 <div class="section" id="codebase">
-<span id="change-attr-codebase"></span><h2>Codebase<a class="headerlink" href="#codebase" title="Permalink to this headline">¶</a></h2>
+<span id="change-attr-codebase"></span><h2><span class="section-number">2.5.4.6. </span>Codebase<a class="headerlink" href="#codebase" title="Permalink to this headline">¶</a></h2>
 <p>This attribute specifies the codebase to which this change was made.
 As described in <a class="reference internal" href="../concepts.html#source-stamps"><span class="std std-ref">source stamps</span></a> section, multiple repositories may contain the same codebase.
 A change’s codebase is usually determined by the <a href="#id260"><span class="problematic" id="id261">:bb:cfg:`codebaseGenerator`</span></a> configuration.
 By default the codebase is ‘’; this value is used automatically for single-codebase configurations.</p>
 </div>
 <div class="section" id="revision">
-<span id="change-attr-revision"></span><h2>Revision<a class="headerlink" href="#revision" title="Permalink to this headline">¶</a></h2>
+<span id="change-attr-revision"></span><h2><span class="section-number">2.5.4.7. </span>Revision<a class="headerlink" href="#revision" title="Permalink to this headline">¶</a></h2>
 <p>Each Change can have a <code class="xref py py-attr docutils literal notranslate"><span class="pre">revision</span></code> attribute, which describes how to get a tree with a specific state: a tree which includes this Change (and all that came before it) but none that come after it.
 If this information is unavailable, the <code class="xref py py-attr docutils literal notranslate"><span class="pre">revision</span></code> attribute will be <code class="docutils literal notranslate"><span class="pre">None</span></code>.
 These revisions are provided by the <code class="xref py py-class docutils literal notranslate"><span class="pre">ChangeSource</span></code>.</p>
@@ -1446,7 +1516,7 @@ These revisions are provided by the <code class="xref py py-class docutils liter
 </dl>
 </div>
 <div class="section" id="branches">
-<h2>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.4.8. </span>Branches<a class="headerlink" href="#branches" title="Permalink to this headline">¶</a></h2>
 <p>The Change might also have a <code class="xref py py-attr docutils literal notranslate"><span class="pre">branch</span></code> attribute.
 This indicates that all of the Change’s files are in the same named branch.
 The schedulers get to decide whether the branch should be built or not.</p>
@@ -1471,7 +1541,7 @@ Darcs branches are subdirectories of a base URL just like SVN.</p>
 </dl>
 </div>
 <div class="section" id="change-properties">
-<h2>Change Properties<a class="headerlink" href="#change-properties" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.4.9. </span>Change Properties<a class="headerlink" href="#change-properties" title="Permalink to this headline">¶</a></h2>
 <p>A Change may have one or more properties attached to it, usually specified through the Force Build form or <a href="#id262"><span class="problematic" id="id263">:bb:cmdline:`sendchange`</span></a>.
 Properties are discussed in detail in the <a class="reference internal" href="../concepts.html#build-properties"><span class="std std-ref">Build Properties</span></a> section.</p>
 </div>
@@ -1482,6 +1552,15 @@ Properties are discussed in detail in the <a class="reference internal" href="..
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="schedulers.html" class="btn btn-neutral float-right" title="2.5.5. Schedulers" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="global.html" class="btn btn-neutral float-left" title="2.5.2. Global Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

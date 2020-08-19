@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Change Hooks &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.5.15. Change Hooks &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.5.16. Custom Services" href="services.html" />
+    <link rel="prev" title="2.5.14. Web Server" href="www.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,55 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2.5. Configuration</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="intro.html">2.5.1. Configuring Buildbot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="global.html">2.5.2. Global Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changesources.html">2.5.3. Change Sources and Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="changesources.html#changes">2.5.4. Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="schedulers.html">2.5.5. Schedulers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="workers.html">2.5.6. Workers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="builders.html">2.5.7. Builder Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildfactories.html">2.5.8. Build Factories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsets.html">2.5.9. Build Sets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="properties.html">2.5.10. Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="buildsteps.html">2.5.11. Build Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="interlocks.html">2.5.12. Interlocks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="reporters.html">2.5.13. Reporters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="www.html">2.5.14. Web Server</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.5.15. Change Hooks</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#change-hooks-auth">2.5.15.1. Change Hooks Auth</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#mercurial-hook">2.5.15.2. Mercurial hook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#github-hook">2.5.15.3. GitHub hook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bitbucket-hook">2.5.15.4. BitBucket hook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bitbucket-cloud-hook">2.5.15.5. Bitbucket Cloud hook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bitbucket-server-hook">2.5.15.6. Bitbucket Server hook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#poller-hook">2.5.15.7. Poller hook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gitlab-hook">2.5.15.8. GitLab hook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#gitorious-hook">2.5.15.9. Gitorious Hook</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#custom-hooks">2.5.15.10. Custom Hooks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="services.html">2.5.16. Custom Services</a></li>
+<li class="toctree-l3"><a class="reference internal" href="dbconfig.html">2.5.17. DbConfig</a></li>
+<li class="toctree-l3"><a class="reference internal" href="configurators.html">2.5.18. Configurators</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading/index.html">2.12. Upgrading</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +174,11 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Change Hooks</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2.5. </span>Configuration</a> &raquo;</li>
+        
+      <li><span class="section-number">2.5.15. </span>Change Hooks</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,7 +198,7 @@
            <div itemprop="articleBody">
             
   <div class="section" id="change-hooks">
-<span id="id1"></span><h1>Change Hooks<a class="headerlink" href="#change-hooks" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1><span class="section-number">2.5.15. </span>Change Hooks<a class="headerlink" href="#change-hooks" title="Permalink to this headline">¶</a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">/change_hook</span></code> url is a magic URL which will accept HTTP requests and translate them into changes for buildbot.
 Implementations (such as a trivial json-based endpoint and a GitHub implementation) can be found in <a href="#id2"><span class="problematic" id="id3">:src:`master/buildbot/www/hooks`</span></a>.
 The format of the url is <code class="samp docutils literal notranslate"><span class="pre">/change_hook/</span><em><span class="pre">DIALECT</span></em></code> where DIALECT is a package within the hooks directory.
@@ -165,7 +218,7 @@ Change_hook is disabled by default and each DIALECT has to be enabled separately
 Run <strong class="command">post_build_request.py --help</strong> for more information.
 The <code class="docutils literal notranslate"><span class="pre">base</span></code> dialect must be enabled for this to work.</p>
 <div class="section" id="change-hooks-auth">
-<span id="id6"></span><h2>Change Hooks Auth<a class="headerlink" href="#change-hooks-auth" title="Permalink to this headline">¶</a></h2>
+<span id="id6"></span><h2><span class="section-number">2.5.15.1. </span>Change Hooks Auth<a class="headerlink" href="#change-hooks-auth" title="Permalink to this headline">¶</a></h2>
 <p>By default change hook URL is not protected.
 Some hooks implement their own authentication method.
 Other requires the generic method to be secured.</p>
@@ -188,7 +241,7 @@ Other requires the generic method to be secured.</p>
 See the details of available options in <a class="reference external" href="https://twistedmatrix.com/documents/current/core/howto/cred.html">Twisted documentation</a>.</p>
 </div>
 <div class="section" id="mercurial-hook">
-<h2>Mercurial hook<a class="headerlink" href="#mercurial-hook" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.15.2. </span>Mercurial hook<a class="headerlink" href="#mercurial-hook" title="Permalink to this headline">¶</a></h2>
 <p>The Mercurial hook uses the base dialect:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="o">...</span><span class="p">,</span>
@@ -204,7 +257,7 @@ See the details of available options in <a class="reference external" href="http
 <p>You’ll find <a href="#id7"><span class="problematic" id="id8">:contrib-src:`master/contrib/hgbuildbot.py`</span></a>, and its inline documentation, in the <a href="#id9"><span class="problematic" id="id10">:contrib-src:`buildbot-contrib &lt;../../&gt;`</span></a> repository.</p>
 </div>
 <div class="section" id="github-hook">
-<h2>GitHub hook<a class="headerlink" href="#github-hook" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.15.3. </span>GitHub hook<a class="headerlink" href="#github-hook" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>There is a standalone HTTP server available for receiving GitHub notifications as well: <a href="#id11"><span class="problematic" id="id12">:contrib-src:`master/contrib/github_buildbot.py`</span></a>.
@@ -317,7 +370,7 @@ Anyone who can access the web server can “fake” a request from GitHub, poten
 Then change the the <code class="docutils literal notranslate"><span class="pre">Payload</span> <span class="pre">URL</span></code> of your GitHub webhook to <code class="docutils literal notranslate"><span class="pre">https://user:password&#64;builds.example.com/bbot/change_hook/github</span></code>.</p>
 </div>
 <div class="section" id="bitbucket-hook">
-<h2>BitBucket hook<a class="headerlink" href="#bitbucket-hook" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.15.4. </span>BitBucket hook<a class="headerlink" href="#bitbucket-hook" title="Permalink to this headline">¶</a></h2>
 <p>The BitBucket hook is as simple as GitHub one and it takes no options.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">...</span><span class="p">,</span>
     <span class="n">change_hook_dialects</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bitbucket&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">},</span>
@@ -339,7 +392,7 @@ Then, create a BitBucket service hook (see <a class="reference external" href="h
 <p>Note that as before, not using <code class="docutils literal notranslate"><span class="pre">change_hook_auth</span></code> can expose you to security risks.</p>
 </div>
 <div class="section" id="bitbucket-cloud-hook">
-<h2>Bitbucket Cloud hook<a class="headerlink" href="#bitbucket-cloud-hook" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.15.5. </span>Bitbucket Cloud hook<a class="headerlink" href="#bitbucket-cloud-hook" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="o">...</span><span class="p">,</span>
     <span class="n">change_hook_dialects</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bitbucketcloud&#39;</span><span class="p">:</span> <span class="p">{}},</span>
@@ -360,7 +413,7 @@ Anyone who can access the web server can “fake” a request from Bitbucket Clo
 </div>
 </div>
 <div class="section" id="bitbucket-server-hook">
-<h2>Bitbucket Server hook<a class="headerlink" href="#bitbucket-server-hook" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.15.6. </span>Bitbucket Server hook<a class="headerlink" href="#bitbucket-server-hook" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
     <span class="o">...</span><span class="p">,</span>
     <span class="n">change_hook_dialects</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;bitbucketserver&#39;</span><span class="p">:</span> <span class="p">{}},</span>
@@ -385,7 +438,7 @@ Anyone who can access the web server can “fake” a request from Bitbucket Ser
 </div>
 </div>
 <div class="section" id="poller-hook">
-<h2>Poller hook<a class="headerlink" href="#poller-hook" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.15.7. </span>Poller hook<a class="headerlink" href="#poller-hook" title="Permalink to this headline">¶</a></h2>
 <p>The poller hook allows you to use GET or POST requests to trigger polling.
 One advantage of this is your buildbot instance can poll at launch (using the pollAtLaunch flag) to get changes that happened while it was down, but then you can still use a commit hook to get fast notification of new changes.</p>
 <p>Suppose you have a poller configured like this:</p>
@@ -422,7 +475,7 @@ One advantage of this is your buildbot instance can poll at launch (using the po
 </div>
 </div>
 <div class="section" id="gitlab-hook">
-<h2>GitLab hook<a class="headerlink" href="#gitlab-hook" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.15.8. </span>GitLab hook<a class="headerlink" href="#gitlab-hook" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">...</span><span class="p">,</span>
     <span class="n">change_hook_dialects</span><span class="o">=</span><span class="p">{</span>
         <span class="s1">&#39;gitlab&#39;</span> <span class="p">:</span> <span class="p">{</span>
@@ -469,7 +522,7 @@ See <code class="docutils literal notranslate"><span class="pre">https://docs.gi
 <p>Note that as before, not using <code class="docutils literal notranslate"><span class="pre">change_hook_auth</span></code> can expose you to security risks.</p>
 </div>
 <div class="section" id="gitorious-hook">
-<h2>Gitorious Hook<a class="headerlink" href="#gitorious-hook" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.15.9. </span>Gitorious Hook<a class="headerlink" href="#gitorious-hook" title="Permalink to this headline">¶</a></h2>
 <p>The Gitorious hook is as simple as GitHub one and it also takes no options.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">c</span><span class="p">[</span><span class="s1">&#39;www&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="o">...</span><span class="p">,</span>
     <span class="n">change_hook_dialects</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;gitorious&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">},</span>
@@ -492,7 +545,7 @@ Then, create a Gitorious web hook with a WebHook URL like <code class="docutils 
 </div>
 </div>
 <div class="section" id="custom-hooks">
-<h2>Custom Hooks<a class="headerlink" href="#custom-hooks" title="Permalink to this headline">¶</a></h2>
+<h2><span class="section-number">2.5.15.10. </span>Custom Hooks<a class="headerlink" href="#custom-hooks" title="Permalink to this headline">¶</a></h2>
 <p>Custom hooks are supported via the <a class="reference internal" href="../plugins.html#plugins"><span class="std std-ref">Plugin Infrastructure in Buildbot</span></a> mechanism.
 You can subclass any of the available hook handler class available in <code class="xref py py-mod docutils literal notranslate"><span class="pre">buildbot.www.hooks</span></code> and register it in the plugin system, via a custom python module.
 For convenience, you ca also use the generic option <code class="docutils literal notranslate"><span class="pre">custom_class</span></code> e.g:</p>
@@ -524,6 +577,15 @@ For convenience, you ca also use the generic option <code class="docutils litera
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="services.html" class="btn btn-neutral float-right" title="2.5.16. Custom Services" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="www.html" class="btn btn-neutral float-left" title="2.5.14. Web Server" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

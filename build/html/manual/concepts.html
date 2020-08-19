@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Concepts &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.3. Concepts &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" /> 
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2.4. Secret Management" href="secretsmanagement.html" />
+    <link rel="prev" title="2.2.6. Next Steps" href="installation/misc.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,44 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/index.html">2.2. Installation</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.3. Concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#source-stamps">2.3.1. Source Stamps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#version-control-systems">2.3.2. Version Control Systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#changes">2.3.3. Changes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#scheduling-builds">2.3.4. Scheduling Builds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#builds">2.3.5. Builds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#buildsets">2.3.6. BuildSets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#buildrequests">2.3.7. BuildRequests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#builders-and-build-factories">2.3.8. Builders and Build Factories</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#workers">2.3.9. Workers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#users">2.3.10. Users</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#user-objects">2.3.10.1. User Objects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#doing-things-with-users">2.3.10.2. Doing Things With Users</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#email-addresses">2.3.10.3. Email Addresses</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#irc-nicknames">2.3.10.4. IRC Nicknames</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-properties">2.3.11. Build Properties</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-codebase-builds">2.3.12. Multiple-Codebase Builds</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multimaster">2.3.13. Multimaster</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="configuration/index.html">2.5. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrading/index.html">2.12. Upgrading</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +163,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Concepts</li>
+          <li><a href="index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+      <li><span class="section-number">2.3. </span>Concepts</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,11 +185,11 @@
            <div itemprop="articleBody">
             
   <div class="section" id="concepts">
-<h1>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2.3. </span>Concepts<a class="headerlink" href="#concepts" title="Permalink to this headline">¶</a></h1>
 <p>This chapter defines some of the basic concepts that the Buildbot uses.
 You’ll need to understand how the Buildbot sees the world to configure it properly.</p>
 <div class="section" id="source-stamps">
-<span id="id1"></span><h2>Source Stamps<a class="headerlink" href="#source-stamps" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><span class="section-number">2.3.1. </span>Source Stamps<a class="headerlink" href="#source-stamps" title="Permalink to this headline">¶</a></h2>
 <p>Buildbot uses the concept of <em>source stamp set</em> to identify exact source code that needs to be built for a certain project.
 A <em>source stamp set</em> is a collection of one or more source stamps.</p>
 <p>A <em>source stamp</em> is a collection of information needed to identify a particular version of code on a certain codebase. This information most often is a revision and possibly a branch.</p>
@@ -167,7 +207,7 @@ It uses a <em>source stamp</em> to do so for each codebase, each of which inform
 Collectively these source stamps are called <em>source stamp set</em> for each project.</p>
 <img alt="Source Stamp Sets" src="../_images/changes.svg" /></div>
 <div class="section" id="version-control-systems">
-<span id="id2"></span><h2>Version Control Systems<a class="headerlink" href="#version-control-systems" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2><span class="section-number">2.3.2. </span>Version Control Systems<a class="headerlink" href="#version-control-systems" title="Permalink to this headline">¶</a></h2>
 <p>Buildbot supports a significant number of version control systems, so it treats them abstractly.</p>
 <p>For purposes of deciding when to perform builds, Buildbot’s change sources monitor repositories, and represent any updates to those repositories as <em>changes</em>.
 These change sources fall broadly into two categories: pollers which periodically check the repository for updates; and hooks, where the repository is configured to notify Buildbot whenever an update occurs.
@@ -176,7 +216,7 @@ For more information see <a class="reference internal" href="configuration/chang
 When the build begins, one or more source steps use the information in the source stamp set to actually check out the source code, using the normal VCS commands.</p>
 </div>
 <div class="section" id="changes">
-<span id="concept-changes"></span><h2>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
+<span id="concept-changes"></span><h2><span class="section-number">2.3.3. </span>Changes<a class="headerlink" href="#changes" title="Permalink to this headline">¶</a></h2>
 <p>A <a class="reference internal" href="configuration/changesources.html#change-attrs"><span class="std std-ref">Change</span></a> is an abstract way Buildbot uses to represent a single change to the source files performed by a developer.
 In version control systems that support the notion of atomic check-ins a change represents a changeset or commit.</p>
 <p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code> comprises the following information:</p>
@@ -191,7 +231,7 @@ In version control systems that support the notion of atomic check-ins a change 
 </div></blockquote>
 </div>
 <div class="section" id="scheduling-builds">
-<span id="id3"></span><h2>Scheduling Builds<a class="headerlink" href="#scheduling-builds" title="Permalink to this headline">¶</a></h2>
+<span id="id3"></span><h2><span class="section-number">2.3.4. </span>Scheduling Builds<a class="headerlink" href="#scheduling-builds" title="Permalink to this headline">¶</a></h2>
 <p>Each Buildmaster has a set of scheduler objects, each of which gets a copy of every incoming <code class="xref py py-class docutils literal notranslate"><span class="pre">Change</span></code>.
 The Schedulers are responsible for deciding when <code class="xref py py-class docutils literal notranslate"><span class="pre">Build</span></code>s should be run.
 Some Buildbot installations might have a single scheduler, while others may have several, each for a different purpose.</p>
@@ -216,7 +256,7 @@ This support is under active development in Buildbot, and is referred to as “b
 Each scheduler must have a unique name.</p>
 </div>
 <div class="section" id="builds">
-<span id="concepts-build"></span><h2>Builds<a class="headerlink" href="#builds" title="Permalink to this headline">¶</a></h2>
+<span id="concepts-build"></span><h2><span class="section-number">2.3.5. </span>Builds<a class="headerlink" href="#builds" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">Build</span></code> represents a single compile or test run of a particular version of the source code.
 A build is comprised of a series of steps.
 The steps may be arbitrary. For example, for compiled software a build generally consists of the checkout, configure, make, and make check sequence.
@@ -225,13 +265,13 @@ For interpreted projects like Python modules, a build is generally a checkout fo
 A <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildFactory</span></code> (see below) that is attached to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code> creates a list of the steps for the new build.</p>
 </div>
 <div class="section" id="buildsets">
-<span id="concepts-buildset"></span><h2>BuildSets<a class="headerlink" href="#buildsets" title="Permalink to this headline">¶</a></h2>
+<span id="concepts-buildset"></span><h2><span class="section-number">2.3.6. </span>BuildSets<a class="headerlink" href="#buildsets" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildSet</span></code> represents a set of potentially not yet created <code class="xref py py-class docutils literal notranslate"><span class="pre">Build</span></code>s that all compile and/or test the same version of the source tree.
 It tracks whether this set of builds as a whole succeeded or not.
 The information that is stored in a BuildSet is a set of <code class="xref py py-class docutils literal notranslate"><span class="pre">SourceStamp</span></code>s which define the version of the code to test and a set of <code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code>s which define what builds to create.</p>
 </div>
 <div class="section" id="buildrequests">
-<span id="buildrequest"></span><h2>BuildRequests<a class="headerlink" href="#buildrequests" title="Permalink to this headline">¶</a></h2>
+<span id="buildrequest"></span><h2><span class="section-number">2.3.7. </span>BuildRequests<a class="headerlink" href="#buildrequests" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildRequest</span></code> is a request to start a specific build.
 A <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildRequest</span></code> consists of the following information:</p>
 <blockquote>
@@ -244,7 +284,7 @@ A <code class="xref py py-class docutils literal notranslate"><span class="pre">
 The user may configure additional restrictions for determining mergeability of build requests.</p>
 </div>
 <div class="section" id="builders-and-build-factories">
-<span id="concepts-build-factories"></span><span id="builder"></span><h2>Builders and Build Factories<a class="headerlink" href="#builders-and-build-factories" title="Permalink to this headline">¶</a></h2>
+<span id="concepts-build-factories"></span><span id="builder"></span><h2><span class="section-number">2.3.8. </span>Builders and Build Factories<a class="headerlink" href="#builders-and-build-factories" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code> is responsible for creating new builds from <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildRequest</span></code>s.
 Creating a new build is essentially determining the exact steps and other properties of the build and/or test sequence to execute.
 This is performed by a <code class="xref py py-class docutils literal notranslate"><span class="pre">BuildFactory</span></code> that is attached to each <code class="xref py py-class docutils literal notranslate"><span class="pre">Builder</span></code>.</p>
@@ -258,7 +298,7 @@ The directory on the master is used for keeping status information.
 The directories on the workers are used as a location where the actual checkout, compilation and testing steps happen.</p>
 </div>
 <div class="section" id="workers">
-<span id="concepts-workers"></span><h2>Workers<a class="headerlink" href="#workers" title="Permalink to this headline">¶</a></h2>
+<span id="concepts-workers"></span><h2><span class="section-number">2.3.9. </span>Workers<a class="headerlink" href="#workers" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="xref py py-class docutils literal notranslate"><span class="pre">Worker</span></code> corresponds to an environment where builds are executed.
 A single physical machine must run at least one <code class="xref py py-class docutils literal notranslate"><span class="pre">Worker</span></code> in order for Buildbot to be able to utilize it for running builds.
 Multiple <code class="xref py py-class docutils literal notranslate"><span class="pre">Worker</span></code>s may run on a single machine to provide different environments that can reuse the same hardware by means of containers or virtual machines.</p>
@@ -270,7 +310,7 @@ In addition, multiple workers will allow multiple simultaneous builds for the sa
 Otherwise build or test failures will be dependent on which worker the build is ran and this will complicate investigation of failures.</p>
 </div>
 <div class="section" id="users">
-<span id="concepts-users"></span><h2>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
+<span id="concepts-users"></span><h2><span class="section-number">2.3.10. </span>Users<a class="headerlink" href="#users" title="Permalink to this headline">¶</a></h2>
 <p>Buildbot has a somewhat limited awareness of <em>users</em>.
 It assumes the world consists of a set of developers, each of whom can be described by a couple of simple attributes.
 These developers make changes to the source code, causing builds which may succeed or fail.</p>
@@ -283,7 +323,7 @@ The responsibility for this mapping is left up to the status module which needs 
 In the future, the responsibility for managing users will be transferred to User Objects.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">who</span></code> fields in <code class="docutils literal notranslate"><span class="pre">git</span></code> Changes are used to create <a class="reference internal" href="#user-objects"><span class="std std-ref">User Objects</span></a>, which allows for more control and flexibility in how Buildbot manages users.</p>
 <div class="section" id="user-objects">
-<span id="id8"></span><h3>User Objects<a class="headerlink" href="#user-objects" title="Permalink to this headline">¶</a></h3>
+<span id="id8"></span><h3><span class="section-number">2.3.10.1. </span>User Objects<a class="headerlink" href="#user-objects" title="Permalink to this headline">¶</a></h3>
 <p>User Objects allow Buildbot to better manage users throughout its various interactions with users (see <a class="reference internal" href="configuration/changesources.html#change-sources"><span class="std std-ref">Change Sources and Changes</span></a> and <a class="reference internal" href="configuration/reporters.html#reporters"><span class="std std-ref">Reporters</span></a>).
 The User Objects are stored in the Buildbot database and correlate the various attributes that a user might have: irc, Git, etc.</p>
 <div class="section" id="id9">
@@ -322,7 +362,7 @@ The password will be encrypted before storing in the database along with other u
 </div>
 </div>
 <div class="section" id="doing-things-with-users">
-<span id="id10"></span><h3>Doing Things With Users<a class="headerlink" href="#doing-things-with-users" title="Permalink to this headline">¶</a></h3>
+<span id="id10"></span><h3><span class="section-number">2.3.10.2. </span>Doing Things With Users<a class="headerlink" href="#doing-things-with-users" title="Permalink to this headline">¶</a></h3>
 <p>Each change has a single user who is responsible for it.
 Most builds have a set of changes: the build generally represents the first time these changes have been built and tested by the Buildbot.
 The build has a <em>blamelist</em> that is the union of the users responsible for all the build’s changes.
@@ -332,7 +372,7 @@ Usually this is equal to the blamelist, but may also be expanded, e.g., to inclu
 <p>If desired, the buildbot can notify the interested users until the problem is resolved.</p>
 </div>
 <div class="section" id="email-addresses">
-<span id="id11"></span><h3>Email Addresses<a class="headerlink" href="#email-addresses" title="Permalink to this headline">¶</a></h3>
+<span id="id11"></span><h3><span class="section-number">2.3.10.3. </span>Email Addresses<a class="headerlink" href="#email-addresses" title="Permalink to this headline">¶</a></h3>
 <p>The <a href="#id12"><span class="problematic" id="id13">:bb:reporter:`MailNotifier`</span></a> is a status target which can send email about the results of each build.
 It accepts a static list of email addresses to which each message should be delivered, but it can also be configured to send mail to the <code class="xref py py-class docutils literal notranslate"><span class="pre">Build</span></code>’s Interested Users.
 To do this, it needs a way to convert User names into email addresses.</p>
@@ -353,7 +393,7 @@ It will do this by locating a <code class="xref py py-class docutils literal not
 This means the User-to-address mapping only has to be set up once, in your <code class="xref py py-class docutils literal notranslate"><span class="pre">MailNotifier</span></code>, and every email message the buildbot emits will take advantage of it.</p>
 </div>
 <div class="section" id="irc-nicknames">
-<span id="id14"></span><h3>IRC Nicknames<a class="headerlink" href="#irc-nicknames" title="Permalink to this headline">¶</a></h3>
+<span id="id14"></span><h3><span class="section-number">2.3.10.4. </span>IRC Nicknames<a class="headerlink" href="#irc-nicknames" title="Permalink to this headline">¶</a></h3>
 <p>Like <code class="xref py py-class docutils literal notranslate"><span class="pre">MailNotifier</span></code>, the <code class="xref py py-class docutils literal notranslate"><span class="pre">buildbot.status.words.IRC</span></code> class provides a status target which can announce the results of each build.
 It also provides an interactive interface by responding to online queries posted in the channel or sent as private messages.</p>
 <p>In the future, the buildbot can be configured to map User names to IRC nicknames, to watch for the recent presence of these nicknames, and to deliver build status messages to the interested parties.
@@ -365,7 +405,7 @@ It can report on the likelihood that the user saw the given message (based upon 
 </div>
 </div>
 <div class="section" id="build-properties">
-<span id="index-0"></span><span id="id15"></span><h2>Build Properties<a class="headerlink" href="#build-properties" title="Permalink to this headline">¶</a></h2>
+<span id="index-0"></span><span id="id15"></span><h2><span class="section-number">2.3.11. </span>Build Properties<a class="headerlink" href="#build-properties" title="Permalink to this headline">¶</a></h2>
 <p>Each build has a set of <em>Build Properties</em>, which can be used by its build steps to modify their actions.</p>
 <p>The properties are represented as a set of key-value pairs.
 Effectively, a single property is a variable that, once set, can be used by subsequent steps in a build to modify their behaviour.
@@ -385,7 +425,7 @@ To give this information to the subsequent steps, the source step records the ch
 </div></blockquote>
 </div>
 <div class="section" id="multiple-codebase-builds">
-<span id="id16"></span><h2>Multiple-Codebase Builds<a class="headerlink" href="#multiple-codebase-builds" title="Permalink to this headline">¶</a></h2>
+<span id="id16"></span><h2><span class="section-number">2.3.12. </span>Multiple-Codebase Builds<a class="headerlink" href="#multiple-codebase-builds" title="Permalink to this headline">¶</a></h2>
 <p>What if an end-product is composed of code from several codebases?
 Changes may arrive from different repositories within the tree-stable-timer period.
 Buildbot will not only use the source-trees that contain changes but also needs the remaining source-trees to build the complete product.</p>
@@ -427,7 +467,7 @@ See <a class="reference internal" href="configuration/properties.html#interpolat
 </div>
 </div>
 <div class="section" id="multimaster">
-<span id="id23"></span><h2>Multimaster<a class="headerlink" href="#multimaster" title="Permalink to this headline">¶</a></h2>
+<span id="id23"></span><h2><span class="section-number">2.3.13. </span>Multimaster<a class="headerlink" href="#multimaster" title="Permalink to this headline">¶</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>Buildbot Multimaster is considered experimental.
@@ -465,6 +505,15 @@ There is probably a new REST api needed in order to graceful shutdown a master, 
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="secretsmanagement.html" class="btn btn-neutral float-right" title="2.4. Secret Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation/misc.html" class="btn btn-neutral float-left" title="2.2.6. Next Steps" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>

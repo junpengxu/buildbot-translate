@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Buildmaster Setup &mdash; buildbot-translate 0.0.1 documentation</title>
+  <title>2.2.4. Buildmaster Setup &mdash; buildbot-translate 0.0.1 documentation</title>
   
 
   
@@ -34,7 +34,9 @@
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
-    <link rel="search" title="Search" href="../../search.html" /> 
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="2.2.5. Worker Setup" href="worker.html" />
+    <link rel="prev" title="2.2.3. Installing the code" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -78,8 +80,35 @@
               
             
             
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../tutorial/index.html">1. Buildbot Tutorial</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">2. Buildbot Manual</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../introduction.html">2.1. Introduction</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">2.2. Installation</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="components.html">2.2.1. Buildbot Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="requirements.html">2.2.2. Requirements</a></li>
+<li class="toctree-l3"><a class="reference internal" href="installation.html">2.2.3. Installing the code</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">2.2.4. Buildmaster Setup</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#creating-a-buildmaster">2.2.4.1. Creating a buildmaster</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#upgrading-an-existing-buildmaster">2.2.4.2. Upgrading an Existing Buildmaster</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="worker.html">2.2.5. Worker Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="misc.html">2.2.6. Next Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../concepts.html">2.3. Concepts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../secretsmanagement.html">2.4. Secret Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../configuration/index.html">2.5. Configuration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../customization.html">2.6. Customization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../cmdline.html">2.7. Command-line Tool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../resources.html">2.8. Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../optimization.html">2.9. Optimization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../plugins.html">2.10. Plugin Infrastructure in Buildbot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../deploy.html">2.11. Deployment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../upgrading/index.html">2.12. Upgrading</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -125,7 +154,11 @@
     
       <li><a href="../../index.html">Docs</a> &raquo;</li>
         
-      <li>Buildmaster Setup</li>
+          <li><a href="../index.html"><span class="section-number">2. </span>Buildbot Manual</a> &raquo;</li>
+        
+          <li><a href="index.html"><span class="section-number">2.2. </span>Installation</a> &raquo;</li>
+        
+      <li><span class="section-number">2.2.4. </span>Buildmaster Setup</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -145,9 +178,9 @@
            <div itemprop="articleBody">
             
   <div class="section" id="buildmaster-setup">
-<h1>Buildmaster Setup<a class="headerlink" href="#buildmaster-setup" title="Permalink to this headline">¶</a></h1>
+<h1><span class="section-number">2.2.4. </span>Buildmaster Setup<a class="headerlink" href="#buildmaster-setup" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="creating-a-buildmaster">
-<span id="id1"></span><h2>Creating a buildmaster<a class="headerlink" href="#creating-a-buildmaster" title="Permalink to this headline">¶</a></h2>
+<span id="id1"></span><h2><span class="section-number">2.2.4.1. </span>Creating a buildmaster<a class="headerlink" href="#creating-a-buildmaster" title="Permalink to this headline">¶</a></h2>
 <p>As you learned earlier (<a class="reference internal" href="../introduction.html#system-architecture"><span class="std std-ref">System Architecture</span></a>), the buildmaster runs on a central host (usually one that is publicly visible, so everybody can check on the status of the project), and controls all aspects of the buildbot system</p>
 <p>You will probably wish to create a separate user account for the buildmaster, perhaps named <code class="docutils literal notranslate"><span class="pre">buildmaster</span></code>.
 Do not run the buildmaster as <code class="docutils literal notranslate"><span class="pre">root</span></code>!</p>
@@ -227,7 +260,7 @@ Note that the same value must be added to the configuration file.</p>
 </div>
 </div>
 <div class="section" id="upgrading-an-existing-buildmaster">
-<span id="id2"></span><h2>Upgrading an Existing Buildmaster<a class="headerlink" href="#upgrading-an-existing-buildmaster" title="Permalink to this headline">¶</a></h2>
+<span id="id2"></span><h2><span class="section-number">2.2.4.2. </span>Upgrading an Existing Buildmaster<a class="headerlink" href="#upgrading-an-existing-buildmaster" title="Permalink to this headline">¶</a></h2>
 <p>If you have just installed a new version of the Buildbot code, and you have buildmasters that were created using an older version, you’ll need to upgrade these buildmasters before you can use them.
 The upgrade process adds and modifies files in the buildmaster’s base directory to make it compatible with the new code.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>buildbot upgrade-master basedir
@@ -289,6 +322,15 @@ This will extract the DB url from your configuration file.</p>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="worker.html" class="btn btn-neutral float-right" title="2.2.5. Worker Setup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="installation.html" class="btn btn-neutral float-left" title="2.2.3. Installing the code" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
